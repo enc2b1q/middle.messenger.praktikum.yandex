@@ -12,6 +12,8 @@ import * as classes from './modules/style.module.scss';
 
 console.log('test');
 
-const Handlebars = require("handlebars");
+// const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
+
 const template = Handlebars.compile("user: {{name}}");
 console.log(template({ name: "testuser" }));
