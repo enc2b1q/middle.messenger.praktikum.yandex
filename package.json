@@ -5,6 +5,7 @@
   "source": "index.html",
   "scripts": {
     "dev": "parcel index.html",
+    "dev-style": "parcel build ./src/style.scss",
     "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/enc2b1q/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
     "parcel": "^2.7.0"
   }
 }
