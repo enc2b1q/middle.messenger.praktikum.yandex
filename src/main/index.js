@@ -1,3 +1,4 @@
+/*
 if (module.hot) {
     module.hot.accept();
 }
@@ -17,3 +18,10 @@ import Handlebars from "handlebars";
 
 const template = Handlebars.compile("user: {{name}}");
 console.log(template({ name: "testuser" }));
+*/
+
+//import Handlebars from "handlebars";
+// import tpl from './index.hbs';
+import './index.css';
+
+// document.getElementById('root').innerHTML = tpl({});

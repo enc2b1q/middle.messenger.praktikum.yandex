@@ -1,0 +1,22 @@
+.errorbox {
+    width: auto;
+    margin: auto;
+    font-family: Helvetica, Verdana, sans-serif;
+	/* padding: 10px; */
+	font-weight: bold;
+    margin: 0;
+}
+
+div {
+  margin: 1rem;
+}
+
+.number {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.text {
+    font-size: 1.0em;
+    font-weight: bold;
+}

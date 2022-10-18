@@ -4,9 +4,8 @@
   "description": "praktikum messenger project",
   "source": "index.html",
   "scripts": {
-    "dev": "parcel ./src/index.html",
-    "dev-style": "parcel build ./src/style.scss",
-    "build": "parcel build ./src/index.html",
+    "dev": "parcel --no-cache ./src/main/index.html",
+    "build": "parcel build --no-cache ./src/main/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "targets": {
