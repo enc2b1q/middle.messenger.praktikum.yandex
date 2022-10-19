@@ -4,7 +4,7 @@ import './style.css';
 
 Handlebars.registerPartial('errorbox', tpl);
 
-import linkback from '../linkback';
+import link from '../link';
 
 export default (id, number, text) => {
 	return tpl({ id, number, text});

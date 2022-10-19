@@ -1,0 +1,14 @@
+ <div class="page-box">
+	<form action="" method="get" class="form-input"></form>
+		<div class="enter-header">Вход</div>
+		<div class="creds-box">
+			{{> inputbox name="loginName" labeltext='Логин' type='text' }}
+			{{> inputbox name="pwdName" labeltext='Пароль' type='password' }}
+		</div>
+		<div class="empty"></div>
+		<div class="container-enter-buttons">
+			{{> button id='btnEnterId' text='Войти'}}
+			{{> link id="lnkRegId" url='#' text='Нет аккаунта?' }}
+		</div>
+	</form>
+</div>

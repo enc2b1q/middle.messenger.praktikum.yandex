@@ -1,8 +1,8 @@
 import Handlebars from 'handlebars';
 import tpl from './tpl.hbs';
-import './style.css';
+import './style.scss';
 
-Handlebars.registerPartial('linkback', tpl);
+Handlebars.registerPartial('button', tpl);
 
 export default (id, url, text) => {
 	return tpl({ id, url, text});

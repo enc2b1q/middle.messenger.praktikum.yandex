@@ -1,0 +1,43 @@
+.page-box {
+    display: flex;
+	justify-content: center;
+    flex-direction: column;
+
+    border: 2px solid lightgrey;
+    border-radius: 12px;
+
+    width: 340px;
+    height: 480px;
+
+    padding: 20px;
+
+    position: relative;
+}
+
+.enter-header{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-size: 1.875em;
+    font-weight: bold;
+}
+
+.creds-box{
+    display: flex;
+	justify-content: flex-start;
+    text-align: left;
+    flex-direction: column;
+    margin-left: 0px;
+    margin-right: auto;
+    width: 100%;
+}
+
+.empty {
+    flex-grow: 1;
+}
+
+.container-enter-buttons {
+    display: flex;
+	justify-content: center;
+    flex-direction: column;
+
+}
