@@ -1,7 +1,6 @@
 @use '../../modules/scss/body';
-@import '../../modules/scss/mixincenterpage';
 
-$sidebar-percent-value: 20;
+$sidebar-percent-value: 20 !default;
 
 .container {
     display: flex;
