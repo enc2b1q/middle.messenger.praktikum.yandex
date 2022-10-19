@@ -1,4 +1,7 @@
-.center-page {
+body {
+	margin: 0;
+}
+.content {
     display: flex;
 	align-items: center;
 	justify-content: center;

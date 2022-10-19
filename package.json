@@ -5,8 +5,9 @@
   "source": "index.html",
   "scripts": {
     "dev": "parcel --no-cache ./src/main/index.html",
+    "testpage": "parcel --no-cache ./src/main/test.html",
     "build": "parcel build --no-cache ./src/main/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "oldtest": "echo \"Error: no test specified\" && exit 1"
   },
   "targets": {
     "default": {
