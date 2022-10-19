@@ -1,7 +1,7 @@
 import tpl from './test.hbs';
 import './test.css';
 
-import layoutempty from '../layout/empty'
+import layoutsidebar from '../layout/sidebar'
 import pageError from '../pages/pageError';
 
 const props = {

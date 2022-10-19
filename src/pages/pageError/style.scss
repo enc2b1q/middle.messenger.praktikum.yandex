@@ -1,0 +1,5 @@
+@import '../../modules/scss/mixincenterpage';
+
+.page-box {
+    @include mixincenterpage;
+}
