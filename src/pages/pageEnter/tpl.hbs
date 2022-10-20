@@ -1,13 +1,13 @@
- <div class="page-box">
-	<form action="" method="get" class="form-input"></form>
-		<div class="enter-header">Вход</div>
-		<div class="creds-box">
-			{{> boxlogin }}
-		</div>
-		<div class="empty"></div>
-		<div class="container-enter-buttons">
-			{{> button id='btnEnterId' text='Войти'}}
-			{{> link id="lnkRegId" url='#' text='Нет аккаунта?' }}
-		</div>
-	</form>
-</div>
+
+{{#> layoutlogin}}
+  {{#*inline "loginheader"}}
+		Вход
+  {{/inline}}
+  {{#*inline "loginbody"}}
+		{{> boxlogin }}
+  {{/inline}}
+  {{#*inline "loginbtns"}}
+		{{> button id='btnEnterId' text='Войти'}}
+		{{> link id="lnkRegId" url='#' text='Нет аккаунта?' }}
+  {{/inline}}
+{{/layoutlogin}}

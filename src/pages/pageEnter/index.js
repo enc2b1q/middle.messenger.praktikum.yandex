@@ -4,10 +4,12 @@ import './style.scss';
 
 Handlebars.registerPartial('pageEnter', tpl);
 
+import layoutlogin from '../../layout/login'
+import boxlogin from '../../modules/boxlogin';
+
 import button from '../../components/button';
 import link from '../../components/link';
 
-import boxlogin from '../../modules/boxlogin';
 
 export default (props = {}) => {
 	return tpl(props);

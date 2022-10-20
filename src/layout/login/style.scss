@@ -1,0 +1,43 @@
+.layout-login-box {
+    display: flex;
+	justify-content: center;
+    flex-direction: column;
+
+    border: 2px solid lightgrey;
+    border-radius: 12px;
+
+    width: 340px;
+    height: 480px;
+
+    padding: 20px;
+
+    position: relative;
+}
+
+.layout-login-enter-header{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-size: 1.875em;
+    font-weight: bold;
+}
+
+.layout-login-creds-box{
+    display: flex;
+	justify-content: flex-start;
+    text-align: left;
+    flex-direction: column;
+    margin-left: 0px;
+    margin-right: auto;
+    width: 100%;
+}
+
+.layout-login-empty {
+    flex-grow: 1;
+}
+
+.layout-login-container-enter-buttons {
+    display: flex;
+	justify-content: center;
+    flex-direction: column;
+
+}
