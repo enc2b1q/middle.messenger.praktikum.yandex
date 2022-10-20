@@ -1,7 +1,7 @@
 import tpl from './selectChat.hbs';
 import './selectChat.css';
 
-import layoutsidebar from '../layout/sidebar'
+import layoutchatpage from '../layout/chatpage'
 
 const props = {
 };
