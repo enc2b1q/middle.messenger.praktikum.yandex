@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import tpl from './tpl.hbs';
 import './style.scss';
 
-import layoutsidebar from '../sidebar'
+import layoutsidebar from '../sidebar';
 
 Handlebars.registerPartial('layoutprofile', tpl);
 
