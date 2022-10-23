@@ -1,0 +1,31 @@
+.profileparambox {
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: row;
+    
+
+    border-bottom: 2px solid #EAEAEA;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 16 0 16 0;
+    margin: 0 0 16 0;
+}
+
+.profileparam-label {
+    color: black;
+    align-self: flex-start;
+}
+
+.profileparam-input {
+    color: #999999;
+    align-self: flex-end;
+    border: none;
+    text-align: right;
+}
+
+.profileparam-validation {
+    display: none;
+    align-self: stretch;
+}

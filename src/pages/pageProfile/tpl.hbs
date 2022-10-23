@@ -1,11 +1,22 @@
 {{#> layoutprofile}}
 
     {{#*inline "sidebar"}}
-        {{> backarrowbtn}}
+        {{> backarrowbtn url="#"}}
     {{/inline}}
 
     {{#*inline "sidebarcontent"}}
-        Это заглушка для профиля
+        {{#> layoutprofileparamsbox}}
+            {{#*inline "profileparams-image-box"}}
+                {{> boxprofileimage}}
+            {{/inline}}
+            {{#*inline "profileparams-params-box"}}
+                {{> boxprofile}}
+            {{/inline}}
+            {{#*inline "profileparams-buttons-box"}}
+                {{> boxprofilebtnsedit}}
+            {{/inline}}
+        
+        {{/layoutprofileparamsbox}}
     {{/inline}}
 
 {{/layoutprofile}}

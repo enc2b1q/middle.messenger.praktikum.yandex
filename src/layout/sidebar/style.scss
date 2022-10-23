@@ -23,7 +23,6 @@ $sidebar-small-percent-value: 3 !default;
 }
 
 .sidebar {
-    
     background-color:rgb(248, 246, 246);
 }
 
@@ -40,6 +39,8 @@ $sidebar-small-percent-value: 3 !default;
 }
 
 .sidebarcontent {
-    width: auto;
-    background-color:white;
+    align-self: stretch;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
 }
