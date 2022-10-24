@@ -19,7 +19,9 @@ $sidebar-small-percent-value: 3 !default;
 }
 
 .elemsidebar {
-    text-align: left;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar {
@@ -39,8 +41,5 @@ $sidebar-small-percent-value: 3 !default;
 }
 
 .sidebarcontent {
-    align-self: stretch;
     background-color: white;
-    display: flex;
-    flex-direction: column;
 }

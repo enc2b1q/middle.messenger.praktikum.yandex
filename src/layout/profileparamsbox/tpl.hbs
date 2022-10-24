@@ -2,25 +2,26 @@
 
 	<div class="layout-profileparams-box">
 		
-			<div class="layout-profileparams-image-box">
-				{{#> profileparams-image-box}}
-					default profileparams-image-box
-				{{/profileparams-image-box}}
-			</div>
+		<div class="layout-profileparams-image-box">
+			{{#> profileparams-image-box}}
+				default profileparams-image-box
+			{{/profileparams-image-box}}
+		</div>
+		{{!-- NOTE: onsubmit сделана заглушка --}}
+		<form id="form" action="#" method="POST" onsubmit="return false" class="layout-profileparams-form">
 			<div class="layout-profileparams-params-box">
-				<form action="" method="get" class="form-input"></form>
 				{{#> profileparams-params-box}}
 					default profileparams-params-box
 				{{/profileparams-params-box}}
-				</form>
+				
 			</div>
-			{{!-- <div class="layout-profileparams-empty"></div> --}}
 			<div class="layout-profileparams-buttons-box">
 				{{#> profileparams-buttons-box}}
 					default profileparams-buttons-box
 				{{/profileparams-buttons-box}}
 			</div>
-		
+		</form>
+
 	</div>
 
 </div>

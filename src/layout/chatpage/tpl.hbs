@@ -1,1 +1,5 @@
-{{> layoutsidebar sizeclass="sidebar-big" }}
+{{#> layoutsidebar sizeclass="sidebar-big" }}
+    {{#*inline "sidebarcontent"}}
+        {{> layoutchatcontentbox}}
+    {{/inline}}
+{{/layoutsidebar}}

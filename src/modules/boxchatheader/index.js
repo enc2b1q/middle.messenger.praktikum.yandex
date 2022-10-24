@@ -2,10 +2,7 @@ import Handlebars from 'handlebars';
 import tpl from './tpl.hbs';
 import './style.scss';
 
-import layoutchatcontentbox from '../chatcontentbox'
-import layoutsidebar from '../sidebar'
-
-Handlebars.registerPartial('layoutchatpage', tpl);
+Handlebars.registerPartial('boxchatheader', tpl);
 
 export default (props = {}) => {
 	return tpl(props);
