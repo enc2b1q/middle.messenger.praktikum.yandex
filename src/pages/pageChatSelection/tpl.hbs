@@ -1,11 +1,11 @@
 {{#> layoutchatpage}}
 
     {{#*inline "sidebar"}}
-        Это заглушка для списка чатов
+        {{> layoutchatsidebox}}
     {{/inline}}
 
-    {{#*inline "sidebarcontent"}}
-        Это заглушка для содержимого чата
+    {{#*inline "chat-content-block"}} 
+        {{> chatemptycontent}}
     {{/inline}}
 
 {{/layoutchatpage}}

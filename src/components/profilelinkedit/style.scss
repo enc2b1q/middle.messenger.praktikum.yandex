@@ -11,15 +11,26 @@
     padding: 16 0 16 0;
     margin: 0 0 16 0;
 
+    
+
     & a {
         text-decoration: none; 
     }
 }
 
+.profilelinkedit-text-align-start {
+    text-align: start;
+}
+.profilelinkedit-text-align-end {
+    text-align: end;
+}
 
 .profilelinkedit-a-blue {
     color: #3369F3;
 }
 .profilelinkedit-a-red {
     color: red;
+}
+.profilelinkedit-a-gray {
+    color: #999999;
 }

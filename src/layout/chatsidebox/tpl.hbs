@@ -1,0 +1,15 @@
+<div class="layout-chatsidebox-wrapper-box">
+	<div class="layout-chatsidebox-header layout-chatsidebox-elem">
+		<div class="layout-chatsidebox-header-profilelinkbox">
+			{{> profilelinkedit url="/profile.html" linktext="Профиль >" profilelinkedit-color-class="profilelinkedit-a-gray" profilelinkedit-text-align-class="profilelinkedit-text-align-end"}}
+		</div>
+		<div class="layout-chatsidebox-header-searchbox">
+			<input type="text" id="search" name="search" class="layout-chatsidebox-searchbox-input" placeholder="Поиск">
+		</div>
+	</div>
+	<div class="layout-chatsidebox-chatlist layout-chatsidebox-elem">
+		{{> boxchatlist}}  
+	</div>
+</div>
+
+
