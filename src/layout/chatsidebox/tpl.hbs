@@ -4,7 +4,11 @@
 			{{> profilelinkedit url="/profile.html" linktext="Профиль >" profilelinkedit-color-class="profilelinkedit-a-gray" profilelinkedit-text-align-class="profilelinkedit-text-align-end"}}
 		</div>
 		<div class="layout-chatsidebox-header-searchbox">
-			<input type="text" id="search" name="search" class="layout-chatsidebox-searchbox-input" placeholder="Поиск">
+			{{!-- NOTE: onsubmit сделана заглушка --}}
+			<form id="form" action="#" method="POST" onsubmit="return false" class="layout-chatsidebox-searchbox-form">
+				<input type="text" id="search" name="search" class="layout-chatsidebox-searchbox-input" placeholder="Поиск">
+				<input type="submit" id="search-submit" hidden />
+			</form>
 		</div>
 	</div>
 	<div class="layout-chatsidebox-chatlist layout-chatsidebox-elem">

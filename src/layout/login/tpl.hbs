@@ -1,16 +1,15 @@
  <div class="layout-login-box">
-	
 		<div class="layout-login-enter-header">
 			{{> loginheader}}
 		</div>
-		<div class="layout-login-creds-box">
-			<form action="" method="get" class="form-input"></form>
+		{{!-- NOTE: onsubmit сделана заглушка --}}
+		<form id="form" action="#" method="POST" onsubmit="return false">
+			<div class="layout-login-creds-box">
 				{{> loginbody }}
-			</form>
-		</div>
-		<div class="layout-login-empty"></div>
-		<div class="layout-login-container-enter-buttons">
-			{{> loginbtns }}
-		</div>
-	
+			</div>
+			<div class="layout-login-empty"></div>
+			<div class="layout-login-container-enter-buttons">
+				{{> loginbtns }}
+			</div>
+		</form>
 </div>
