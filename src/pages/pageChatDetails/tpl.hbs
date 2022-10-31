@@ -1,0 +1,17 @@
+{{#> layoutchatpage}}
+
+    {{#*inline "sidebar"}}
+        {{> layoutchatsidebox}}
+    {{/inline}}
+
+    {{#*inline "chat-content-header"}}
+        {{> boxchatheader}}
+    {{/inline}}
+    {{#*inline "chat-content-block"}} 
+        Контент чата
+    {{/inline}}
+    {{#*inline "chat-content-footer"}} 
+        {{> boxchatmessage}}
+    {{/inline}}
+
+{{/layoutchatpage}}

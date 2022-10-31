@@ -1,0 +1,44 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "praktikum messenger project",
+  "source": "index.html",
+  "scripts": {
+    "dev": "parcel --no-cache ./src/main/index.html",
+    "testpage": "parcel --no-cache ./src/main/test.html",
+    "build": "parcel build --no-cache ./src/main/index.html",
+    "start": "parcel build --no-cache ./src/main/index.html && node ./server.js",
+    "oldtest": "echo \"Error: no test specified\" && exit 1"
+  },
+  "targets": {
+    "default": {
+      "distDir": "./build",
+      "engines": {
+        "browsers": ">= 50%"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enc2b1q/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "enc2b1q",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enc2b1q/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/enc2b1q/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.7.0",
+    "parcel": "2.7.0",
+    "parcel-transformer-hbs": "1.0.4"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "handlebars": "4.7.7"
+  },
+  "engines" : { 
+    "npm" : ">=8.0.0 <9.0.0",
+    "node" : ">=16.0.0 <17.0.0"
+  }
+}

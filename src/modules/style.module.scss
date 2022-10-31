@@ -1,0 +1,18 @@
+$font-stack:    Helvetica, sans-serif;
+// $primary-color: black;
+$primary-color: green;
+$background-color: whitesmoke;
+
+body {
+  font: 100% $font-stack;
+  font-weight: normal;
+  color: $primary-color;
+  background: $background-color;
+}
+
+// .body {
+//   background: $background-color;
+//   font: 100% $font-stack;
+//   color: $primary-color;
+//   font-weight: bold;
+// }

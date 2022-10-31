@@ -1,0 +1,45 @@
+@use '../../modules/scss/body';
+
+$sidebar-percent-value: 20 !default;
+$sidebar-percent-def-value: 50 !default;
+$sidebar-small-percent-value: 3 !default;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100vw;
+	margin: 0;
+}
+
+.container * {
+    width: 100%;
+	margin: 0;
+}
+
+.elemsidebar {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    background-color:rgb(248, 246, 246);
+}
+
+.sidebar-default {
+    width: $sidebar-percent-def-value * 1%;
+}
+
+.sidebar-big {
+    width: $sidebar-percent-value * 1%;
+}
+
+.sidebar-small {
+    width: $sidebar-small-percent-value * 1%;
+}
+
+.sidebarcontent {
+    background-color: white;
+}

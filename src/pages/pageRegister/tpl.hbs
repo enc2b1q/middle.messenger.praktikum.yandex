@@ -1,0 +1,13 @@
+
+{{#> layoutlogin}}
+  {{#*inline "loginheader"}}
+		Регистрация
+  {{/inline}}
+  {{#*inline "loginbody"}}
+		{{> boxregister }}
+  {{/inline}}
+  {{#*inline "loginbtns"}}
+		{{> button id='btnEnterId' text='Зарегистрироваться' url='#'}}
+		{{> link id="lnkRegId" url='login.html' text='Войти' }}
+  {{/inline}}
+{{/layoutlogin}}

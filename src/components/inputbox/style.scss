@@ -1,0 +1,26 @@
+.inputbox {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 0 16 0;
+}
+
+.small-label {
+    color: lightgrey;
+    margin-bottom: 8px;
+    align-self: stretch;
+}
+
+.input-with-bottom-line {
+    border-bottom: 2px solid #3369F3;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    align-self: stretch;
+}
+
+.validation {
+    display: none;
+    align-self: stretch;
+}
