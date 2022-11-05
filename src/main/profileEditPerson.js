@@ -1,5 +1,5 @@
 import tpl from './profileEditPerson.hbs';
-import './profileEditPerson.css';
+import './profileEditPerson.scss';
 
 
 import pageProfileEditPerson from '../pages/pageProfileEditPerson'

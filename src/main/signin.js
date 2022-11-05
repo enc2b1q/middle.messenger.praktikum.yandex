@@ -1,5 +1,5 @@
 import tpl from './signin.hbs';
-import './signin.css';
+import './signin.scss';
 
 import layoutempty from '../layout/empty'
 import pageRegister from '../pages/pageRegister';

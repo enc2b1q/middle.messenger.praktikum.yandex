@@ -1,5 +1,5 @@
 import tpl from './profileChangePwd.hbs';
-import './profileChangePwd.css';
+import './profileChangePwd.scss';
 
 
 import pageProfileChangePwd from '../pages/pageProfileChangePwd'

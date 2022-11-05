@@ -1,5 +1,5 @@
 import tpl from './error404.hbs';
-import './error404.css';
+import './error404.scss';
 
 import layoutempty from '../layout/empty'
 import pageError from '../pages/pageError';

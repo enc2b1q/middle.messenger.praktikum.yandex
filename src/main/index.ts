@@ -3,9 +3,9 @@ if (module.hot) {
     module.hot.accept();
 }
 
-// import './styles-native.css'; 
+// import './styles-native.scss';
 
-import styles from './styles-native.css';
+import styles from './styles-native.scss';
 
 import * as classes from './modules/style.module.scss';
 
@@ -22,6 +22,6 @@ console.log(template({ name: "testuser" }));
 
 //import Handlebars from "handlebars";
 // import tpl from './index.hbs';
-import './index.css';
+import './index.scss';
 
 // document.getElementById('root').innerHTML = tpl({});

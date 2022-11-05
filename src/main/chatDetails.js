@@ -1,5 +1,5 @@
 import tpl from './chatDetails.hbs';
-import './chatDetails.css';
+import './chatDetails.scss';
 
 import pageChatDetails from '../pages/pageChatDetails';
 

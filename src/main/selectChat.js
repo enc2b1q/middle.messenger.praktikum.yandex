@@ -1,5 +1,5 @@
 import tpl from './selectChat.hbs';
-import './selectChat.css';
+import './selectChat.scss';
 
 import pageChatSelection from '../pages/pageChatSelection';
 

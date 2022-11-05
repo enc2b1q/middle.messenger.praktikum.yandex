@@ -1,5 +1,5 @@
 import tpl from './profile.hbs';
-import './profile.css';
+import './profile.scss';
 
 
 import pageProfile from '../pages/pageProfile'
