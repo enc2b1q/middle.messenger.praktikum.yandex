@@ -1,7 +1,7 @@
 import tpl from './error5xx.hbs';
 import './error5xx.scss';
 
-import layoutempty from '../layout/empty'
+import layoutEmpty from '../layout/empty'
 import pageError from '../pages/pageError';
 
 const props = {

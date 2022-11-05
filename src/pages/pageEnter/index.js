@@ -4,8 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('pageEnter', tpl);
 
-import layoutlogin from '../../layout/login'
-import boxlogin from '../../modules/boxlogin';
+import layoutLogin from '../../layout/login'
+import boxLogin from '../../modules/boxLogin';
 
 import button from '../../components/button';
 import link from '../../components/link';

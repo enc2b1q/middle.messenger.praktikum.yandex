@@ -1,0 +1,36 @@
+.profileLinkEdit {
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: row;
+    
+    border-bottom: 2px solid #EAEAEA;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 16 0 16 0;
+    margin: 0 0 16 0;
+
+    
+
+    & a {
+        text-decoration: none; 
+    }
+}
+
+.profileLinkEdit-text-align-start {
+    text-align: start;
+}
+.profileLinkEdit-text-align-end {
+    text-align: end;
+}
+
+.profileLinkEdit-a-blue {
+    color: #3369F3;
+}
+.profileLinkEdit-a-red {
+    color: red;
+}
+.profileLinkEdit-a-gray {
+    color: #999999;
+}

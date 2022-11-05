@@ -4,12 +4,12 @@ import './style.scss';
 
 Handlebars.registerPartial('pageProfileChangePwd', tpl);
 
-import layoutprofile from '../../layout/profile'
-import backarrowbtn from '../../components/backarrowbtn'
-import layoutprofileparamsbox from '../../layout/profileparamsbox'
-import boxprofileimage from '../../modules/boxprofileimage'
-import boxprofilechangepwd from '../../modules/boxprofilechangepwd'
-import boxprofilepersoneditbtn from '../../modules/boxprofilepersoneditbtn'
+import layoutProfile from '../../layout/profile'
+import backArrowBtn from '../../components/backArrowBtn'
+import layoutProfileParamsBox from '../../layout/profileParamsBox'
+import boxProfileImage from '../../modules/boxProfileImage'
+import boxProfileChangePwd from '../../modules/boxProfileChangePwd'
+import boxProfilePersonEditBtn from '../../modules/boxProfilePersonEditBtn'
 
 export default (props = {}) => {
 	return tpl(props);

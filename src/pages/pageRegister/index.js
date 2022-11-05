@@ -4,8 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('pageRegister', tpl);
 
-import layoutlogin from '../../layout/login'
-import boxregister from '../../modules/boxregister';
+import layoutLogin from '../../layout/login'
+import boxRegister from '../../modules/boxRegister';
 
 import button from '../../components/button';
 import link from '../../components/link';

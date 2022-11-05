@@ -4,9 +4,9 @@ import './style.scss';
 
 Handlebars.registerPartial('pageChatSelection', tpl);
 
-import layoutchatsidebox from '../../layout/chatsidebox'
-import layoutchatpage from '../../layout/chatpage'
-import chatemptycontent from '../../components/chatemptycontent'
+import layoutChatSideBox from '../../layout/chatSideBox'
+import layoutChatPage from '../../layout/chatPage'
+import chatEmptyContent from '../../components/chatEmptyContent'
 
 export default (props = {}) => {
 	return tpl(props);

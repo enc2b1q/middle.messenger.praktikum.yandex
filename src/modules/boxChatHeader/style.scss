@@ -1,0 +1,49 @@
+.boxChatHeader-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+	justify-content: center;
+    margin: 0;
+    padding: 5px;
+}
+.boxChatHeader-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.boxChatHeader-image-box {
+    max-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    background-color: #EFEFEF;
+}
+.boxChatHeader-username-box {
+    display: flex;
+    flex-direction: row;
+	justify-content: center;
+    align-content: center;
+}
+.boxChatHeader-btn-box {
+    max-width: 50px;
+    max-height: 50px;
+    align-self: end;
+    display: flex;
+}
+.boxChatHeader-username {
+    align-self: start;
+    font-size: 2em;
+    text-align: left;
+    vertical-align: middle;
+
+}
+.boxChatHeader-btn {
+    align-self: center;
+    max-width: 50px;
+    min-height: 50px;
+    font-size: 30px;
+    text-align: center;
+    background-color: white;
+    border: none;
+    color: white;
+}

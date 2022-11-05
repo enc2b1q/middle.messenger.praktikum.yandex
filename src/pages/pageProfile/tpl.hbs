@@ -1,22 +1,22 @@
-{{#> layoutprofile}}
+{{#> layoutProfile}}
 
-    {{#*inline "sidebar"}}
-        {{> backarrowbtn url="/selectChat.html"}}
+    {{#*inline "sideBar"}}
+        {{> backArrowBtn url="/selectChat.html"}}
     {{/inline}}
 
-    {{#*inline "sidebarcontent"}}
-        {{#> layoutprofileparamsbox}}
-            {{#*inline "profileparams-image-box"}}
-                {{> boxprofileimage username="name"}}
+    {{#*inline "sideBarContent"}}
+        {{#> layoutProfileParamsBox}}
+            {{#*inline "profileParams-image-box"}}
+                {{> boxProfileImage username="name"}}
             {{/inline}}
-            {{#*inline "profileparams-params-box"}}
-                {{> boxprofile}}
+            {{#*inline "profileParams-params-box"}}
+                {{> boxProfile}}
             {{/inline}}
-            {{#*inline "profileparams-buttons-box"}}
-                {{> boxprofilebtnsedit}}
+            {{#*inline "profileParams-buttons-box"}}
+                {{> boxProfileBtnsEdit}}
             {{/inline}}
         
-        {{/layoutprofileparamsbox}}
+        {{/layoutProfileParamsBox}}
     {{/inline}}
 
-{{/layoutprofile}}
+{{/layoutProfile}}

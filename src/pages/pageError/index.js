@@ -4,7 +4,7 @@ import './style.scss';
 
 Handlebars.registerPartial('pageError', tpl);
 
-import errorbox from '../../components/errorbox';
+import errorBox from '../../components/errorBox';
 
 export default (props = {}) => {
 	return tpl(props);

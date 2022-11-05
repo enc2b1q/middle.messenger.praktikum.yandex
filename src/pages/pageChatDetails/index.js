@@ -4,10 +4,10 @@ import './style.scss';
 
 Handlebars.registerPartial('pageChatDetails', tpl);
 
-import layoutchatsidebox from '../../layout/chatsidebox'
-import layoutchatpage from '../../layout/chatpage'
-import boxchatmessage from '../../modules/boxchatmessage'
-import boxchatheader from '../../modules/boxchatheader'
+import layoutChatSideBox from '../../layout/chatSideBox'
+import layoutChatPage from '../../layout/chatPage'
+import boxChatMessage from '../../modules/boxChatMessage'
+import boxChatHeader from '../../modules/boxChatHeader'
 
 export default (props = {}) => {
 	return tpl(props);

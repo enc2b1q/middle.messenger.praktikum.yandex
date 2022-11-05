@@ -4,12 +4,12 @@ import './style.scss';
 
 Handlebars.registerPartial('pageProfileEditPerson', tpl);
 
-import layoutprofile from '../../layout/profile'
-import backarrowbtn from '../../components/backarrowbtn'
-import layoutprofileparamsbox from '../../layout/profileparamsbox'
-import boxprofileimage from '../../modules/boxprofileimage'
-import boxprofileeditperson from '../../modules/boxprofileeditperson'
-import boxprofilepersoneditbtn from '../../modules/boxprofilepersoneditbtn'
+import layoutProfile from '../../layout/profile'
+import backArrowBtn from '../../components/backArrowBtn'
+import layoutProfileParamsBox from '../../layout/profileParamsBox'
+import boxProfileImage from '../../modules/boxProfileImage'
+import boxProfileEditPerson from '../../modules/boxProfileEditPerson'
+import boxProfilePersonEditBtn from '../../modules/boxProfilePersonEditBtn'
 
 export default (props = {}) => {
 	return tpl(props);
