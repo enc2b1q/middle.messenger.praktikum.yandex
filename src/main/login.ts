@@ -5,6 +5,7 @@ import layoutLogin from "../layout/login";
 import inputBox from "../components/inputBox";
 import button from "../components/button";
 import link from "../components/link";
+import processFormData from "../utils/processFormData";
 
 const _inputBoxLogin = new inputBox(
     "div",
@@ -47,10 +48,20 @@ const _buttonEnter = new button(
                 if(!target) {
                     return;
                 }
-                window.location.assign("/selectChat.html")
+                // window.location.assign("/selectChat.html");
                 e.preventDefault();
                 e.stopPropagation();
-            }
+                processFormData();
+            },
+            blur: (e: Event) => {
+                const target = e.target;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
+
         },
 
     }

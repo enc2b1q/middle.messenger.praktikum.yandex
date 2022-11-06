@@ -1,6 +1,7 @@
 import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
+import processFormData from "../../utils/processFormData";
 
 export default class button extends Block {
 	render() {
@@ -35,10 +36,20 @@ export const boxProfilePersonEditBtnSaveBts = new button(
 				if(!target) {
 					return;
 				}
-				window.location.assign(window.location.href + "#");
+				// window.location.assign(window.location.href + "#");
 				e.preventDefault();
 				e.stopPropagation();
-			}
+				processFormData();
+			},
+			blur: (e: Event) => {
+				const target = e.target;
+				if(!target) {
+					return;
+				}
+				e.preventDefault();
+				processFormData();
+			},
+
 		},
 
 	}

@@ -3,7 +3,7 @@ const tpl: string = `
     <div class="boxChatMessage_attach_box">
     </div>
     {{!-- NOTE: onsubmit сделана заглушка --}}
-    <form id="form" action="#" method="POST" onsubmit="return false" class="boxChatMessage_form">
+    <form id="form" action="#" method="POST" onsubmit="event.preventDefault();" class="boxChatMessage_form">
         <div class="boxChatMessage_input_box">
             <input type="text" id="message" name="message" class="boxChatMessage_input">
         </div>

@@ -3,7 +3,7 @@ const tpl: string = `
     {{ loginHeader }}
 </div>
 {{!-- NOTE: onsubmit сделана заглушка --}}
-<form id="form" action="#" method="POST" onsubmit="return false">
+<form id="form" action="#" method="POST" onsubmit="event.preventDefault();">
     <div class="layout-login-creds-box">
         {{{ loginBody }}}
     </div>

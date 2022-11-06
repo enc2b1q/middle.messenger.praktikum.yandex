@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "target": "es2017",
+    "target": "es2019",
     "declaration": false,
     "module": "commonjs",
     "esModuleInterop": true,

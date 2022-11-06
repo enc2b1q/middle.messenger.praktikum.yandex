@@ -5,7 +5,7 @@ const tpl: string = `
     </div>
     <div class="layout_chatSideBox_header_searchBox">
         {{!-- NOTE: onsubmit сделана заглушка --}}
-        <form id="form" action="#" method="POST" onsubmit="return false" class="layout_chatSideBox_searchBox_form">
+        <form id="form" action="#" method="POST" onsubmit="event.preventDefault();" class="layout_chatSideBox_searchBox_form">
             <input type="text" id="search" name="search" class="layout_chatSideBox_searchBox_input" placeholder="Поиск">
             <input type="submit" id="search-submit" hidden />
         </form>

@@ -116,30 +116,6 @@ const _profileParamBoxPhone = new profileParamBox(
     }
 );
 
-// const _boxProfilePersonEditBtnSaveBts = new button(
-//     "button",
-//     {
-//         text: "Сохранить",
-//         attr: {
-//             id: "btnSaveId",
-//             type: "submit",
-//             class : "button",
-//         },
-//         events: {
-//             click: (e: Event) => {
-//                 const target = e.target;
-//                 if(!target) {
-//                     return;
-//                 }
-//                 window.location.assign(window.location.href + "#");
-//                 e.preventDefault();
-//                 e.stopPropagation();
-//             }
-//         },
-//
-//     }
-// );
-
 const _profileParams_buttons_box = new boxProfilePersonEditBtn(
     "div",
     {

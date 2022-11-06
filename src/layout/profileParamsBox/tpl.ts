@@ -4,7 +4,7 @@ const tpl: string = `
         {{{ profileParams_image_box }}}
     </div>
     {{!-- NOTE: onsubmit сделана заглушка --}}
-    <form id="form" action="#" method="POST" onsubmit="return false" class="layout_profileParams_form">
+    <form id="form" action="#" method="POST" onsubmit="event.preventDefault();" class="layout_profileParams_form">
         <div class="layout_profileParams-params_box">
             {{{ profileParams_params_box }}}
         </div>

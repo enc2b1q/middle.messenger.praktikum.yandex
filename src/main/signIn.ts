@@ -6,7 +6,7 @@ import layoutLogin from "../layout/login";
 import link from "../components/link";
 import button from "../components/button";
 import inputBox from "../components/inputBox";
-
+import processFormData from '../utils/processFormData';
 
 
 const _inputBoxEmail = new inputBox(
@@ -110,10 +110,19 @@ const _buttonRegister = new button(
                 if(!target) {
                     return;
                 }
-                window.location.assign(window.location.href + "#");
+                // window.location.assign(window.location.href + "#");
                 e.preventDefault();
                 e.stopPropagation();
-            }
+                processFormData();
+            },
+            blur: (e: Event) => {
+                const target = e.target;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
         },
 
     }

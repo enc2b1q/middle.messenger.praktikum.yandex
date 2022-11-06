@@ -10,6 +10,7 @@ import boxChatMessage from "../modules/boxChatMessage";
 import chatListItem from "../components/chatListItem";
 import boxChatMessagesBody from "../modules/boxChatMessagesBody";
 import boxChatMessagesBodyItemText from "../components/boxChatMessagesBodyItemText";
+import processFormData from "../utils/processFormData";
 
 
 const _chat_content_header = new boxChatHeader(
@@ -109,6 +110,27 @@ const _sideBar = new layoutChatSideBox(
         boxChatList: [
             _chatListItem1,
         ],
+
+        events: {
+            click: (e: Event) => {
+                const target = e.target;
+                if(!target) {
+                    return;
+                }
+                // window.location.assign(window.location.href + "#");
+                e.preventDefault();
+                e.stopPropagation();
+                processFormData();
+            },
+            blur: (e: Event) => {
+                const target = e.target;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
+        },
 
         attr: {
             class: "layout_chatSideBox_wrapper_box",
