@@ -1,14 +1,15 @@
-const express = require('express')
+const express = require('express');
+const path = require("path");
 
-const app = express()
-const PORT = 3000
+const app = express();
+const PORT = 3000;
 
-app.use(express.static('./dist'))
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function (req, res) {
-  res.sendfile(`${__dirname}/build/index.html`) // NOTE: path ставить запрещено
+  res.sendFile(path.join(__dirname, "build", "index.html" )) // NO;TE: path ставить запрещено
 })
 
 app.listen(PORT, function () {
-  console.log(`App listening on port ${PORT}!`)
+  console.log(`App listening on port ${PORT}!`);
 })
