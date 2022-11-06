@@ -3,6 +3,7 @@ import Handlebars from "handlebars";
 import EventBus from './eventBus';
 import {typeDict, typeMixedUnknownProps} from './types'
 import isBlock from '../utils/isBlock';
+import isBlockArray from "../utils/isBlockArray";
 
 export default class Block {
 
@@ -15,17 +16,19 @@ export default class Block {
 
     _props: typeMixedUnknownProps;
     _children: typeDict<Block>;
+    _childrenArray: typeDict<Block[]>;
     _id: string;
     _element: HTMLElement;
     _meta: { tag: string; props?: typeMixedUnknownProps; };
     _eventBus: EventBus;
 
     constructor(tag: string = "div", propsAndChildren: typeMixedUnknownProps = {}) {
-        const {children, props} = this.getChildren(propsAndChildren);
+        const {children, childrenArray, props} = this.getChildren(propsAndChildren);
 
         this._eventBus = new EventBus();
         this._id = makeUUID();
         this._children = this.makePropsProxy(children) as (typeDict<Block>);
+        this._childrenArray = this.makePropsProxy(childrenArray) as (typeDict<Block[]>);
         this._props = this.makePropsProxy({...props, _id: this._id});
         this._meta = {tag, props};
 
@@ -33,21 +36,26 @@ export default class Block {
         this._eventBus.emit(Block.EVENTS.INIT);
     }
 
-    getChildren(propsAndChildren: typeMixedUnknownProps): { children: typeDict<Block>; props: typeMixedUnknownProps; } {
+    getChildren(propsAndChildren: typeMixedUnknownProps): { children: typeDict<Block>; childrenArray: typeDict<Block[]>; props: typeMixedUnknownProps; } {
         const children: typeDict<Block> = {};
+        const childrenArray: typeDict<Block[]> = {};
         const props: typeMixedUnknownProps = {};
 
         Object.keys(propsAndChildren).forEach(key => {
             const value = propsAndChildren[key];
             if (isBlock(value)) {
                 children[key] = value;
-            } else {
+            }
+            else if (isBlockArray(value)) {
+                childrenArray[key] = value;
+            }
+            else {
                 props[key] = value;
             }
 
         });
 
-        return {children, props};
+        return {children, childrenArray, props};
     }
 
     addAttribute(): void {
@@ -91,6 +99,11 @@ export default class Block {
         Object.values(this._children).forEach(child => {
             child.dispatchComponentDidMount();
         });
+        Object.values(this._childrenArray).forEach(childrenArrayRecord =>
+            childrenArrayRecord.forEach( child => {
+                child.dispatchComponentDidMount();
+            })
+        );
     }
 
     componentDidMount(): void {
@@ -98,8 +111,9 @@ export default class Block {
 
     dispatchComponentDidMount(): void {
         this._eventBus.emit(Block.EVENTS.FLOW_CDM);
-        if (Object.keys(this._children).length)
+        if (Object.keys(this._children).length || Object.keys(this._childrenArray).length) {
             this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
+        }
     }
 
     _componentDidUpdate(oldProps: typeMixedUnknownProps & typeDict<Block>, newProps: typeMixedUnknownProps & typeDict<Block>): void {
@@ -120,13 +134,20 @@ export default class Block {
             return;
         }
 
-        const {children, props} = this.getChildren(newProps);
+        const {children, childrenArray, props} = this.getChildren(newProps);
 
-        if (Object.values(children).length)
+        if (Object.values(children).length) {
             Object.assign(this._children, children);
+        }
 
-        if (Object.values(props).length)
+        if (Object.values(childrenArray).length) {
+            Object.assign(this._childrenArray, children);
+        }
+
+        if (Object.values(props).length) {
             Object.assign(this._props, props);
+        }
+
     }
 
     _render(): void {
@@ -192,14 +213,28 @@ export default class Block {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`
         });
 
+        Object.entries(this._childrenArray).forEach(([key, childArray]) => {
+            propsAndStubs[key] = childArray.reduce((previousValue, child) => previousValue += `<div data-id="${child._id}"></div>`, "");
+        });
+
         const fragment: HTMLTemplateElement = this.createDocumentElement('template') as HTMLTemplateElement;
         fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
         Object.values(this._children).forEach(child => {
             const stub: Element | null = fragment.content.querySelector(`[data-id="${child._id}"]`);
-            if (stub)
+            if (stub) {
                 stub.replaceWith(child.getContent());
+            }
         });
+
+        Object.values(this._childrenArray).forEach(childArrays =>
+            childArrays.forEach(child => {
+                const stub: Element | null = fragment.content.querySelector(`[data-id="${child._id}"]`);
+                if (stub) {
+                    stub.replaceWith(child.getContent());
+                }
+            })
+        );
 
         return fragment.content;
     }

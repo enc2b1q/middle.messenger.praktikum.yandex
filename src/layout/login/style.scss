@@ -13,7 +13,8 @@
     font-size: 1.875em;
     font-weight: bold;
     align-self: stretch;
-    flex: 0 1 auto;
+    //flex: 0 1 auto;
+    flex: 1 1 auto;
     height: min-content;
 }
 
@@ -26,12 +27,13 @@
     flex: 1 1 auto;
     height: min-content;
 }
-
-.layout-login-empty {
-    flex-grow: 10 10 auto;
+#form {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     align-self: stretch;
 }
-
 .layout-login-container-enter-buttons {
     display: flex;
 	justify-content: center;

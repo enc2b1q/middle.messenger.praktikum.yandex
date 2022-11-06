@@ -1,19 +1,19 @@
-.chat-content-wrapper {
+.chat_content_wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-.chat-content-head, .chat-content-body, .chat-content-nav {
+.chat_content_head, .chat_content_body, .chat_content_nav {
     padding: 0;
     margin: 0;
     display: flex;
 }
-.chat-content-head {
+.chat_content_head {
     max-height: 200px;
 }
-.chat-content-body {
+.chat_content_body {
     flex: 1;
 }
-.chat-content-nav {
+.chat_content_nav {
     max-height: 200px;
 }

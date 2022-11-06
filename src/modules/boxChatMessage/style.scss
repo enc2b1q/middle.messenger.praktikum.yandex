@@ -1,4 +1,4 @@
-.boxChatMessage-wrapper {
+.boxChatMessage_wrapper {
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -6,13 +6,13 @@
     margin: 0;
     padding: 5px;
 }
-.boxChatMessage-inner {
+.boxChatMessage_inner {
     flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-.boxChatMessage-attach-box {
+.boxChatMessage_attach_box {
     max-width: 50px;
     min-height: 50px;
 
@@ -23,23 +23,23 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-.boxChatMessage-form {
+.boxChatMessage_form {
     display: flex;
 }
-.boxChatMessage-input-box {
+.boxChatMessage_input_box {
     display: flex;
 }
-.boxChatMessage-send-box {
+.boxChatMessage_send_box {
     align-self: end;
     max-width: 50px;
     max-height: 50px;
 }
-.boxChatMessage-input {
+.boxChatMessage_input {
     flex: 1;
     border-radius: 12px;
     background-color: #EFEFEF;
 }
-.boxChatMessage-send-btn {
+.boxChatMessage_send_btn {
     max-width: 50px;
     min-height: 50px;
     background-color: #3369F3;

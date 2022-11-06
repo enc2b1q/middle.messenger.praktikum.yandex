@@ -1,4 +1,4 @@
-.boxChatHeader-wrapper {
+.boxChatHeader_wrapper {
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -6,38 +6,38 @@
     margin: 0;
     padding: 5px;
 }
-.boxChatHeader-inner {
+.boxChatHeader_inner {
     flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-.boxChatHeader-image-box {
+.boxChatHeader_image_box {
     max-width: 50px;
     min-height: 50px;
     border-radius: 50%;
     background-color: #EFEFEF;
 }
-.boxChatHeader-username-box {
+.boxChatHeader_username_box {
     display: flex;
     flex-direction: row;
 	justify-content: center;
     align-content: center;
 }
-.boxChatHeader-btn-box {
+.boxChatHeader_btn_box {
     max-width: 50px;
     max-height: 50px;
     align-self: end;
     display: flex;
 }
-.boxChatHeader-username {
+.boxChatHeader_username {
     align-self: start;
     font-size: 2em;
     text-align: left;
     vertical-align: middle;
 
 }
-.boxChatHeader-btn {
+.boxChatHeader_btn {
     align-self: center;
     max-width: 50px;
     min-height: 50px;
