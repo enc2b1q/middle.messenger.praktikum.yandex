@@ -11,7 +11,7 @@ const tpl: string = `
         </form>
     </div>
 </div>
-<div class="layout_chatSideBox_chatList layout_chatSideBox_elem">
+<div class="layout_chatSideBox_chatList">
     {{{ boxChatList }}}
 </div>
 `;

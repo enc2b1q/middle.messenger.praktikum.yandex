@@ -3,16 +3,11 @@ import renderDOM from "../utils/renderDOM";
 import layoutSideBar from "../layout/sideBar";
 import layoutChatSideBox from "../layout/chatSideBox";
 import profileLinkEdit from "../components/profileLinkEdit";
-import boxChatList from "../modules/boxChatList";
+
 import layoutChatContentBox from "../layout/chatContentBox";
 import chatEmptyContent from "../components/chatEmptyContent";
+import chatListItem from "../components/chatListItem";
 
-
-const _boxChatList = new boxChatList(
-    "div",
-    {
-    }
-);
 
 const _profileLink = new profileLinkEdit(
     "nav",
@@ -27,11 +22,23 @@ const _profileLink = new profileLinkEdit(
     }
 );
 
+const _chatListItem1 = new chatListItem(
+    "div",
+    {
+
+        attr: {
+            class: "chatListItem_wrapper",
+        }
+    }
+);
+
 const _sideBar = new layoutChatSideBox(
     "div",
     {
         profileLink: _profileLink,
-        boxChatList: _boxChatList,
+        boxChatList: [
+            _chatListItem1,
+        ],
 
         attr: {
             class: "layout_chatSideBox_wrapper_box",

@@ -2,11 +2,14 @@ import './chatDetails.scss';
 import renderDOM from "../utils/renderDOM";
 import layoutSideBar from "../layout/sideBar";
 import layoutChatSideBox from "../layout/chatSideBox";
-import boxChatList from "../modules/boxChatList";
+
 import profileLinkEdit from "../components/profileLinkEdit";
 import layoutChatContentBox from "../layout/chatContentBox";
 import boxChatHeader from "../modules/boxChatHeader";
 import boxChatMessage from "../modules/boxChatMessage";
+import chatListItem from "../components/chatListItem";
+import boxChatMessagesBody from "../modules/boxChatMessagesBody";
+import boxChatMessagesBodyItemText from "../components/boxChatMessagesBodyItemText";
 
 
 const _chat_content_header = new boxChatHeader(
@@ -28,7 +31,40 @@ const _chat_content_footer = new boxChatMessage(
     }
 );
 
-const _chat_content_block = "Контент чата";
+const _boxChatMessagesBodyItem1 = new boxChatMessagesBodyItemText(
+    "div",
+    {
+        msgText: "Новый чат!",
+        // alignClass: "boxChatMessagesBodyItemText_alignLeft",
+        attr: {
+            class: "boxChatMessagesBodyItemText_wrapper",
+        }
+    }
+);
+const _boxChatMessagesBodyItem2 = new boxChatMessagesBodyItemText(
+    "div",
+    {
+        msgText: "привет!",
+        // alignClass: "boxChatMessagesBodyItemText_alignRight",
+        attr: {
+            class: "boxChatMessagesBodyItemText_wrapper",
+        }
+    }
+);
+
+const _chat_content_block = new boxChatMessagesBody(
+    "div",
+    {
+        boxChatMessagesBodyItems: [
+            _boxChatMessagesBodyItem1,
+            _boxChatMessagesBodyItem2
+        ],
+
+        attr: {
+            class: "boxChatMessagesBody_wrapper",
+        }
+    }
+);
 
 const _sideBarContent = new layoutChatContentBox(
     "div",
@@ -43,9 +79,13 @@ const _sideBarContent = new layoutChatContentBox(
     }
 );
 
-const _boxChatList = new boxChatList(
+const _chatListItem1 = new chatListItem(
     "div",
     {
+
+        attr: {
+            class: "chatListItem_wrapper",
+        }
     }
 );
 
@@ -66,7 +106,9 @@ const _sideBar = new layoutChatSideBox(
     "div",
     {
         profileLink: _profileLink,
-        boxChatList: _boxChatList,
+        boxChatList: [
+            _chatListItem1,
+        ],
 
         attr: {
             class: "layout_chatSideBox_wrapper_box",
