@@ -24,9 +24,7 @@ function validateProps(data: { [p: string]: File | string }) : boolean {
         if (!isString(v)) {
             return false;
         }
-        const localRes = validateItem(k,v);
-        console.log(`validation of ${k}: ${localRes}`);
-        res &&= localRes;
+        res &&= validateItem(k,v);
     })
     return res;
 }
