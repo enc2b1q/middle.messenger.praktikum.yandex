@@ -1,0 +1,49 @@
+.boxChatMessage_wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+	justify-content: center;
+    margin: 0;
+    padding: 5px;
+}
+.boxChatMessage_inner {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.boxChatMessage_attach_box {
+    max-width: 50px;
+    min-height: 50px;
+
+    border-radius: 50%;
+    background-image: url('../../../static/attachment.png');
+    background-size: 70%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.boxChatMessage_form {
+    display: flex;
+}
+.boxChatMessage_input_box {
+    display: flex;
+}
+.boxChatMessage_send_box {
+    align-self: end;
+    max-width: 50px;
+    max-height: 50px;
+}
+.boxChatMessage_input {
+    flex: 1;
+    border-radius: 12px;
+    background-color: #EFEFEF;
+}
+.boxChatMessage_send_btn {
+    max-width: 50px;
+    min-height: 50px;
+    background-color: #3369F3;
+    border-radius: 50%;
+    font-size: 30px;
+    text-align: center;
+}
