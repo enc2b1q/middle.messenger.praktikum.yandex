@@ -1,31 +1,33 @@
 import "./login.scss";
+// import "../modules/scss/_validationInput.scss"
 import renderDOM from "../utils/renderDOM";
 import layoutEmpty from "../layout/empty";
 import layoutLogin from "../layout/login";
-import inputBox from "../components/inputBox";
+import inputBox, {getNewInput} from "../components/inputBox";
 import button from "../components/button";
 import link from "../components/link";
-import processFormData from "../utils/processFormData";
+import processFormData, * as validator from "../utils/processFormData";
 
+const _inputLogin = getNewInput(validator.login);
 const _inputBoxLogin = new inputBox(
     "div",
     {
         name: "login",
         labelText: "Логин",
-        type: "text",
+        input: _inputLogin,
 
         attr: {
             class : "inputBox",
         }
     }
 );
-
+const _inputPwd = getNewInput(validator.password, "password");
 const _inputBoxPwd = new inputBox(
     "div",
     {
         name: "password",
         labelText: "Пароль",
-        type: "password",
+        input: _inputPwd,
 
         attr: {
             class : "inputBox",
@@ -53,15 +55,6 @@ const _buttonEnter = new button(
                 e.stopPropagation();
                 processFormData();
             },
-            blur: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
-
         },
 
     }
@@ -91,6 +84,17 @@ const _content = new layoutLogin(
             _buttonEnter,
             _linkRegister
         ],
+
+        events: {
+            submit: (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
+        },
 
         attr: {
             class: "layout-login-box",

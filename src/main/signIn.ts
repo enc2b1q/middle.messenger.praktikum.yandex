@@ -1,92 +1,103 @@
 // import tpl from './signInTpl';
 import './signIn.scss';
+// import "../modules/scss/_validationInput.scss"
 import renderDOM from "../utils/renderDOM";
 import layoutEmpty from "../layout/empty";
 import layoutLogin from "../layout/login";
 import link from "../components/link";
 import button from "../components/button";
-import inputBox from "../components/inputBox";
-import processFormData from '../utils/processFormData';
+import inputBox, {getNewInput} from "../components/inputBox";
+import processFormData, * as validator from "../utils/processFormData";
 
-
+const _inputEmail = getNewInput(validator.email);
 const _inputBoxEmail = new inputBox(
     "div",
     {
         name: "email",
         labelText: "Почта",
-        type: "email",
+        // type: "email",
+        input: _inputEmail,
 
         attr: {
             class : "inputBox",
         }
     }
 );
+const _inputLogin = getNewInput(validator.login);
 const _inputBoxLogin = new inputBox(
     "div",
     {
         name: "login",
         labelText: "Логин",
-        type: "text",
+        input: _inputLogin,
 
         attr: {
             class : "inputBox",
         }
     }
 );
+const _inputFirstName= getNewInput(validator.first_name);
 const _inputBoxFirstName = new inputBox(
     "div",
     {
         name: "first_name",
         labelText: "Имя",
-        type: "text",
+        input: _inputFirstName,
 
         attr: {
             class : "inputBox",
         }
     }
 );
+const _inputSecondName= getNewInput(validator.second_name);
 const _inputBoxSecondName = new inputBox(
     "div",
     {
         name: "second_name",
         labelText: "Фамилия",
-        type: "text",
+        input: _inputSecondName,
 
         attr: {
             class : "inputBox",
         }
     }
 );
+const _inputPhone= getNewInput(validator.phone);
 const _inputBoxPhone = new inputBox(
     "div",
     {
         name: "phone",
         labelText: "Телефон",
-        type: "tel",
+        // type: "tel",
+        input: _inputPhone,
 
         attr: {
             class : "inputBox",
         }
     }
 );
+const _inputPwd = getNewInput(validator.password, "password");
 const _inputBoxPassword = new inputBox(
     "div",
     {
         name: "password",
         labelText: "Пароль",
-        type: "password",
+        // type: "password",
+        input: _inputPwd,
 
         attr: {
             class : "inputBox",
         }
     }
 );
+const _inputPwdRepeat = getNewInput(validator.password_repeat, "password");
 const _inputBoxPasswordRepeat = new inputBox(
     "div",
     {
         name: "password_repeat",
         labelText: "Пароль (ещё раз)",
-        type: "password",
+        // type: "password",
+        input: _inputPwdRepeat,
 
         attr: {
             class : "inputBox",
@@ -113,14 +124,6 @@ const _buttonRegister = new button(
                 // window.location.assign(window.location.href + "#");
                 e.preventDefault();
                 e.stopPropagation();
-                processFormData();
-            },
-            blur: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
                 processFormData();
             },
         },
@@ -157,6 +160,17 @@ const _content = new layoutLogin(
             _buttonRegister,
             _linkEnter
         ],
+
+        events: {
+            submit: (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
+        },
 
         attr: {
             class: "layout-login-box"

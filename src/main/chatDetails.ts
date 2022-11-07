@@ -122,14 +122,6 @@ const _sideBar = new layoutChatSideBox(
                 e.stopPropagation();
                 processFormData();
             },
-            blur: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
         },
 
         attr: {

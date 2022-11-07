@@ -6,42 +6,58 @@ import layoutProfileParamsBox from "../layout/profileParamsBox";
 import boxProfileImage from "../modules/boxProfileImage";
 import boxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
 import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from "../components/button";
-import profileParamBox from "../components/profileParamBox";
+import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
+import * as validator from "../utils/processFormData";
+import processFormData from "../utils/processFormData";
 
-
+const _inputProfileOldPassword = getNewProfileParamInput({
+    validatorPropName: validator.oldPassword,
+    type: "password",
+});
 const _profileParamBoxOldPassword = new profileParamBox(
     "div",
     {
         name: "oldPassword",
         labelText: "Старый пароль",
-        type: "password",
+        // type: "password",
         // readonly : "",
+        input: _inputProfileOldPassword,
 
         attr: {
             class: "profileParamBox",
         }
     }
 );
+const _inputProfileNewPassword = getNewProfileParamInput({
+    validatorPropName: validator.newPassword,
+    type: "password",
+});
 const _profileParamBoxNewPassword = new profileParamBox(
     "div",
     {
         name: "newPassword",
         labelText: "Новый пароль",
-        type: "password",
+        // type: "password",
         // readonly : "",
+        input: _inputProfileNewPassword,
 
         attr: {
             class: "profileParamBox",
         }
     }
 );
+const _inputProfileNewPasswordRepeat = getNewProfileParamInput({
+    validatorPropName: validator.password_repeat,
+    type: "password",
+});
 const _profileParamBoxNewPasswordRepeat = new profileParamBox(
     "div",
     {
-        name: "newPasswordRepeat",
+        name: validator.password_repeat, //"newPasswordRepeat",
         labelText: "Повторите новый пароль",
-        type: "password",
+        // type: "password",
         // readonly : "",
+        input: _inputProfileNewPasswordRepeat,
 
         attr: {
             class: "profileParamBox",
@@ -81,6 +97,17 @@ const _sideBarContent = new layoutProfileParamsBox(
             _profileParamBoxNewPasswordRepeat
         ],
         profileParams_buttons_box: _profileParams_buttons_box,
+
+        events: {
+            submit: (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
+        },
 
         attr: {
             class: "layout_profileParams_outer_box",

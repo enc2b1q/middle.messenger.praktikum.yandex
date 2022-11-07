@@ -41,15 +41,6 @@ export const boxProfilePersonEditBtnSaveBts = new button(
 				e.stopPropagation();
 				processFormData();
 			},
-			blur: (e: Event) => {
-				const target = e.target;
-				if(!target) {
-					return;
-				}
-				e.preventDefault();
-				processFormData();
-			},
-
 		},
 
 	}

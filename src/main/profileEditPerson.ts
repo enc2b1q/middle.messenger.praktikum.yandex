@@ -6,7 +6,9 @@ import layoutProfileParamsBox from "../layout/profileParamsBox";
 import boxProfileImage from "../modules/boxProfileImage";
 import boxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
 import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from "../components/button";
-import profileParamBox from "../components/profileParamBox";
+import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
+import * as validator from "../utils/processFormData";
+import processFormData from "../utils/processFormData";
 
 
 const _sideBar = new backArrowBtn(
@@ -31,42 +33,51 @@ const _profileParams_image_box = new boxProfileImage(
     }
 );
 
-
+const _inputProfileEmail = getNewProfileParamInput({
+    validatorPropName: validator.email
+});
 const _profileParamBoxEmail = new profileParamBox(
     "div",
     {
         name: "email",
         labelText: "Почта",
-        type: "email",
+        // type: "email",
         // readonly : "",
+        input: _inputProfileEmail,
 
         attr: {
             class: "profileParamBox",
         }
     }
 );
-
+const _inputProfileLogin = getNewProfileParamInput({
+    validatorPropName: validator.login,
+});
 const _profileParamBoxLogin = new profileParamBox(
     "div",
     {
         name: "login",
         labelText: "Логин",
-        type: "text",
+        // type: "text",
         // readonly : "",
+        input: _inputProfileLogin,
 
         attr: {
             class: "profileParamBox",
         }
     }
 );
-
+const _inputProfileFirstName = getNewProfileParamInput({
+    validatorPropName: validator.first_name,
+});
 const _profileParamBoxFirstName = new profileParamBox(
     "div",
     {
         name: "first_name",
         labelText: "Имя",
-        type: "text",
+        // type: "text",
         // readonly : "",
+        input: _inputProfileFirstName,
 
         attr: {
             class: "profileParamBox",
@@ -74,13 +85,17 @@ const _profileParamBoxFirstName = new profileParamBox(
     }
 );
 
+const _inputProfileSecondName = getNewProfileParamInput({
+    validatorPropName: validator.second_name,
+});
 const _profileParamBoxSecondName = new profileParamBox(
     "div",
     {
         name: "second_name",
         labelText: "Фамилия",
-        type: "text",
+        // type: "text",
         // readonly : "",
+        input: _inputProfileSecondName,
 
         attr: {
             class: "profileParamBox",
@@ -88,13 +103,17 @@ const _profileParamBoxSecondName = new profileParamBox(
     }
 );
 
+const _inputProfileDisplayName = getNewProfileParamInput({
+    validatorPropName: validator.display_name,
+});
 const _profileParamBoxDisplayName = new profileParamBox(
     "div",
     {
         name: "display_name",
         labelText: "Имя в чате",
-        type: "text",
+        // type: "text",
         // readonly : "",
+        input: _inputProfileDisplayName,
 
         attr: {
             class: "profileParamBox",
@@ -102,13 +121,17 @@ const _profileParamBoxDisplayName = new profileParamBox(
     }
 );
 
+const _inputProfilePhone = getNewProfileParamInput({
+    validatorPropName: validator.phone,
+});
 const _profileParamBoxPhone = new profileParamBox(
     "div",
     {
         name: "phone",
         labelText: "Телефон",
-        type: "tel",
+        // type: "tel",
         // readonly : "",
+        input: _inputProfilePhone,
 
         attr: {
             class: "profileParamBox",
@@ -140,6 +163,17 @@ const _sideBarContent = new layoutProfileParamsBox(
             _profileParamBoxPhone
         ],
         profileParams_buttons_box: _profileParams_buttons_box,
+
+        events: {
+            submit: (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                if(!target) {
+                    return;
+                }
+                e.preventDefault();
+                processFormData();
+            },
+        },
 
         attr: {
             class: "layout_profileParams_outer_box",

@@ -4,9 +4,10 @@ import layoutSideBar from "../layout/sideBar";
 import backArrowBtn from "../components/backArrowBtn";
 import layoutProfileParamsBox from "../layout/profileParamsBox";
 import boxProfileImage from "../modules/boxProfileImage";
-import profileParamBox from "../components/profileParamBox";
+import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
 import boxProfileBtnsEdit from "../modules/boxProfileBtnsEdit";
 import profileLinkEdit from "../components/profileLinkEdit";
+import * as validator from "../utils/processFormData";
 
 const _sideBar = new backArrowBtn(
     "div",
@@ -30,13 +31,18 @@ const _profileParams_image_box = new boxProfileImage(
     }
 );
 
+const _inputProfileEmail = getNewProfileParamInput({
+    validatorPropName: validator.email,
+    readonly: "readonly"
+});
 const _profileParamBoxEmail = new profileParamBox(
     "div",
     {
         name: "email",
         labelText: "Почта",
-        type: "email",
-        readonly : "readonly='readonly'",
+        // type: "email",
+        input: _inputProfileEmail,
+        // readonly : "readonly='readonly'",
 
         attr: {
             class: "profileParamBox",
@@ -44,13 +50,18 @@ const _profileParamBoxEmail = new profileParamBox(
     }
 );
 
+const _inputProfileLogin = getNewProfileParamInput({
+    validatorPropName: validator.login,
+    readonly: "readonly"
+});
 const _profileParamBoxLogin = new profileParamBox(
     "div",
     {
         name: "login",
         labelText: "Логин",
-        type: "text",
-        readonly : "readonly='readonly'",
+        // type: "text",
+        // readonly : "readonly='readonly'",
+        input: _inputProfileLogin,
 
         attr: {
             class: "profileParamBox",
@@ -58,13 +69,18 @@ const _profileParamBoxLogin = new profileParamBox(
     }
 );
 
+const _inputProfileFirstName = getNewProfileParamInput({
+    validatorPropName: validator.first_name,
+    readonly: "readonly"
+});
 const _profileParamBoxFirstName = new profileParamBox(
     "div",
     {
         name: "first_name",
         labelText: "Имя",
-        type: "text",
-        readonly : "readonly='readonly'",
+        // type: "text",
+        // readonly : "readonly='readonly'",
+        input: _inputProfileFirstName,
 
         attr: {
             class: "profileParamBox",
@@ -72,13 +88,18 @@ const _profileParamBoxFirstName = new profileParamBox(
     }
 );
 
+const _inputProfileSecondName = getNewProfileParamInput({
+    validatorPropName: validator.second_name,
+    readonly: "readonly"
+});
 const _profileParamBoxSecondName = new profileParamBox(
     "div",
     {
         name: "second_name",
         labelText: "Фамилия",
-        type: "text",
-        readonly : "readonly='readonly'",
+        // type: "text",
+        // readonly : "readonly='readonly'",
+        input: _inputProfileSecondName,
 
         attr: {
             class: "profileParamBox",
@@ -86,13 +107,18 @@ const _profileParamBoxSecondName = new profileParamBox(
     }
 );
 
+const _inputProfileDisplayName = getNewProfileParamInput({
+    validatorPropName: validator.display_name,
+    readonly: "readonly"
+});
 const _profileParamBoxDisplayName = new profileParamBox(
     "div",
     {
         name: "display_name",
         labelText: "Имя в чате",
-        type: "text",
-        readonly : "readonly='readonly'",
+        // type: "text",
+        // readonly : "readonly='readonly'",
+        input: _inputProfileDisplayName,
 
         attr: {
             class: "profileParamBox",
@@ -100,19 +126,25 @@ const _profileParamBoxDisplayName = new profileParamBox(
     }
 );
 
+const _inputProfilePhone = getNewProfileParamInput({
+    validatorPropName: validator.phone,
+    readonly: "readonly"
+});
 const _profileParamBoxPhone = new profileParamBox(
     "div",
     {
         name: "phone",
         labelText: "Телефон",
-        type: "tel",
-        readonly : "readonly='readonly'",
+        // type: "tel",
+        // readonly : "readonly='readonly'",
+        input: _inputProfilePhone,
 
         attr: {
             class: "profileParamBox",
         }
     }
 );
+
 
 const _profileLinkEditPersonEdit = new profileLinkEdit(
     "nav",
