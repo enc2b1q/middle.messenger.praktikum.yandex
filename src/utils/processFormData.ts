@@ -72,11 +72,13 @@ export function checkInputElement(target: HTMLInputElement): void {
     if(!target) {
         return;
     }
-    if (validateItem(target.name, target.value)) {
-        target.style.backgroundColor = 'white';
-    }
-    else {
-        target.style.backgroundColor = 'pink';
+    if (!target.readOnly) {
+        if (validateItem(target.name, target.value)) {
+            target.style.backgroundColor = 'white';
+        }
+        else {
+            target.style.backgroundColor = 'pink';
+        }
     }
 }
 
