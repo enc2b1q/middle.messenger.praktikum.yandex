@@ -3,7 +3,7 @@ import tpl from './tpl';
 import './style.scss';
 import genericTag from "../genericTag";
 import * as validator from "../../utils/processFormData";
-import processFormData, {checkInputElement} from "../../utils/processFormData";
+import  {validationInputHandler} from "../../utils/processFormData";
 
 export default class inputBox extends Block {
 	render() {
@@ -25,24 +25,8 @@ export function getNewInput(validatorPropName: string, type: string = "text", cl
 				title : validator.getValidationMsg(validatorPropName),
 			},
 			events: {
-				focus: (e: Event) => {
-					const target = e.target as HTMLInputElement;
-					if(!target) {
-						return;
-					}
-					e.preventDefault();
-					checkInputElement(target);
-					processFormData();
-				},
-				blur: (e: Event) => {
-					const target = e.target as HTMLInputElement;
-					if(!target) {
-						return;
-					}
-					e.preventDefault();
-					checkInputElement(target);
-					processFormData();
-				},
+				focus: validationInputHandler,
+				blur: validationInputHandler,
 			},
 		}
 	);

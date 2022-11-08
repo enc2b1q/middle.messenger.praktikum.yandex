@@ -8,6 +8,7 @@ import profileParamBox, {getNewProfileParamInput} from "../components/profilePar
 import boxProfileBtnsEdit from "../modules/boxProfileBtnsEdit";
 import profileLinkEdit from "../components/profileLinkEdit";
 import * as validator from "../utils/processFormData";
+import formProfile from "../components/formProfile";
 
 const _sideBar = new backArrowBtn(
     "div",
@@ -198,10 +199,9 @@ const _profileParams_buttons_box = new boxProfileBtnsEdit(
     }
 );
 
-const _sideBarContent = new layoutProfileParamsBox(
-    "div",
+const _formProfile = new formProfile(
+    "form",
     {
-        profileParams_image_box: _profileParams_image_box,
         profileParams_params_box: [
             _profileParamBoxEmail,
             _profileParamBoxLogin,
@@ -211,6 +211,27 @@ const _sideBarContent = new layoutProfileParamsBox(
             _profileParamBoxPhone
         ],
         profileParams_buttons_box: _profileParams_buttons_box,
+
+        attr: {
+            class: "layout_profileParams_form",
+            id: "form",
+            action: "#",
+            method: "POST",
+        },
+
+        events: {
+            submit: (e: Event) => {
+                e.preventDefault();
+            },
+        },
+    }
+);
+
+const _sideBarContent = new layoutProfileParamsBox(
+    "div",
+    {
+        profileParams_image_box: _profileParams_image_box,
+        formProfile: _formProfile,
 
         attr: {
             class: "layout_profileParams_outer_box",

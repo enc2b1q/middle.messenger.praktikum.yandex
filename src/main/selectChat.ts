@@ -7,6 +7,7 @@ import profileLinkEdit from "../components/profileLinkEdit";
 import layoutChatContentBox from "../layout/chatContentBox";
 import chatEmptyContent from "../components/chatEmptyContent";
 import chatListItem from "../components/chatListItem";
+import {formChatSideBoxInst as _formChatSideBox} from "../components/formChatSideBox";
 
 
 const _profileLink = new profileLinkEdit(
@@ -39,6 +40,7 @@ const _sideBar = new layoutChatSideBox(
         boxChatList: [
             _chatListItem1,
         ],
+        formChatSideBox: _formChatSideBox,
 
         attr: {
             class: "layout_chatSideBox_wrapper_box",

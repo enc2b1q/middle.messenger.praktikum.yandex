@@ -154,3 +154,26 @@ export default function processFormData(): boolean {
     }
     return false;
 }
+
+export const validationSubmitHandler = (e: Event) => {
+    const target = e.target as HTMLFormElement;
+    if(!target) {
+        return;
+    }
+    e.preventDefault();
+    processFormData();
+}
+
+export const validationInputHandler = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    if(!target) {
+        return;
+    }
+    e.preventDefault();
+
+    if (!target.readOnly) {     //if (!attr["readonly"])
+        checkInputElement(target);
+    }
+
+    processFormData();
+}

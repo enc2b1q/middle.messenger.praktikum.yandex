@@ -7,7 +7,9 @@ import layoutLogin from "../layout/login";
 import link from "../components/link";
 import button from "../components/button";
 import inputBox, {getNewInput} from "../components/inputBox";
-import processFormData, * as validator from "../utils/processFormData";
+import * as validator from "../utils/processFormData";
+import formLogin from "../components/formLogin";
+import {validationSubmitHandler} from "../utils/processFormData";
 
 const _inputEmail = getNewInput(validator.email);
 const _inputBoxEmail = new inputBox(
@@ -115,18 +117,18 @@ const _buttonRegister = new button(
             type: "submit",
             class : "button",
         },
-        events: {
-            click: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                // window.location.assign(window.location.href + "#");
-                e.preventDefault();
-                e.stopPropagation();
-                processFormData();
-            },
-        },
+        // events: {
+        //     click: (e: Event) => {
+        //         const target = e.target;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         // window.location.assign(window.location.href + "#");
+        //         e.preventDefault();
+        //         e.stopPropagation();
+        //         processFormData();
+        //     },
+        // },
 
     }
 );
@@ -143,10 +145,9 @@ const _linkEnter = new link(
     }
 );
 
-const _content = new layoutLogin(
-    "article",
+const _formLogin = new formLogin(
+    "form",
     {
-        loginHeader: "Регистрация",
         loginBody: [
             _inputBoxEmail,
             _inputBoxLogin,
@@ -161,15 +162,23 @@ const _content = new layoutLogin(
             _linkEnter
         ],
 
+        attr: {
+            class: "layout-login-form",
+            id: "form",
+            action: "#",
+            method: "POST",
+        }
+    }
+);
+
+const _content = new layoutLogin(
+    "article",
+    {
+        loginHeader: "Регистрация",
+        formLogin: _formLogin,
+
         events: {
-            submit: (e: Event) => {
-                const target = e.target as HTMLInputElement;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
+            submit: validationSubmitHandler,
         },
 
         attr: {

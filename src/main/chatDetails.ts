@@ -10,7 +10,9 @@ import boxChatMessage from "../modules/boxChatMessage";
 import chatListItem from "../components/chatListItem";
 import boxChatMessagesBody from "../modules/boxChatMessagesBody";
 import boxChatMessagesBodyItemText from "../components/boxChatMessagesBodyItemText";
-import processFormData from "../utils/processFormData";
+import {formChatSideBoxInst as _formChatSideBox} from "../components/formChatSideBox";
+import formChatMessage from "../components/formChatMessage";
+import {validationSubmitHandler} from "../utils/processFormData";
 
 
 const _chat_content_header = new boxChatHeader(
@@ -22,9 +24,25 @@ const _chat_content_header = new boxChatHeader(
     }
 );
 
+const _formChatMessage = new formChatMessage(
+    "form",
+    {
+        events: {
+            submit: validationSubmitHandler,
+        },
+        attr: {
+            class: "boxChatMessage_form",
+            id: "formBoxChatMessage",
+            action: "#",
+            method: "POST",
+        }
+    }
+);
+
 const _chat_content_footer = new boxChatMessage(
     "div",
     {
+        formChatMessage: _formChatMessage,
 
         attr: {
             class: "boxChatMessage_wrapper",
@@ -103,6 +121,22 @@ const _profileLink = new profileLinkEdit(
     }
 );
 
+// const _formChatSideBox = new formChatSideBox(
+//     "form",
+//     {
+//         events: {
+//             submit: validationSubmitHandler,
+//         },
+//
+//         attr: {
+//             class: "layout_chatSideBox_searchBox_form",
+//             id: "form",
+//             action: "#",
+//             method: "POST",
+//         }
+//     }
+// );
+
 const _sideBar = new layoutChatSideBox(
     "div",
     {
@@ -110,19 +144,20 @@ const _sideBar = new layoutChatSideBox(
         boxChatList: [
             _chatListItem1,
         ],
+        formChatSideBox: _formChatSideBox,
 
-        events: {
-            click: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                // window.location.assign(window.location.href + "#");
-                e.preventDefault();
-                e.stopPropagation();
-                processFormData();
-            },
-        },
+        // events: {
+        //     click: (e: Event) => {
+        //         const target = e.target;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         // window.location.assign(window.location.href + "#");
+        //         e.preventDefault();
+        //         e.stopPropagation();
+        //         processFormData();
+        //     },
+        // },
 
         attr: {
             class: "layout_chatSideBox_wrapper_box",

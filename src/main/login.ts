@@ -6,7 +6,9 @@ import layoutLogin from "../layout/login";
 import inputBox, {getNewInput} from "../components/inputBox";
 import button from "../components/button";
 import link from "../components/link";
-import processFormData, * as validator from "../utils/processFormData";
+import * as validator from "../utils/processFormData";
+import formLogin from "../components/formLogin";
+import {validationSubmitHandler} from "../utils/processFormData";
 
 const _inputLogin = getNewInput(validator.login);
 const _inputBoxLogin = new inputBox(
@@ -44,18 +46,18 @@ const _buttonEnter = new button(
             type: "submit",
             class : "button",
         },
-        events: {
-            click: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                // window.location.assign("/selectChat.html");
-                e.preventDefault();
-                e.stopPropagation();
-                processFormData();
-            },
-        },
+        // events: {
+        //     click: (e: Event) => {
+        //         const target = e.target;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         // window.location.assign("/selectChat.html");
+        //         e.preventDefault();
+        //         e.stopPropagation();
+        //         processFormData();
+        //     },
+        // },
 
     }
 );
@@ -72,10 +74,9 @@ const _linkRegister = new link(
     }
 );
 
-const _content = new layoutLogin(
-    "article",
+const _formLogin = new formLogin(
+    "form",
     {
-        loginHeader: "Вход",
         loginBody: [
             _inputBoxLogin,
             _inputBoxPwd,
@@ -84,17 +85,23 @@ const _content = new layoutLogin(
             _buttonEnter,
             _linkRegister
         ],
-
         events: {
-            submit: (e: Event) => {
-                const target = e.target as HTMLInputElement;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
+            submit: validationSubmitHandler,
         },
+        attr: {
+            class: "layout-login-form",
+            id: "form",
+            action: "#",
+            method: "POST",
+        }
+    }
+);
+
+const _content = new layoutLogin(
+    "article",
+    {
+        loginHeader: "Вход",
+        formLogin: _formLogin,
 
         attr: {
             class: "layout-login-box",

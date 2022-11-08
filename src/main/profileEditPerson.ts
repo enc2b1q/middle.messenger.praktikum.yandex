@@ -8,7 +8,7 @@ import boxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
 import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from "../components/button";
 import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
 import * as validator from "../utils/processFormData";
-import processFormData from "../utils/processFormData";
+import formProfile from "../components/formProfile";
 
 
 const _sideBar = new backArrowBtn(
@@ -150,10 +150,9 @@ const _profileParams_buttons_box = new boxProfilePersonEditBtn(
     }
 );
 
-const _sideBarContent = new layoutProfileParamsBox(
-    "div",
+const _formProfile = new formProfile(
+    "form",
     {
-        profileParams_image_box: _profileParams_image_box,
         profileParams_params_box: [
             _profileParamBoxEmail,
             _profileParamBoxLogin,
@@ -164,16 +163,32 @@ const _sideBarContent = new layoutProfileParamsBox(
         ],
         profileParams_buttons_box: _profileParams_buttons_box,
 
-        events: {
-            submit: (e: Event) => {
-                const target = e.target as HTMLInputElement;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
+        attr: {
+            class: "layout_profileParams_form",
+            id: "form",
+            action: "#",
+            method: "POST",
         },
+
+        // events: {
+        //     submit: (e: Event) => {
+        //         console.log("submit:")
+        //         const target = e.target as HTMLFormElement;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         e.preventDefault();
+        //         processFormData();
+        //     },
+        // },
+    }
+);
+
+const _sideBarContent = new layoutProfileParamsBox(
+    "div",
+    {
+        profileParams_image_box: _profileParams_image_box,
+        formProfile: _formProfile,
 
         attr: {
             class: "layout_profileParams_outer_box",
