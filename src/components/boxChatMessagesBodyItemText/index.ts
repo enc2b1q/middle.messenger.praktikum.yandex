@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class boxChatMessagesBodyItemText extends Block {
+export default class BoxChatMessagesBodyItemText extends Block {
 	render() {
 		console.log('boxChatMessagesBodyItemText render');
 		return this.compile(tpl);

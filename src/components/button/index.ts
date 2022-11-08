@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class button extends Block {
+export default class Button extends Block {
 	render() {
 		console.log('button render');
 		return this.compile(tpl);
@@ -20,7 +20,7 @@ export default class button extends Block {
 	}
 }
 
-export const boxProfilePersonEditBtnSaveBts = new button(
+export const boxProfilePersonEditBtnSaveBts = new Button(
 	"button",
 	{
 		text: "Сохранить",

@@ -1,13 +1,13 @@
 import renderDOM from "../utils/renderDOM";
 // import tpl from './error404Tpl';
 import './error404.scss';
-import pageError from '../pages/pageError';
-import layoutEmpty from "../layout/empty";
-import errorBox from "../components/errorBox";
+import PageError from '../pages/pageError';
+import LayoutEmpty from "../layout/empty";
+import ErrorBox from "../components/errorBox";
 import {_linkBackToChatInst as _link} from "../components/link";
 
 
-const _errorBox = new errorBox(
+const _errorBox = new ErrorBox(
     "section",
     {
         number: '404',
@@ -20,7 +20,7 @@ const _errorBox = new errorBox(
     }
 );
 
-const _content = new pageError(
+const _content = new PageError(
     "article",
     {
         errorBox: _errorBox,
@@ -30,7 +30,7 @@ const _content = new pageError(
     }
 );
 
-const _layoutEmpty = new layoutEmpty(
+const _layoutEmpty = new LayoutEmpty(
     "div",
     {
         content: _content,

@@ -1,18 +1,18 @@
 import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
-import genericTag from "../genericTag";
+import GenericTag from "../genericTag";
 import * as validator from "../../utils/processFormData";
 import { validationInputHandler} from "../../utils/processFormData";
 
-export default class profileParamBox extends Block {
+export default class ProfileParamBox extends Block {
 	render() {
 		console.log('profileParamBox render');
 		return this.compile(tpl);
 	}
 }
 
-export function getNewProfileParamInput(props: { validatorPropName: string, type?: string, className?: string , readonly?: string } ): genericTag {
+export function getNewProfileParamInput(props: { validatorPropName: string, type?: string, className?: string , readonly?: string } ): GenericTag {
 	const defaultProps = { validatorPropName: "", type: "text", className: "profileParam-input", readonly: ""};
 	if(!props) {
 		props = defaultProps;
@@ -42,7 +42,7 @@ export function getNewProfileParamInput(props: { validatorPropName: string, type
 		attr["title"] = validator.getValidationMsg(props.validatorPropName);
 	}
 
-	return new genericTag (
+	return new GenericTag (
 		"input",
 		{
 			attr: attr,

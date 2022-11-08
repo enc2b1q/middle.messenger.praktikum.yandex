@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class pageChatSelection extends Block {
+export default class PageChatSelection extends Block {
 	render() {
 		console.log('pageChatSelection render');
 		return this.compile(tpl);

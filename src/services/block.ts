@@ -1,34 +1,34 @@
 import {v4 as makeUUID} from 'uuid';
 import Handlebars from "handlebars";
 import EventBus from './eventBus';
-import {typeDict, typeMixedUnknownProps} from './types'
+import {TypeDict, TypeMixedUnknownProps} from './types'
 import isBlock from '../utils/isBlock';
 import isBlockArray from "../utils/isBlockArray";
 
 export default class Block {
 
-    static EVENTS: typeDict<string> = {
+    static EVENTS: TypeDict<string> = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
         FLOW_CDU: "flow:component-did-update",
         FLOW_RENDER: "flow:render"
     }
 
-    _props: typeMixedUnknownProps;
-    _children: typeDict<Block>;
-    _childrenArray: typeDict<Block[]>;
+    _props: TypeMixedUnknownProps;
+    _children: TypeDict<Block>;
+    _childrenArray: TypeDict<Block[]>;
     _id: string;
     _element: HTMLElement;
-    _meta: { tag: string; props?: typeMixedUnknownProps; };
+    _meta: { tag: string; props?: TypeMixedUnknownProps; };
     _eventBus: EventBus;
 
-    constructor(tag: string = "div", propsAndChildren: typeMixedUnknownProps = {}) {
+    constructor(tag: string = "div", propsAndChildren: TypeMixedUnknownProps = {}) {
         const {children, childrenArray, props} = this.getChildren(propsAndChildren);
 
         this._eventBus = new EventBus();
         this._id = makeUUID();
-        this._children = this.makePropsProxy(children) as (typeDict<Block>);
-        this._childrenArray = this.makePropsProxy(childrenArray) as (typeDict<Block[]>);
+        this._children = this.makePropsProxy(children) as (TypeDict<Block>);
+        this._childrenArray = this.makePropsProxy(childrenArray) as (TypeDict<Block[]>);
         this._props = this.makePropsProxy({...props, _id: this._id});
         this._meta = {tag, props};
 
@@ -36,10 +36,10 @@ export default class Block {
         this._eventBus.emit(Block.EVENTS.INIT);
     }
 
-    getChildren(propsAndChildren: typeMixedUnknownProps): { children: typeDict<Block>; childrenArray: typeDict<Block[]>; props: typeMixedUnknownProps; } {
-        const children: typeDict<Block> = {};
-        const childrenArray: typeDict<Block[]> = {};
-        const props: typeMixedUnknownProps = {};
+    getChildren(propsAndChildren: TypeMixedUnknownProps): { children: TypeDict<Block>; childrenArray: TypeDict<Block[]>; props: TypeMixedUnknownProps; } {
+        const children: TypeDict<Block> = {};
+        const childrenArray: TypeDict<Block[]> = {};
+        const props: TypeMixedUnknownProps = {};
 
         Object.keys(propsAndChildren).forEach(key => {
             const value = propsAndChildren[key];
@@ -116,20 +116,20 @@ export default class Block {
         }
     }
 
-    _componentDidUpdate(oldProps: typeMixedUnknownProps & typeDict<Block>, newProps: typeMixedUnknownProps & typeDict<Block>): void {
+    _componentDidUpdate(oldProps: TypeMixedUnknownProps & TypeDict<Block>, newProps: TypeMixedUnknownProps & TypeDict<Block>): void {
         const isReRender: boolean = this.componentDidUpdate(oldProps, newProps);
         if (isReRender) {
             this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
-    componentDidUpdate(oldProps: typeMixedUnknownProps & typeDict<Block>, newProps: typeMixedUnknownProps & typeDict<Block>): boolean {
+    componentDidUpdate(oldProps: TypeMixedUnknownProps & TypeDict<Block>, newProps: TypeMixedUnknownProps & TypeDict<Block>): boolean {
         console.log(newProps, oldProps);
 
         return true;
     }
 
-    setProps(newProps: typeMixedUnknownProps): void {
+    setProps(newProps: TypeMixedUnknownProps): void {
         if (!newProps) {
             return;
         }
@@ -168,13 +168,13 @@ export default class Block {
         return this._element;
     }
 
-    makePropsProxy(props: typeMixedUnknownProps) {
+    makePropsProxy(props: TypeMixedUnknownProps) {
         return new Proxy(props, {
-            get: (target: typeMixedUnknownProps, prop: string) => {
+            get: (target: TypeMixedUnknownProps, prop: string) => {
                 const value = target[prop];
                 return typeof (value) === 'function' ? value.bind(target) : value;
             },
-            set: (target: typeMixedUnknownProps, prop: string, value) => {
+            set: (target: TypeMixedUnknownProps, prop: string, value) => {
                 const oldProp = {...target};
                 target[prop] = value;
                 this._eventBus.emit(Block.EVENTS.FLOW_CDU, oldProp, target);
@@ -202,7 +202,7 @@ export default class Block {
         this.getContent().style.display = 'none';
     }
 
-    compile(template: string, props?: typeMixedUnknownProps): DocumentFragment {
+    compile(template: string, props?: TypeMixedUnknownProps): DocumentFragment {
         if (typeof (props) == 'undefined') {
             props = this._props;
         }

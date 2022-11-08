@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class formProfile extends Block {
+export default class FormProfile extends Block {
 	render() {
 		console.log('formProfile render');
 		return this.compile(tpl);

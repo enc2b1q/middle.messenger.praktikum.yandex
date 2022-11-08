@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class boxRegister extends Block {
+export default class BoxRegister extends Block {
 	render() {
 		console.log('boxRegister render');
 		return this.compile(tpl);

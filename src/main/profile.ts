@@ -1,16 +1,16 @@
 import './profile.scss';
 import renderDOM from "../utils/renderDOM";
-import layoutSideBar from "../layout/sideBar";
-import backArrowBtn from "../components/backArrowBtn";
-import layoutProfileParamsBox from "../layout/profileParamsBox";
-import boxProfileImage from "../modules/boxProfileImage";
-import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
-import boxProfileBtnsEdit from "../modules/boxProfileBtnsEdit";
-import profileLinkEdit from "../components/profileLinkEdit";
+import LayoutSideBar from "../layout/sideBar";
+import BackArrowBtn from "../components/backArrowBtn";
+import LayoutProfileParamsBox from "../layout/profileParamsBox";
+import BoxProfileImage from "../modules/boxProfileImage";
+import ProfileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
+import BoxProfileBtnsEdit from "../modules/boxProfileBtnsEdit";
+import ProfileLinkEdit from "../components/profileLinkEdit";
 import * as validator from "../utils/processFormData";
-import formProfile from "../components/formProfile";
+import FormProfile from "../components/formProfile";
 
-const _sideBar = new backArrowBtn(
+const _sideBar = new BackArrowBtn(
     "div",
     {
         url: "/selectChat.html",
@@ -21,7 +21,7 @@ const _sideBar = new backArrowBtn(
     }
 );
 
-const _profileParams_image_box = new boxProfileImage(
+const _profileParams_image_box = new BoxProfileImage(
     "div",
     {
         username: "name",
@@ -36,7 +36,7 @@ const _inputProfileEmail = getNewProfileParamInput({
     validatorPropName: validator.email,
     readonly: "readonly"
 });
-const _profileParamBoxEmail = new profileParamBox(
+const _profileParamBoxEmail = new ProfileParamBox(
     "div",
     {
         name: "email",
@@ -55,7 +55,7 @@ const _inputProfileLogin = getNewProfileParamInput({
     validatorPropName: validator.login,
     readonly: "readonly"
 });
-const _profileParamBoxLogin = new profileParamBox(
+const _profileParamBoxLogin = new ProfileParamBox(
     "div",
     {
         name: "login",
@@ -74,7 +74,7 @@ const _inputProfileFirstName = getNewProfileParamInput({
     validatorPropName: validator.first_name,
     readonly: "readonly"
 });
-const _profileParamBoxFirstName = new profileParamBox(
+const _profileParamBoxFirstName = new ProfileParamBox(
     "div",
     {
         name: "first_name",
@@ -93,7 +93,7 @@ const _inputProfileSecondName = getNewProfileParamInput({
     validatorPropName: validator.second_name,
     readonly: "readonly"
 });
-const _profileParamBoxSecondName = new profileParamBox(
+const _profileParamBoxSecondName = new ProfileParamBox(
     "div",
     {
         name: "second_name",
@@ -112,7 +112,7 @@ const _inputProfileDisplayName = getNewProfileParamInput({
     validatorPropName: validator.display_name,
     readonly: "readonly"
 });
-const _profileParamBoxDisplayName = new profileParamBox(
+const _profileParamBoxDisplayName = new ProfileParamBox(
     "div",
     {
         name: "display_name",
@@ -131,7 +131,7 @@ const _inputProfilePhone = getNewProfileParamInput({
     validatorPropName: validator.phone,
     readonly: "readonly"
 });
-const _profileParamBoxPhone = new profileParamBox(
+const _profileParamBoxPhone = new ProfileParamBox(
     "div",
     {
         name: "phone",
@@ -147,7 +147,7 @@ const _profileParamBoxPhone = new profileParamBox(
 );
 
 
-const _profileLinkEditPersonEdit = new profileLinkEdit(
+const _profileLinkEditPersonEdit = new ProfileLinkEdit(
     "nav",
     {
         url: "/profileEditPerson.html",
@@ -159,7 +159,7 @@ const _profileLinkEditPersonEdit = new profileLinkEdit(
         }
     }
 );
-const _profileLinkEditChangePwd = new profileLinkEdit(
+const _profileLinkEditChangePwd = new ProfileLinkEdit(
     "nav",
     {
         url: "/profileChangePwd.html",
@@ -171,7 +171,7 @@ const _profileLinkEditChangePwd = new profileLinkEdit(
         }
     }
 );
-const _profileLinkEditLogin = new profileLinkEdit(
+const _profileLinkEditLogin = new ProfileLinkEdit(
     "nav",
     {
         url: "/login.html",
@@ -184,7 +184,7 @@ const _profileLinkEditLogin = new profileLinkEdit(
     }
 );
 
-const _profileParams_buttons_box = new boxProfileBtnsEdit(
+const _profileParams_buttons_box = new BoxProfileBtnsEdit(
     "div",
     {
         profileLinkEditArray: [
@@ -199,7 +199,7 @@ const _profileParams_buttons_box = new boxProfileBtnsEdit(
     }
 );
 
-const _formProfile = new formProfile(
+const _formProfile = new FormProfile(
     "form",
     {
         profileParams_params_box: [
@@ -227,7 +227,7 @@ const _formProfile = new formProfile(
     }
 );
 
-const _sideBarContent = new layoutProfileParamsBox(
+const _sideBarContent = new LayoutProfileParamsBox(
     "div",
     {
         profileParams_image_box: _profileParams_image_box,
@@ -239,7 +239,7 @@ const _sideBarContent = new layoutProfileParamsBox(
     }
 );
 
-const _layoutSideBar = new layoutSideBar(
+const _layoutSideBar = new LayoutSideBar(
     "div",
     {
         sideBar: _sideBar,

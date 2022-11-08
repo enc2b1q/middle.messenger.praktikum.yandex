@@ -1,16 +1,16 @@
 import './selectChat.scss';
 import renderDOM from "../utils/renderDOM";
-import layoutSideBar from "../layout/sideBar";
-import layoutChatSideBox from "../layout/chatSideBox";
-import profileLinkEdit from "../components/profileLinkEdit";
+import LayoutSideBar from "../layout/sideBar";
+import LayoutChatSideBox from "../layout/chatSideBox";
+import ProfileLinkEdit from "../components/profileLinkEdit";
 
-import layoutChatContentBox from "../layout/chatContentBox";
-import chatEmptyContent from "../components/chatEmptyContent";
-import chatListItem from "../components/chatListItem";
+import LayoutChatContentBox from "../layout/chatContentBox";
+import ChatEmptyContent from "../components/chatEmptyContent";
+import ChatListItem from "../components/chatListItem";
 import {formChatSideBoxInst as _formChatSideBox} from "../components/formChatSideBox";
 
 
-const _profileLink = new profileLinkEdit(
+const _profileLink = new ProfileLinkEdit(
     "nav",
     {
         url: "/profile.html",
@@ -23,7 +23,7 @@ const _profileLink = new profileLinkEdit(
     }
 );
 
-const _chatListItem1 = new chatListItem(
+const _chatListItem1 = new ChatListItem(
     "div",
     {
 
@@ -33,7 +33,7 @@ const _chatListItem1 = new chatListItem(
     }
 );
 
-const _sideBar = new layoutChatSideBox(
+const _sideBar = new LayoutChatSideBox(
     "div",
     {
         profileLink: _profileLink,
@@ -48,7 +48,7 @@ const _sideBar = new layoutChatSideBox(
     }
 );
 
-const _chat_content_block = new chatEmptyContent(
+const _chat_content_block = new ChatEmptyContent(
     "div",
     {
         attr: {
@@ -60,7 +60,7 @@ const _chat_content_block = new chatEmptyContent(
 // const _chat_content_header = "";
 // const _chat_content_footer = "";
 
-const _sideBarContent = new layoutChatContentBox(
+const _sideBarContent = new LayoutChatContentBox(
     "div",
     {
         // chat_content_header: _chat_content_header,
@@ -73,7 +73,7 @@ const _sideBarContent = new layoutChatContentBox(
     }
 );
 
-const _layoutSideBar = new layoutSideBar(
+const _layoutSideBar = new LayoutSideBar(
     "div",
     {
         sideBar: _sideBar,

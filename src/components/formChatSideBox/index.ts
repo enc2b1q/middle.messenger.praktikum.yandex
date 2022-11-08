@@ -3,7 +3,7 @@ import tpl from './tpl';
 import './style.scss';
 import {validationSubmitHandler} from "../../utils/processFormData";
 
-export default class formChatSideBox extends Block {
+export default class FormChatSideBox extends Block {
 	render() {
 		console.log('formChatSideBox render');
 		return this.compile(tpl);
@@ -21,7 +21,7 @@ export default class formChatSideBox extends Block {
 	}
 }
 
-export const formChatSideBoxInst = new formChatSideBox(
+export const formChatSideBoxInst = new FormChatSideBox(
 	"form",
 	{
 		events: {

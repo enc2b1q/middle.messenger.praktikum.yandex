@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class link extends Block {
+export default class Link extends Block {
 	render() {
 		console.log('link render');
 		return this.compile(tpl);
@@ -20,7 +20,7 @@ export default class link extends Block {
 	}
 }
 
-export const _linkBackToChatInst = new link(
+export const _linkBackToChatInst = new Link(
 	"nav",
 	{
 		url: '/selectChat.html',

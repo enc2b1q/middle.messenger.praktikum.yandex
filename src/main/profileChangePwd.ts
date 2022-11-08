@@ -1,21 +1,21 @@
 import './profileChangePwd.scss';
 import renderDOM from "../utils/renderDOM";
-import layoutSideBar from "../layout/sideBar";
-import backArrowBtn from "../components/backArrowBtn";
-import layoutProfileParamsBox from "../layout/profileParamsBox";
-import boxProfileImage from "../modules/boxProfileImage";
-import boxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
+import LayoutSideBar from "../layout/sideBar";
+import BackArrowBtn from "../components/backArrowBtn";
+import LayoutProfileParamsBox from "../layout/profileParamsBox";
+import BoxProfileImage from "../modules/boxProfileImage";
+import BoxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
 import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from "../components/button";
-import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
+import ProfileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
 import * as validator from "../utils/processFormData";
 import {validationSubmitHandler} from "../utils/processFormData";
-import formProfile from "../components/formProfile";
+import FormProfile from "../components/formProfile";
 
 const _inputProfileOldPassword = getNewProfileParamInput({
     validatorPropName: validator.oldPassword,
     type: "password",
 });
-const _profileParamBoxOldPassword = new profileParamBox(
+const _profileParamBoxOldPassword = new ProfileParamBox(
     "div",
     {
         name: "oldPassword",
@@ -33,7 +33,7 @@ const _inputProfileNewPassword = getNewProfileParamInput({
     validatorPropName: validator.newPassword,
     type: "password",
 });
-const _profileParamBoxNewPassword = new profileParamBox(
+const _profileParamBoxNewPassword = new ProfileParamBox(
     "div",
     {
         name: "newPassword",
@@ -51,7 +51,7 @@ const _inputProfileNewPasswordRepeat = getNewProfileParamInput({
     validatorPropName: validator.password_repeat,
     type: "password",
 });
-const _profileParamBoxNewPasswordRepeat = new profileParamBox(
+const _profileParamBoxNewPasswordRepeat = new ProfileParamBox(
     "div",
     {
         name: validator.password_repeat, //"newPasswordRepeat",
@@ -66,7 +66,7 @@ const _profileParamBoxNewPasswordRepeat = new profileParamBox(
     }
 );
 
-const _profileParams_buttons_box = new boxProfilePersonEditBtn(
+const _profileParams_buttons_box = new BoxProfilePersonEditBtn(
     "div",
     {
         button: _boxProfilePersonEditBtnSaveBts,
@@ -77,7 +77,7 @@ const _profileParams_buttons_box = new boxProfilePersonEditBtn(
     }
 );
 
-const _profileParams_image_box = new boxProfileImage(
+const _profileParams_image_box = new BoxProfileImage(
     "div",
     {
         username: "",
@@ -88,7 +88,7 @@ const _profileParams_image_box = new boxProfileImage(
     }
 );
 
-const _formProfile = new formProfile(
+const _formProfile = new FormProfile(
     "form",
     {
         profileParams_params_box: [
@@ -111,7 +111,7 @@ const _formProfile = new formProfile(
     }
 );
 
-const _sideBarContent = new layoutProfileParamsBox(
+const _sideBarContent = new LayoutProfileParamsBox(
     "div",
     {
         profileParams_image_box: _profileParams_image_box,
@@ -124,7 +124,7 @@ const _sideBarContent = new layoutProfileParamsBox(
 );
 
 
-const _sideBar = new backArrowBtn(
+const _sideBar = new BackArrowBtn(
     "div",
     {
         url: "/profile.html",
@@ -135,7 +135,7 @@ const _sideBar = new backArrowBtn(
     }
 );
 
-const _layoutSideBar = new layoutSideBar(
+const _layoutSideBar = new LayoutSideBar(
     "div",
     {
         sideBar: _sideBar,

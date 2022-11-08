@@ -1,17 +1,17 @@
 import "./login.scss";
 // import "../modules/scss/_validationInput.scss"
 import renderDOM from "../utils/renderDOM";
-import layoutEmpty from "../layout/empty";
-import layoutLogin from "../layout/login";
-import inputBox, {getNewInput} from "../components/inputBox";
-import button from "../components/button";
-import link from "../components/link";
+import LayoutEmpty from "../layout/empty";
+import LayoutLogin from "../layout/login";
+import InputBox, {getNewInput} from "../components/inputBox";
+import Button from "../components/button";
+import Link from "../components/link";
 import * as validator from "../utils/processFormData";
-import formLogin from "../components/formLogin";
+import FormLogin from "../components/formLogin";
 import {validationSubmitHandler} from "../utils/processFormData";
 
 const _inputLogin = getNewInput(validator.login);
-const _inputBoxLogin = new inputBox(
+const _inputBoxLogin = new InputBox(
     "div",
     {
         name: "login",
@@ -24,7 +24,7 @@ const _inputBoxLogin = new inputBox(
     }
 );
 const _inputPwd = getNewInput(validator.password, "password");
-const _inputBoxPwd = new inputBox(
+const _inputBoxPwd = new InputBox(
     "div",
     {
         name: "password",
@@ -37,7 +37,7 @@ const _inputBoxPwd = new inputBox(
     }
 );
 
-const _buttonEnter = new button(
+const _buttonEnter = new Button(
     "button",
     {
         text: "Войти",
@@ -62,7 +62,7 @@ const _buttonEnter = new button(
     }
 );
 
-const _linkRegister = new link(
+const _linkRegister = new Link(
     "nav",
     {
         url: "/signIn.html",
@@ -74,7 +74,7 @@ const _linkRegister = new link(
     }
 );
 
-const _formLogin = new formLogin(
+const _formLogin = new FormLogin(
     "form",
     {
         loginBody: [
@@ -97,7 +97,7 @@ const _formLogin = new formLogin(
     }
 );
 
-const _content = new layoutLogin(
+const _content = new LayoutLogin(
     "article",
     {
         loginHeader: "Вход",
@@ -109,7 +109,7 @@ const _content = new layoutLogin(
     }
 );
 
-const _layoutEmpty = new layoutEmpty(
+const _layoutEmpty = new LayoutEmpty(
     "div",
     {
         content: _content,
