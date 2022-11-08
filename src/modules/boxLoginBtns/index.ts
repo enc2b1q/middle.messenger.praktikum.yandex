@@ -18,3 +18,4 @@ export default class boxLoginBtns extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

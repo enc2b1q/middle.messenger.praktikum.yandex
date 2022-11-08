@@ -21,3 +21,4 @@ export default class pageProfileChangePwd extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

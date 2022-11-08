@@ -14,3 +14,4 @@ export default class boxChatMessage extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

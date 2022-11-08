@@ -18,3 +18,4 @@ export default class pageChatSelection extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

@@ -19,3 +19,4 @@ export default class pageChatDetails extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

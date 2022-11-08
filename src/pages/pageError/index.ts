@@ -16,3 +16,4 @@ export default class pageError extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+
