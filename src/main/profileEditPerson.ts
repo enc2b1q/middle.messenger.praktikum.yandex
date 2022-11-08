@@ -1,17 +1,17 @@
 import './profileEditPerson.scss';
 import renderDOM from "../utils/renderDOM";
-import layoutSideBar from "../layout/sideBar";
-import backArrowBtn from "../components/backArrowBtn";
-import layoutProfileParamsBox from "../layout/profileParamsBox";
-import boxProfileImage from "../modules/boxProfileImage";
-import boxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
+import LayoutSideBar from "../layout/sideBar";
+import BackArrowBtn from "../components/backArrowBtn";
+import LayoutProfileParamsBox from "../layout/profileParamsBox";
+import BoxProfileImage from "../modules/boxProfileImage";
+import BoxProfilePersonEditBtn from "../modules/boxProfilePersonEditBtn";
 import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from "../components/button";
-import profileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
+import ProfileParamBox, {getNewProfileParamInput} from "../components/profileParamBox";
 import * as validator from "../utils/processFormData";
-import processFormData from "../utils/processFormData";
+import FormProfile from "../components/formProfile";
 
 
-const _sideBar = new backArrowBtn(
+const _sideBar = new BackArrowBtn(
     "div",
     {
         url: "/profile.html",
@@ -22,7 +22,7 @@ const _sideBar = new backArrowBtn(
     }
 );
 
-const _profileParams_image_box = new boxProfileImage(
+const _profileParams_image_box = new BoxProfileImage(
     "div",
     {
         username: "",
@@ -36,7 +36,7 @@ const _profileParams_image_box = new boxProfileImage(
 const _inputProfileEmail = getNewProfileParamInput({
     validatorPropName: validator.email
 });
-const _profileParamBoxEmail = new profileParamBox(
+const _profileParamBoxEmail = new ProfileParamBox(
     "div",
     {
         name: "email",
@@ -53,7 +53,7 @@ const _profileParamBoxEmail = new profileParamBox(
 const _inputProfileLogin = getNewProfileParamInput({
     validatorPropName: validator.login,
 });
-const _profileParamBoxLogin = new profileParamBox(
+const _profileParamBoxLogin = new ProfileParamBox(
     "div",
     {
         name: "login",
@@ -70,7 +70,7 @@ const _profileParamBoxLogin = new profileParamBox(
 const _inputProfileFirstName = getNewProfileParamInput({
     validatorPropName: validator.first_name,
 });
-const _profileParamBoxFirstName = new profileParamBox(
+const _profileParamBoxFirstName = new ProfileParamBox(
     "div",
     {
         name: "first_name",
@@ -88,7 +88,7 @@ const _profileParamBoxFirstName = new profileParamBox(
 const _inputProfileSecondName = getNewProfileParamInput({
     validatorPropName: validator.second_name,
 });
-const _profileParamBoxSecondName = new profileParamBox(
+const _profileParamBoxSecondName = new ProfileParamBox(
     "div",
     {
         name: "second_name",
@@ -106,7 +106,7 @@ const _profileParamBoxSecondName = new profileParamBox(
 const _inputProfileDisplayName = getNewProfileParamInput({
     validatorPropName: validator.display_name,
 });
-const _profileParamBoxDisplayName = new profileParamBox(
+const _profileParamBoxDisplayName = new ProfileParamBox(
     "div",
     {
         name: "display_name",
@@ -124,7 +124,7 @@ const _profileParamBoxDisplayName = new profileParamBox(
 const _inputProfilePhone = getNewProfileParamInput({
     validatorPropName: validator.phone,
 });
-const _profileParamBoxPhone = new profileParamBox(
+const _profileParamBoxPhone = new ProfileParamBox(
     "div",
     {
         name: "phone",
@@ -139,7 +139,7 @@ const _profileParamBoxPhone = new profileParamBox(
     }
 );
 
-const _profileParams_buttons_box = new boxProfilePersonEditBtn(
+const _profileParams_buttons_box = new BoxProfilePersonEditBtn(
     "div",
     {
         button: _boxProfilePersonEditBtnSaveBts,
@@ -150,10 +150,9 @@ const _profileParams_buttons_box = new boxProfilePersonEditBtn(
     }
 );
 
-const _sideBarContent = new layoutProfileParamsBox(
-    "div",
+const _formProfile = new FormProfile(
+    "form",
     {
-        profileParams_image_box: _profileParams_image_box,
         profileParams_params_box: [
             _profileParamBoxEmail,
             _profileParamBoxLogin,
@@ -164,16 +163,32 @@ const _sideBarContent = new layoutProfileParamsBox(
         ],
         profileParams_buttons_box: _profileParams_buttons_box,
 
-        events: {
-            submit: (e: Event) => {
-                const target = e.target as HTMLInputElement;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
+        attr: {
+            class: "layout_profileParams_form",
+            id: "form",
+            action: "#",
+            method: "POST",
         },
+
+        // events: {
+        //     submit: (e: Event) => {
+        //         console.log("submit:")
+        //         const target = e.target as HTMLFormElement;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         e.preventDefault();
+        //         processFormData();
+        //     },
+        // },
+    }
+);
+
+const _sideBarContent = new LayoutProfileParamsBox(
+    "div",
+    {
+        profileParams_image_box: _profileParams_image_box,
+        formProfile: _formProfile,
 
         attr: {
             class: "layout_profileParams_outer_box",
@@ -181,7 +196,7 @@ const _sideBarContent = new layoutProfileParamsBox(
     }
 );
 
-const _layoutSideBar = new layoutSideBar(
+const _layoutSideBar = new LayoutSideBar(
     "div",
     {
         sideBar: _sideBar,

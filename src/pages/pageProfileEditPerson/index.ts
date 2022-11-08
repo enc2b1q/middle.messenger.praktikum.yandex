@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class pageProfileEditPerson extends Block {
+export default class PageProfileEditPerson extends Block {
 	render() {
 		console.log('pageProfileEditPerson render');
 		return this.compile(tpl);

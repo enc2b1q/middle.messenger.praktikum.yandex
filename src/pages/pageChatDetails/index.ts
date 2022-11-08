@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class pageChatDetails extends Block {
+export default class PageChatDetails extends Block {
 	render() {
 		console.log('pageChatDetails render');
 		return this.compile(tpl);
@@ -19,3 +19,4 @@ export default class pageChatDetails extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

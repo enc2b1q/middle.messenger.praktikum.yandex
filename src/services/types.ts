@@ -1,13 +1,13 @@
-export type typeDict<T> = {
+export type TypeDict<T> = {
     [key: string | number]: T
 }
 
-export type typeDictUnknown = typeDict<unknown>;
+export type TypeDictUnknown = TypeDict<unknown>;
 
-export type typeDefinedProps = {
-    "setting"?: typeDict<boolean | string>;
-    "attr"?: typeDict<string>;
-    "events"?: typeDict<EventListenerOrEventListenerObject>;
+export type TypeDefinedProps = {
+    "setting"?: TypeDict<boolean | string>;
+    "attr"?: TypeDict<string>;
+    "events"?: TypeDict<EventListenerOrEventListenerObject>;
 };
 
-export type typeMixedUnknownProps = typeDefinedProps & typeDictUnknown;
+export type TypeMixedUnknownProps = TypeDefinedProps & TypeDictUnknown;

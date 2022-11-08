@@ -2,7 +2,7 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 
-export default class pageProfileChangePwd extends Block {
+export default class PageProfileChangePwd extends Block {
 	render() {
 		console.log('pageProfileChangePwd render');
 		return this.compile(tpl);
@@ -21,3 +21,4 @@ export default class pageProfileChangePwd extends Block {
 // export default (props = {}) => {
 // 	return tpl(props);
 // }
+

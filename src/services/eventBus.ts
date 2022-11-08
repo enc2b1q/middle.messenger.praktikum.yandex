@@ -1,8 +1,8 @@
-import {typeDict} from './types'
+import {TypeDict} from './types'
 
 export default class EventBus {
 
-    _listeners: typeDict<Array<Function>> = {};
+    _listeners: TypeDict<Array<Function>> = {};
 
     subscribe(event: string, callback: Function): void {
         if (!this._listeners[event])

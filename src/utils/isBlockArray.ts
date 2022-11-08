@@ -10,4 +10,4 @@ export default function isBlockArray(value: unknown): value is Block[] {
         res = false;
     }
     return res ;
-} 
+}

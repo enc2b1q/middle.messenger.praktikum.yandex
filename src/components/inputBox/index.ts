@@ -1,19 +1,19 @@
 import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
-import genericTag from "../genericTag";
+import GenericTag from "../genericTag";
 import * as validator from "../../utils/processFormData";
-import processFormData, {checkInputElement} from "../../utils/processFormData";
+import  {validationInputHandler} from "../../utils/processFormData";
 
-export default class inputBox extends Block {
+export default class InputBox extends Block {
 	render() {
 		console.log('inputBox render');
 		return this.compile(tpl);
 	}
 }
 
-export function getNewInput(validatorPropName: string, type: string = "text", className: string = "input-with-bottom-line"): genericTag {
-	return new genericTag (
+export function getNewInput(validatorPropName: string, type: string = "text", className: string = "input-with-bottom-line"): GenericTag {
+	return new GenericTag (
 		"input",
 		{
 			attr: {
@@ -25,24 +25,8 @@ export function getNewInput(validatorPropName: string, type: string = "text", cl
 				title : validator.getValidationMsg(validatorPropName),
 			},
 			events: {
-				focus: (e: Event) => {
-					const target = e.target as HTMLInputElement;
-					if(!target) {
-						return;
-					}
-					e.preventDefault();
-					checkInputElement(target);
-					processFormData();
-				},
-				blur: (e: Event) => {
-					const target = e.target as HTMLInputElement;
-					if(!target) {
-						return;
-					}
-					e.preventDefault();
-					checkInputElement(target);
-					processFormData();
-				},
+				focus: validationInputHandler,
+				blur: validationInputHandler,
 			},
 		}
 	);

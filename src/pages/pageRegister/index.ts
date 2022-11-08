@@ -3,7 +3,7 @@ import tpl from './tpl';
 import './style.scss';
 import Block from "../../services/block";
 
-export default class pageRegister extends Block {
+export default class PageRegister extends Block {
 	render() {
 		console.log('pageRegister render');
 		return this.compile(tpl);

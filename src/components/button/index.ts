@@ -1,9 +1,8 @@
 import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
-import processFormData from "../../utils/processFormData";
 
-export default class button extends Block {
+export default class Button extends Block {
 	render() {
 		console.log('button render');
 		return this.compile(tpl);
@@ -21,7 +20,7 @@ export default class button extends Block {
 	}
 }
 
-export const boxProfilePersonEditBtnSaveBts = new button(
+export const boxProfilePersonEditBtnSaveBts = new Button(
 	"button",
 	{
 		text: "Сохранить",
@@ -30,18 +29,18 @@ export const boxProfilePersonEditBtnSaveBts = new button(
 			type: "submit",
 			class : "button",
 		},
-		events: {
-			click: (e: Event) => {
-				const target = e.target;
-				if(!target) {
-					return;
-				}
-				// window.location.assign(window.location.href + "#");
-				e.preventDefault();
-				e.stopPropagation();
-				processFormData();
-			},
-		},
+		// events: {
+		// 	click: (e: Event) => {
+		// 		const target = e.target;
+		// 		if(!target) {
+		// 			return;
+		// 		}
+		// 		// window.location.assign(window.location.href + "#");
+		// 		e.preventDefault();
+		// 		e.stopPropagation();
+		// 		processFormData();
+		// 	},
+		// },
 
 	}
 );

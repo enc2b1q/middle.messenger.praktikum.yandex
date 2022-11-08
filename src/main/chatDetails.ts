@@ -1,19 +1,21 @@
 import './chatDetails.scss';
 import renderDOM from "../utils/renderDOM";
-import layoutSideBar from "../layout/sideBar";
-import layoutChatSideBox from "../layout/chatSideBox";
+import LayoutSideBar from "../layout/sideBar";
+import LayoutChatSideBox from "../layout/chatSideBox";
 
-import profileLinkEdit from "../components/profileLinkEdit";
-import layoutChatContentBox from "../layout/chatContentBox";
-import boxChatHeader from "../modules/boxChatHeader";
-import boxChatMessage from "../modules/boxChatMessage";
-import chatListItem from "../components/chatListItem";
-import boxChatMessagesBody from "../modules/boxChatMessagesBody";
-import boxChatMessagesBodyItemText from "../components/boxChatMessagesBodyItemText";
-import processFormData from "../utils/processFormData";
+import ProfileLinkEdit from "../components/profileLinkEdit";
+import LayoutChatContentBox from "../layout/chatContentBox";
+import BoxChatHeader from "../modules/boxChatHeader";
+import BoxChatMessage from "../modules/boxChatMessage";
+import ChatListItem from "../components/chatListItem";
+import BoxChatMessagesBody from "../modules/boxChatMessagesBody";
+import BoxChatMessagesBodyItemText from "../components/boxChatMessagesBodyItemText";
+import {formChatSideBoxInst as _formChatSideBox} from "../components/formChatSideBox";
+import FormChatMessage from "../components/formChatMessage";
+import {validationSubmitHandler} from "../utils/processFormData";
 
 
-const _chat_content_header = new boxChatHeader(
+const _chat_content_header = new BoxChatHeader(
     "div",
     {
         attr: {
@@ -22,9 +24,25 @@ const _chat_content_header = new boxChatHeader(
     }
 );
 
-const _chat_content_footer = new boxChatMessage(
+const _formChatMessage = new FormChatMessage(
+    "form",
+    {
+        events: {
+            submit: validationSubmitHandler,
+        },
+        attr: {
+            class: "boxChatMessage_form",
+            id: "formBoxChatMessage",
+            action: "#",
+            method: "POST",
+        }
+    }
+);
+
+const _chat_content_footer = new BoxChatMessage(
     "div",
     {
+        formChatMessage: _formChatMessage,
 
         attr: {
             class: "boxChatMessage_wrapper",
@@ -32,7 +50,7 @@ const _chat_content_footer = new boxChatMessage(
     }
 );
 
-const _boxChatMessagesBodyItem1 = new boxChatMessagesBodyItemText(
+const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
     "div",
     {
         msgText: "Новый чат!",
@@ -42,7 +60,7 @@ const _boxChatMessagesBodyItem1 = new boxChatMessagesBodyItemText(
         }
     }
 );
-const _boxChatMessagesBodyItem2 = new boxChatMessagesBodyItemText(
+const _boxChatMessagesBodyItem2 = new BoxChatMessagesBodyItemText(
     "div",
     {
         msgText: "привет!",
@@ -53,7 +71,7 @@ const _boxChatMessagesBodyItem2 = new boxChatMessagesBodyItemText(
     }
 );
 
-const _chat_content_block = new boxChatMessagesBody(
+const _chat_content_block = new BoxChatMessagesBody(
     "div",
     {
         boxChatMessagesBodyItems: [
@@ -67,7 +85,7 @@ const _chat_content_block = new boxChatMessagesBody(
     }
 );
 
-const _sideBarContent = new layoutChatContentBox(
+const _sideBarContent = new LayoutChatContentBox(
     "div",
     {
         chat_content_header: _chat_content_header,
@@ -80,7 +98,7 @@ const _sideBarContent = new layoutChatContentBox(
     }
 );
 
-const _chatListItem1 = new chatListItem(
+const _chatListItem1 = new ChatListItem(
     "div",
     {
 
@@ -90,7 +108,7 @@ const _chatListItem1 = new chatListItem(
     }
 );
 
-const _profileLink = new profileLinkEdit(
+const _profileLink = new ProfileLinkEdit(
     "nav",
     {
         url: "/profile.html",
@@ -103,26 +121,43 @@ const _profileLink = new profileLinkEdit(
     }
 );
 
-const _sideBar = new layoutChatSideBox(
+// const _formChatSideBox = new formChatSideBox(
+//     "form",
+//     {
+//         events: {
+//             submit: validationSubmitHandler,
+//         },
+//
+//         attr: {
+//             class: "layout_chatSideBox_searchBox_form",
+//             id: "form",
+//             action: "#",
+//             method: "POST",
+//         }
+//     }
+// );
+
+const _sideBar = new LayoutChatSideBox(
     "div",
     {
         profileLink: _profileLink,
         boxChatList: [
             _chatListItem1,
         ],
+        formChatSideBox: _formChatSideBox,
 
-        events: {
-            click: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                // window.location.assign(window.location.href + "#");
-                e.preventDefault();
-                e.stopPropagation();
-                processFormData();
-            },
-        },
+        // events: {
+        //     click: (e: Event) => {
+        //         const target = e.target;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         // window.location.assign(window.location.href + "#");
+        //         e.preventDefault();
+        //         e.stopPropagation();
+        //         processFormData();
+        //     },
+        // },
 
         attr: {
             class: "layout_chatSideBox_wrapper_box",
@@ -130,7 +165,7 @@ const _sideBar = new layoutChatSideBox(
     }
 );
 
-const _layoutSideBar = new layoutSideBar(
+const _layoutSideBar = new LayoutSideBar(
     "div",
     {
         sideBar: _sideBar,

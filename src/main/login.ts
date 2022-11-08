@@ -1,15 +1,17 @@
 import "./login.scss";
 // import "../modules/scss/_validationInput.scss"
 import renderDOM from "../utils/renderDOM";
-import layoutEmpty from "../layout/empty";
-import layoutLogin from "../layout/login";
-import inputBox, {getNewInput} from "../components/inputBox";
-import button from "../components/button";
-import link from "../components/link";
-import processFormData, * as validator from "../utils/processFormData";
+import LayoutEmpty from "../layout/empty";
+import LayoutLogin from "../layout/login";
+import InputBox, {getNewInput} from "../components/inputBox";
+import Button from "../components/button";
+import Link from "../components/link";
+import * as validator from "../utils/processFormData";
+import FormLogin from "../components/formLogin";
+import {validationSubmitHandler} from "../utils/processFormData";
 
 const _inputLogin = getNewInput(validator.login);
-const _inputBoxLogin = new inputBox(
+const _inputBoxLogin = new InputBox(
     "div",
     {
         name: "login",
@@ -22,7 +24,7 @@ const _inputBoxLogin = new inputBox(
     }
 );
 const _inputPwd = getNewInput(validator.password, "password");
-const _inputBoxPwd = new inputBox(
+const _inputBoxPwd = new InputBox(
     "div",
     {
         name: "password",
@@ -35,7 +37,7 @@ const _inputBoxPwd = new inputBox(
     }
 );
 
-const _buttonEnter = new button(
+const _buttonEnter = new Button(
     "button",
     {
         text: "Войти",
@@ -44,23 +46,23 @@ const _buttonEnter = new button(
             type: "submit",
             class : "button",
         },
-        events: {
-            click: (e: Event) => {
-                const target = e.target;
-                if(!target) {
-                    return;
-                }
-                // window.location.assign("/selectChat.html");
-                e.preventDefault();
-                e.stopPropagation();
-                processFormData();
-            },
-        },
+        // events: {
+        //     click: (e: Event) => {
+        //         const target = e.target;
+        //         if(!target) {
+        //             return;
+        //         }
+        //         // window.location.assign("/selectChat.html");
+        //         e.preventDefault();
+        //         e.stopPropagation();
+        //         processFormData();
+        //     },
+        // },
 
     }
 );
 
-const _linkRegister = new link(
+const _linkRegister = new Link(
     "nav",
     {
         url: "/signIn.html",
@@ -72,10 +74,9 @@ const _linkRegister = new link(
     }
 );
 
-const _content = new layoutLogin(
-    "article",
+const _formLogin = new FormLogin(
+    "form",
     {
-        loginHeader: "Вход",
         loginBody: [
             _inputBoxLogin,
             _inputBoxPwd,
@@ -84,17 +85,23 @@ const _content = new layoutLogin(
             _buttonEnter,
             _linkRegister
         ],
-
         events: {
-            submit: (e: Event) => {
-                const target = e.target as HTMLInputElement;
-                if(!target) {
-                    return;
-                }
-                e.preventDefault();
-                processFormData();
-            },
+            submit: validationSubmitHandler,
         },
+        attr: {
+            class: "layout-login-form",
+            id: "form",
+            action: "#",
+            method: "POST",
+        }
+    }
+);
+
+const _content = new LayoutLogin(
+    "article",
+    {
+        loginHeader: "Вход",
+        formLogin: _formLogin,
 
         attr: {
             class: "layout-login-box",
@@ -102,7 +109,7 @@ const _content = new layoutLogin(
     }
 );
 
-const _layoutEmpty = new layoutEmpty(
+const _layoutEmpty = new LayoutEmpty(
     "div",
     {
         content: _content,
