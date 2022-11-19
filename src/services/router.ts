@@ -1,5 +1,5 @@
 import Block from "./block";
-import Route from "./Route";
+import Route from "./route";
 
 class Router {
 
