@@ -5,7 +5,6 @@
   "source": "index.html",
   "scripts": {
     "dev": "parcel --no-cache ./src/main/index.html",
-    "testpage": "parcel --no-cache ./src/main/test.html",
     "build": "parcel build --no-cache ./src/main/index.html",
     "start": "parcel build --no-cache ./src/main/index.html && node ./server.js",
     "oldtest": "echo \"Error: no test specified\" && exit 1"
@@ -30,15 +29,23 @@
   "homepage": "https://github.com/enc2b1q/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "2.7.0",
+    "@types/uuid": "8.3.4",
+    "@typescript-eslint/eslint-plugin": "5.42.0",
+    "@typescript-eslint/parser": "5.42.0",
+    "eslint": "8.26.0",
+    "handlebars": "4.7.7",
     "parcel": "2.7.0",
-    "parcel-transformer-hbs": "1.0.4"
+    "parcel-transformer-hbs": "1.0.4",
+    "stylelint": "14.14.1",
+    "stylelint-config-standard": "29.0.0",
+    "typescript": "4.8.4"
   },
   "dependencies": {
     "express": "4.18.2",
-    "handlebars": "4.7.7"
+    "uuid": "9.0.0"
   },
-  "engines" : { 
-    "npm" : ">=8.0.0 <9.0.0",
-    "node" : ">=16.0.0 <17.0.0"
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": ">=16.0.0 <17.0.0"
   }
 }

@@ -1,0 +1,19 @@
+.chatEmptyContent_wrapper {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+    flex-direction: column;
+    text-align: center;
+	height: 100vh;
+}
+.chatEmptyContent_inner {
+	margin:  0;
+	padding: 0;
+	align-self: center;
+}
+.chatEmptyContent_span {
+	vertical-align: middle;
+	display: inline-block;
+	line-height: normal;
+	color: #999999;
+}
