@@ -19,7 +19,7 @@ const _inputBoxLogin = new InputBox(
         input: _inputLogin,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
@@ -32,7 +32,7 @@ const _inputBoxPwd = new InputBox(
         input: _inputPwd,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
@@ -44,7 +44,7 @@ const _buttonEnter = new Button(
         attr: {
             id: "btnEnterId",
             type: "submit",
-            class : "button",
+            class: "button",
         },
         // events: {
         //     click: (e: Event) => {

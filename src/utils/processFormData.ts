@@ -40,11 +40,11 @@ validationMsgs.set(password_repeat, msgPatternPassword);
 validationMsgs.set(phone, msgPatternPhone);
 validationMsgs.set(message, msgPatternMessage);
 
-export function getValidationMsg(name: string) : string {
+export function getValidationMsg(name: string): string {
     return validationMsgs.get(name) ?? "";
 }
 
-const patternNames =  /^[A-ZА-ЯЁ][A-Za-zА-Яа-яЁё-]*$/;
+const patternNames = /^[A-ZА-ЯЁ][A-Za-zА-Яа-яЁё-]*$/;
 const patternLogin = /^(?!\d+$)[A-Za-z-_0-9]{3,20}$/;
 const patternEmail = /^[A-Za-z0-9-]+@[A-Za-z0-9]+\.[a-z]+$/;
 const patternPassword = /^(?=\D*\d)(?=.*[A-Z]).{8,40}$/;
@@ -64,32 +64,31 @@ validationPatternStrings.set(password_repeat, patternPassword.toString());
 validationPatternStrings.set(phone, patternPhone.toString());
 validationPatternStrings.set(message, patternMessage.toString());
 
-export function getValidationPatternString(name: string) : string {
+export function getValidationPatternString(name: string): string {
     return validationPatternStrings.get(name) ?? "";
 }
 
 export function checkInputElement(target: HTMLInputElement): void {
-    if(!target) {
+    if (!target) {
         return;
     }
     if (!target.readOnly) {
         if (validateItem(target.name, target.value)) {
             target.style.backgroundColor = 'white';
-        }
-        else {
+        } else {
             target.style.backgroundColor = 'pink';
         }
     }
 }
 
-function validateProps(data: { [p: string]: File | string }) : boolean {
+function validateProps(data: { [p: string]: File | string }): boolean {
     const entries = Object.entries(data);
     let res = true;
-    entries.forEach(([k,v]) => {
+    entries.forEach(([k, v]) => {
         if (!isString(v)) {
             return false;
         }
-        const localRes = validateItem(k,v);
+        const localRes = validateItem(k, v);
         console.log(`validation of ${k}: ${localRes}`);
         res &&= localRes;
     })
@@ -97,32 +96,26 @@ function validateProps(data: { [p: string]: File | string }) : boolean {
 }
 
 //use mapping
-function validateItem(key: string, value: string) : boolean {
+function validateItem(key: string, value: string): boolean {
     if (key === first_name || key === second_name || key === display_name) {
 
         return patternNames.test(value);
-    }
-    else if (key === login) {
+    } else if (key === login) {
 
         return patternLogin.test(value);
-    }
-    else if (key === email) {
+    } else if (key === email) {
 
         return patternEmail.test(value);
-    }
-    else if (key === password || key === password_repeat || key === oldPassword || key === newPassword) {
+    } else if (key === password || key === password_repeat || key === oldPassword || key === newPassword) {
 
         return patternPassword.test(value);
-    }
-    else if (key === phone) {
+    } else if (key === phone) {
 
         return patternPhone.test(value);
-    }
-    else if (key === message) {
+    } else if (key === message) {
 
         return patternMessage.test(value);
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -138,7 +131,7 @@ export default function processFormData(): boolean {
         const inputElementsNL: NodeListOf<Element> = document.querySelectorAll('#form input');
         if (inputElementsNL) {
             const inputElements = Array.from(inputElementsNL) as HTMLInputElement[];
-            if (inputElements){
+            if (inputElements) {
                 inputElements.forEach(el => checkInputElement(el));
             }
         }
@@ -146,7 +139,7 @@ export default function processFormData(): boolean {
         const data = Object.fromEntries(new FormData(formEl).entries());
         console.log(data);
         const isValidated = validateProps(data);
-        if (!isValidated){
+        if (!isValidated) {
             return false;
         }
         //sendData() //fetchWithRetry
@@ -157,7 +150,7 @@ export default function processFormData(): boolean {
 
 export const validationSubmitHandler = (e: Event) => {
     const target = e.target as HTMLFormElement;
-    if(!target) {
+    if (!target) {
         return;
     }
     e.preventDefault();
@@ -166,7 +159,7 @@ export const validationSubmitHandler = (e: Event) => {
 
 export const validationInputHandler = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    if(!target) {
+    if (!target) {
         return;
     }
     e.preventDefault();

@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class PageProfileChangePwd extends Block {
-	render() {
-		console.log('pageProfileChangePwd render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('pageProfileChangePwd render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('pageProfileChangePwd', tpl);

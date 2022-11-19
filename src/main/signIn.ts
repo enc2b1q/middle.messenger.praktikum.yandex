@@ -21,7 +21,7 @@ const _inputBoxEmail = new InputBox(
         input: _inputEmail,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
@@ -34,11 +34,11 @@ const _inputBoxLogin = new InputBox(
         input: _inputLogin,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
-const _inputFirstName= getNewInput(validator.first_name);
+const _inputFirstName = getNewInput(validator.first_name);
 const _inputBoxFirstName = new InputBox(
     "div",
     {
@@ -47,11 +47,11 @@ const _inputBoxFirstName = new InputBox(
         input: _inputFirstName,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
-const _inputSecondName= getNewInput(validator.second_name);
+const _inputSecondName = getNewInput(validator.second_name);
 const _inputBoxSecondName = new InputBox(
     "div",
     {
@@ -60,11 +60,11 @@ const _inputBoxSecondName = new InputBox(
         input: _inputSecondName,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
-const _inputPhone= getNewInput(validator.phone);
+const _inputPhone = getNewInput(validator.phone);
 const _inputBoxPhone = new InputBox(
     "div",
     {
@@ -74,7 +74,7 @@ const _inputBoxPhone = new InputBox(
         input: _inputPhone,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
@@ -88,7 +88,7 @@ const _inputBoxPassword = new InputBox(
         input: _inputPwd,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
@@ -102,7 +102,7 @@ const _inputBoxPasswordRepeat = new InputBox(
         input: _inputPwdRepeat,
 
         attr: {
-            class : "inputBox",
+            class: "inputBox",
         }
     }
 );
@@ -115,7 +115,7 @@ const _buttonRegister = new Button(
         attr: {
             id: "btnRegisterId",
             type: "submit",
-            class : "button",
+            class: "button",
         },
         // events: {
         //     click: (e: Event) => {

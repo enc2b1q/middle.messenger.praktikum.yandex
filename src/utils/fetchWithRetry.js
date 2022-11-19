@@ -4,19 +4,21 @@ function fetchWithRetry(url, options) {
     if (typeof options !== 'object') {
         throw new Error('Должен быть object');
     }
-    if (!options.hasOwnProperty(retriesField)){
+    if (!options.hasOwnProperty(retriesField)) {
         throw new Error(`Нет свойства ${retriesField}`);
     }
 
     const {method} = options;
-    if (!method) { options['method']= METHODS.GET}
+    if (!method) {
+        options['method'] = METHODS.GET
+    }
 
     let retCnt = options[retriesField];
-    if (!Number.isInteger(retCnt)){
+    if (!Number.isInteger(retCnt)) {
         throw new Error(`${retriesField} д.б. числом`);
     }
     retCnt = Number(retCnt);
-    if (retCnt <= 1){
+    if (retCnt <= 1) {
         throw new Error(`${retriesField} д.б. больше 1`);
     }
 
@@ -24,8 +26,7 @@ function fetchWithRetry(url, options) {
         try {
             const res = new HTTPTransport().request(url, options);
             return res;
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
         }
     }
@@ -127,7 +128,10 @@ class HTTPTransport {
         let {data} = options;
 
         return new Promise((resolve, reject) => {
-            if (!method) { reject("Ошибка в методе"); return;}
+            if (!method) {
+                reject("Ошибка в методе");
+                return;
+            }
 
             const req = new XMLHttpRequest();
             // req.open(method, url);

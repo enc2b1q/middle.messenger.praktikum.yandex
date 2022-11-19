@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class LayoutChatPage extends Block {
-	render() {
-		console.log('layoutChatPage render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('layoutChatPage render');
+        return this.compile(tpl);
+    }
 }
 
 // import layoutChatContentBox from '../chatContentBox'

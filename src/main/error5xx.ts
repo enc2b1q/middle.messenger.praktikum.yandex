@@ -25,7 +25,7 @@ const _errorBox = new ErrorBox(
         text: 'Мы уже фиксим',
         link: _link,
         attr: {
-            class : 'errorBox',
+            class: 'errorBox',
             id: "errorBoxId",
         }
     }
@@ -36,7 +36,7 @@ const _content = new PageError(
     {
         errorBox: _errorBox,
         attr: {
-            class : 'page-box',
+            class: 'page-box',
         }
     }
 );
@@ -46,7 +46,7 @@ const _layoutEmpty = new LayoutEmpty(
     {
         content: _content,
         attr: {
-            class : 'content',
+            class: 'content',
         }
     }
 );

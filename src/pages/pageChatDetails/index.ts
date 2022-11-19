@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class PageChatDetails extends Block {
-	render() {
-		console.log('pageChatDetails render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('pageChatDetails render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('pageChatDetails', tpl);

@@ -45,11 +45,9 @@ export default class Block {
             const value = propsAndChildren[key];
             if (isBlock(value)) {
                 children[key] = value;
-            }
-            else if (isBlockArray(value)) {
+            } else if (isBlockArray(value)) {
                 childrenArray[key] = value;
-            }
-            else {
+            } else {
                 props[key] = value;
             }
 
@@ -100,7 +98,7 @@ export default class Block {
             child.dispatchComponentDidMount();
         });
         Object.values(this._childrenArray).forEach(childrenArrayRecord =>
-            childrenArrayRecord.forEach( child => {
+            childrenArrayRecord.forEach(child => {
                 child.dispatchComponentDidMount();
             })
         );

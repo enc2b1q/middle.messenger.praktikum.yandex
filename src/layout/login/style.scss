@@ -1,43 +1,45 @@
 .layout-login-box {
-    display: flex;
-	justify-content: center;
-    flex-direction: column;
-    border: 2px solid lightgrey;
-    border-radius: 12px;
-    width: 340px;
-    min-height: 480px;
-    padding: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid lightgrey;
+  border-radius: 12px;
+  width: 340px;
+  min-height: 480px;
+  padding: 0px;
 }
 
-.layout-login-enter-header{
-    font-size: 1.875em;
-    font-weight: bold;
-    align-self: stretch;
-    //flex: 0 1 auto;
-    flex: 1 1 auto;
-    height: min-content;
+.layout-login-enter-header {
+  font-size: 1.875em;
+  font-weight: bold;
+  align-self: stretch;
+  //flex: 0 1 auto;
+  flex: 1 1 auto;
+  height: min-content;
 }
 
-.layout-login-creds-box{
-    display: flex;
-	justify-content: flex-start;
-    text-align: left;
-    flex-direction: column;
-    align-self: stretch;
-    flex: 1 1 auto;
-    height: min-content;
+.layout-login-creds-box {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  flex-direction: column;
+  align-self: stretch;
+  flex: 1 1 auto;
+  height: min-content;
 }
+
 #form {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-self: stretch;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: stretch;
 }
+
 .layout-login-container-enter-buttons {
-    display: flex;
-	justify-content: center;
-    flex-direction: column;
-    align-self: stretch;
-    flex: 0 1 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: stretch;
+  flex: 0 1 auto;
 }

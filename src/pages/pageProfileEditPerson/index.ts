@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class PageProfileEditPerson extends Block {
-	render() {
-		console.log('pageProfileEditPerson render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('pageProfileEditPerson render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('pageProfileEditPerson', tpl);

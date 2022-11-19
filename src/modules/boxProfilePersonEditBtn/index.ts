@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class BoxProfilePersonEditBtn extends Block {
-	render() {
-		console.log('boxProfilePersonEditBtn render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('boxProfilePersonEditBtn render');
+        return this.compile(tpl);
+    }
 }
 
 // import button from '../../components/button'

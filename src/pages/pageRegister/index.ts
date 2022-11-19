@@ -4,10 +4,10 @@ import './style.scss';
 import Block from "../../services/block";
 
 export default class PageRegister extends Block {
-	render() {
-		console.log('pageRegister render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('pageRegister render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('pageRegister', tpl);

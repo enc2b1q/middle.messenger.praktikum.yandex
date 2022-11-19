@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class PageEnter extends Block {
-	render() {
-		console.log('pageEnter render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('pageEnter render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('pageEnter', tpl);
