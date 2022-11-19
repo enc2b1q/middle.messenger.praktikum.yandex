@@ -16,7 +16,7 @@
 }
 
 .backArrowBtn-href {
-  appearance: button;
+  appearance: auto;
   text-decoration: none;
 
   background-color: #3369F3;
@@ -35,7 +35,6 @@
 
 .backArrowBtn-span {
   margin: 0;
-  line-height: 30px;
   vertical-align: middle;
   display: inline-block;
   line-height: normal;
