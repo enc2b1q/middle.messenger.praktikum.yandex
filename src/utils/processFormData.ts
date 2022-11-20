@@ -73,10 +73,22 @@ export function checkInputElement(target: HTMLInputElement): void {
         return;
     }
     if (!target.readOnly) {
-        if (validateItem(target.name, target.value)) {
+        // const el: HTMLElement = document.querySelector(`[for="${target.name}"].validation`) as HTMLElement;
+        // console.log(el);
+        const validationResult: boolean = validateItem(target.name, target.value);
+        console.log(`validation of ${target.name}: ${validationResult}`);
+        if (validationResult) {
             target.style.backgroundColor = 'white';
+            // if (el) {
+            //     el.textContent = "";
+            //     el.classList.remove(`validation_active`);
+            // }
         } else {
             target.style.backgroundColor = 'pink';
+            // if (el) {
+            //     el.textContent = target.title;
+            //     el.classList.add(`validation_active`);
+            // }
         }
     }
 }
@@ -98,22 +110,16 @@ function validateProps(data: { [p: string]: File | string }): boolean {
 //use mapping
 function validateItem(key: string, value: string): boolean {
     if (key === first_name || key === second_name || key === display_name) {
-
         return patternNames.test(value);
     } else if (key === login) {
-
         return patternLogin.test(value);
     } else if (key === email) {
-
         return patternEmail.test(value);
     } else if (key === password || key === password_repeat || key === oldPassword || key === newPassword) {
-
         return patternPassword.test(value);
     } else if (key === phone) {
-
         return patternPhone.test(value);
     } else if (key === message) {
-
         return patternMessage.test(value);
     } else {
         return true;
@@ -137,7 +143,7 @@ export default function processFormData(): boolean {
         }
         //write to console
         const data = Object.fromEntries(new FormData(formEl).entries());
-        console.log(data);
+        // console.log(data);
         const isValidated = validateProps(data);
         if (!isValidated) {
             return false;
@@ -154,6 +160,7 @@ export const validationSubmitHandler = (e: Event) => {
         return;
     }
     e.preventDefault();
+    console.log('submit');
     processFormData();
 }
 
@@ -168,5 +175,5 @@ export const validationInputHandler = (e: Event) => {
         checkInputElement(target);
     }
 
-    processFormData();
+    // processFormData();
 }

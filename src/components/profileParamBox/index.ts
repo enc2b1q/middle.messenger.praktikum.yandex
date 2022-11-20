@@ -37,7 +37,7 @@ export function getNewProfileParamInput(props: { validatorPropName: string, type
     if (props.readonly) {
         attr["readonly"] = "readonly";
     } else {
-        attr["pattern"] = validator.getValidationPatternString(props.validatorPropName);
+        // attr["pattern"] = validator.getValidationPatternString(props.validatorPropName);
         attr["title"] = validator.getValidationMsg(props.validatorPropName);
     }
 
