@@ -3,6 +3,7 @@ import PageLinks from "../pages/pageLinks";
 import Router from "../services/router";
 import PageError404 from "../pages/pageError404";
 import PageError5xx from "../pages/pageError5xx";
+import PageLogin from "../pages/pageLogin";
 
 
 const router = new Router("#root");
@@ -19,6 +20,8 @@ router
     .use("/error404.html", PageError404)
     .use("/error5xx", PageError5xx)
     .use("/error5xx.html", PageError5xx)
+    .use("/login", PageLogin)
+    .use("/login.html", PageLogin)
     .start();
 
 
