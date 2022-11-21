@@ -17,7 +17,7 @@ const tpl: string = `
         <a href="./login.html">Вход</a>
     </li>
     <li>
-        <a href="signIn.html">Регистрация</a>
+        <a href="./signIn.html">Регистрация</a>
     </li>
     <li>
         <a href="./profile.html">Профиль</a>
