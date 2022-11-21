@@ -1,6 +1,6 @@
 import Block from "./block";
 import {TypeDictRootQuery} from "./types";
-import render from "../utils/renderDOM";
+import renderDOM from "../utils/renderDOM";
 
 function isEqual(lhs:string, rhs:string) {
     return lhs === rhs;
@@ -39,7 +39,7 @@ class Route {
     render() {
         if (!this._block) {
             this._block = new this._blockClass();
-            render(this._props.rootQuery, this._block);
+            renderDOM(this._props.rootQuery, this._block);
             return;
         }
 
