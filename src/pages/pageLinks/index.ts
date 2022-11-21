@@ -10,7 +10,7 @@ const _content = new BoxLinks(
     {
 
         attr: {
-            class: "container",
+            class: "pageContainer",
         }
     }
 );
