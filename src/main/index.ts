@@ -7,6 +7,7 @@ import PageLogin from "../pages/pageLogin";
 import PageRegister from "../pages/pageRegister";
 import PageProfile from "../pages/pageProfile";
 import PageProfileEditPerson from "../pages/pageProfileEditPerson";
+import PageProfileChangePwd from "../pages/pageProfileChangePwd";
 
 
 const router = new Router("#root");
@@ -31,6 +32,8 @@ router
     .use("/profile.html", PageProfile)
     .use("/profileEditPerson", PageProfileEditPerson)
     .use("/profileEditPerson.html", PageProfileEditPerson)
+    .use("/profileChangePwd", PageProfileChangePwd)
+    .use("/profileChangePwd.html", PageProfileChangePwd)
     .start();
 
 
