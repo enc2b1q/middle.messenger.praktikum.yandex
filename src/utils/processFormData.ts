@@ -73,6 +73,8 @@ export function checkInputElement(target: HTMLInputElement): void {
         return;
     }
     if (!target.readOnly) {
+        //NOTE: текст подсказки из title input'а выводится при наведении курсора на поле без внедрения доп. функций.
+
         // const el: HTMLElement = document.querySelector(`[for="${target.name}"].validation`) as HTMLElement;
         // console.log(el);
         const validationResult: boolean = validateItem(target.name, target.value);
