@@ -6,6 +6,7 @@ import PageError5xx from "../pages/pageError5xx";
 import PageLogin from "../pages/pageLogin";
 import PageRegister from "../pages/pageRegister";
 import PageProfile from "../pages/pageProfile";
+import PageProfileEditPerson from "../pages/pageProfileEditPerson";
 
 
 const router = new Router("#root");
@@ -28,6 +29,8 @@ router
     .use("/signIn.html", PageRegister)
     .use("/profile", PageProfile)
     .use("/profile.html", PageProfile)
+    .use("/profileEditPerson", PageProfileEditPerson)
+    .use("/profileEditPerson.html", PageProfileEditPerson)
     .start();
 
 
