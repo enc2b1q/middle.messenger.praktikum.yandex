@@ -5,6 +5,7 @@ import PageError404 from "../pages/pageError404";
 import PageError5xx from "../pages/pageError5xx";
 import PageLogin from "../pages/pageLogin";
 import PageRegister from "../pages/pageRegister";
+import PageProfile from "../pages/pageProfile";
 
 
 const router = new Router("#root");
@@ -25,6 +26,8 @@ router
     .use("/login.html", PageLogin)
     .use("/signIn", PageRegister)
     .use("/signIn.html", PageRegister)
+    .use("/profile", PageProfile)
+    .use("/profile.html", PageProfile)
     .start();
 
 
