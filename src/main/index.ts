@@ -17,9 +17,9 @@ const router = new Router("#root");
 // const _pageLinks = new PageLinks();
 
 router
-    .use("/", PageLinks)
-    .use("/index", PageLinks)
-    .use("/index.html", PageLinks)
+    .use("/", PageLogin)
+    .use("/index", PageLogin)
+    .use("/index.html", PageLogin)
     .use("/links", PageLinks)
     .use("/links.html", PageLinks)
     .use("/error404", PageError404)
