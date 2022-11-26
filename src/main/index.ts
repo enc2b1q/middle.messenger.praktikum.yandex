@@ -9,6 +9,7 @@ import PageProfile from "../pages/pageProfile";
 import PageProfileEditPerson from "../pages/pageProfileEditPerson";
 import PageProfileChangePwd from "../pages/pageProfileChangePwd";
 import PageChatSelection from "../pages/pageChatSelection";
+import PageChatDetails from "../pages/pageChatDetails";
 
 
 const router = new Router("#root");
@@ -37,6 +38,8 @@ router
     .use("/profileChangePwd.html", PageProfileChangePwd)
     .use("/selectChat", PageChatSelection)
     .use("/selectChat.html", PageChatSelection)
+    .use("/chatDetails", PageChatDetails)
+    .use("/chatDetails.html", PageChatDetails)
     .start();
 
 
