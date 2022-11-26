@@ -1,14 +1,21 @@
 import Block from "./block";
 import Route from "./route";
+import PageError404 from "../pages/pageError404";
 
 class Router {
-
     static __instance: Router;
 
     routes: Array<Route>;
     history: History;
     _currentRoute: Route | null;
     _rootQuery: string;
+
+    get path404(): string {
+        return "/error404.html";
+    }
+    get page404() {
+        return PageError404;
+    }
 
     constructor(rootQuery: string) {
         if (Router.__instance) {
@@ -19,6 +26,8 @@ class Router {
         this.history = window.history;
         this._currentRoute = null;
         this._rootQuery = rootQuery;
+
+        this.use(this.path404, this.page404);
 
         Router.__instance = this;
     }
@@ -43,6 +52,7 @@ class Router {
     _onRoute(pathname: string) {
         const route = this.getRoute(pathname);
         if (!route) {
+            this.go(this.path404);
             return;
         }
 
