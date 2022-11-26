@@ -23,7 +23,7 @@ export default class Link extends Block {
 export const _linkBackToChatInst = new Link(
     "nav",
     {
-        url: '/selectChat.html',
+        url: '/messenger.html',
         text: 'Назад к чатам',
         attr: {
             class: 'link',

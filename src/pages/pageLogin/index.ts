@@ -53,7 +53,7 @@ const _buttonEnter = new Button(
 const _linkRegister = new Link(
     "nav",
     {
-        url: "/signIn.html",
+        url: "/sign-up.html",
         text: "Нет аккаунта?",
         attr: {
             class: "link",

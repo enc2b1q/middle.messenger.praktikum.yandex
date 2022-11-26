@@ -15,7 +15,7 @@ import LayoutSideBar from "../../layout/sideBar";
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/selectChat.html",
+        url: "/messenger.html",
 
         attr: {
             class: "backArrowBtn-parentBox",

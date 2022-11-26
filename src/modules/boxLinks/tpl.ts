@@ -8,7 +8,7 @@ const tpl: string = `
         <a href="./error5xx.html">Страница 500</a>
     </li>
     <li>
-        <a href="./selectChat.html">Выбрать чат</a>
+        <a href="./messenger.html">Выбрать чат</a>
     </li>
     <li>
         <a href="./chatDetails.html">Чат</a>
@@ -17,10 +17,10 @@ const tpl: string = `
         <a href="./login.html">Вход</a>
     </li>
     <li>
-        <a href="./signIn.html">Регистрация</a>
+        <a href="./sign-up.html">Регистрация</a>
     </li>
     <li>
-        <a href="./profile.html">Профиль</a>
+        <a href="./settings.html">Профиль</a>
     </li>
     <li>
         <a href="./profileEditPerson.html">Изменить данные</a>

@@ -112,7 +112,7 @@ const _chatListItem1 = new ChatListItem(
 const _profileLink = new ProfileLinkEdit(
     "nav",
     {
-        url: "/profile.html",
+        url: "/settings.html",
         profileLinkEdit_color_class: "profileLinkEdit_a_gray",
         linkText: "Профиль",
 

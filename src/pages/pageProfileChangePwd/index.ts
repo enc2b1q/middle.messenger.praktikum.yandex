@@ -124,7 +124,7 @@ const _sideBarContent = new LayoutProfileParamsBox(
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/profile.html",
+        url: "/settings.html",
 
         attr: {
             class: "backArrowBtn-parentBox",
