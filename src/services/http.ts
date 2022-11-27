@@ -1,69 +1,16 @@
-const METHODS = {
+import queryStringify from "../utils/queryStringify";
+
+export const METHODS = {
     GET: 'GET',
     POST: 'POST',
     PUT: 'PUT',
     DELETE: 'DELETE'
 };
 
-function fetchWithRetry(url, options) {
-    const retriesField = 'retries';
+export default class HTTP {
+    _baseUri: string;
 
-    if (typeof options !== 'object') {
-        throw new Error('Должен быть object');
-    }
-    if (!options.hasOwnProperty(retriesField)) {
-        throw new Error(`Нет свойства ${retriesField}`);
-    }
-
-    const {method} = options;
-    if (!method) {
-        options['method'] = METHODS.GET
-    }
-
-    let retCnt = options[retriesField];
-    if (!Number.isInteger(retCnt)) {
-        throw new Error(`${retriesField} д.б. числом`);
-    }
-    retCnt = Number(retCnt);
-    if (retCnt <= 1) {
-        throw new Error(`${retriesField} д.б. больше 1`);
-    }
-
-    for (let i = 0; i < retCnt; i++) {
-        try {
-            const res = new HTTPTransport().request(url, options);
-            return res;
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-}
-
-
-
-/**
- * Функцию реализовывать здесь необязательно, но может помочь не плодить логику у GET-метода
- * На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
- * На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
- */
-function queryStringify(data) {
-    if (typeof data !== 'object') {
-        throw new Error('Должен быть object');
-    }
-    // Можно делать трансформацию GET-параметров в отдельной функции
-
-    let str = Object.entries(data)
-        .map(([key, value], index, array) => `${key}=${value.toString()}${(index === array.length - 1) ? "" : "&"}`)
-        .reduce(
-            (previousValue, currentValue) => previousValue + currentValue, "");
-    if (str.length > 0) str = "?" + str;
-    return str;
-}
-
-class HTTPTransport {
-    _baseUri;
-    constructor(baseUri) {
+    constructor(baseUri: string) {
         this._baseUri = baseUri;
     }
 
@@ -84,28 +31,28 @@ class HTTPTransport {
     //     }
     // }
 
-    get = (url, options = {}) => {
+    get = (url: string, options: Record<string, any> = {}) => {
         // this.checkWrongOptions(options);
         //
         // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
         return this.request(url, {...options, method: METHODS.GET}, options.timeout);
     };
 
-    put = (url, options = {}) => {
+    put = (url: string, options: Record<string, any> = {}) => {
         // this.checkWrongOptions(options);
         //
         // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
         return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
-    post = (url, options = {}) => {
+    post = (url: string, options: Record<string, any> = {}) => {
         // this.checkWrongOptions(options);
         //
         // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
         return this.request(url, {...options, method: METHODS.POST}, options.timeout);
     };
 
-    delete = (url, options = {}) => {
+    delete = (url: string, options: Record<string, any> = {}) => {
         // this.checkWrongOptions(options);
         //
         // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
@@ -121,7 +68,7 @@ class HTTPTransport {
 
 
     // request = (url, options, timeout = this.defaultTimeoutMs) => {
-    request = (url, options = {}, timeout = 5000) => {
+    request = (url: string, options: Record<string, any> = {}, timeout = 5000) => {
         // const handleError = err => {
         //     console.error(err);
         // };
@@ -186,8 +133,8 @@ class HTTPTransport {
                     req.send(null);
                     break;
                 default:
-                    throw new Error("HTTP метод не реализован")
-                    break;
+                    throw new Error("HTTP метод не реализован");
+                    // break;
             }
 
             // if (method === METHODS.GET || !data) {
@@ -200,10 +147,9 @@ class HTTPTransport {
 
     };
 
-    setHeaders(headers, req) {
+    setHeaders(headers: Record<string, any>, req: XMLHttpRequest) {
         Object.entries(headers).forEach(([k, v]) => {
             req.setRequestHeader(k, v);
         });
     }
 }
-
