@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class BoxProfileImage extends Block {
-	render() {
-		console.log('boxProfileImage render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('boxProfileImage render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('boxProfileImage', tpl);

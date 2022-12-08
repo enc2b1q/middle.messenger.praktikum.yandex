@@ -1,41 +1,86 @@
 .image-outerBox {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-	justify-content: center;
-    margin: 0;
-    padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
-.image-box-inner {
-    max-width: 150px;
-    min-height: 150px;
-    margin: 0;
-    padding: 0;
 
-    display: flex;
-    flex-direction: column;
+.image-box-inner {
+  max-width: 150px;
+  min-height: 150px;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
 }
-.image-box {
-    flex: 6 1 auto;
-    align-self: start;
-    margin-bottom: 20px;
-    display: flex;
+
+.image-box, .uploadImageFrm {
+  flex: 6 1 auto;
+  align-self: start;
+  margin-bottom: 20px;
+  display: flex;
+  position: relative;
 }
+
 .image-username {
-    flex: 1 1 auto;
-    align-self: end;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
+  flex: 1 1 auto;
+  align-self: end;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
 }
+
+//.image-self {
+//  width: 150px;
+//  height: 150px;
+//  align-self: stretch;
+//  border-radius: 50%;
+//  background-image: url('../../../static/personimage.svg');
+//  background-size: 30%;
+//  background-color: #EFEFEF;
+//  background-repeat: no-repeat;
+//  background-position: center;
+//}
+
+.image-self, .image-self-over {
+  width: 150px;
+  height: 150px;
+  align-self: stretch;
+  border-radius: 50%;
+  background-color: #EFEFEF;
+}
+
 .image-self {
-    width: 150px;
-    height: 150px;
-    align-self: stretch;
-    border-radius: 50%;
-    background-image: url('../../../static/personimage.svg');
-    background-size: 30%;
-    background-color: #EFEFEF;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-image: url('../../../static/personimage.svg');
+  background-size: 100%;
+  //background-color: #EFEFEF;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-self-over {
+  cursor: pointer;
+  position: absolute;
+  background-color: darkgrey;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5em;
+
+  &:hover {
+    transition: .3s ease;
+    opacity: 1;
+  }
+  &-label{
+    cursor: pointer;
+  }
 }

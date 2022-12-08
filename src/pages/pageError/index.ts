@@ -3,10 +3,10 @@ import tpl from './tpl';
 import './style.scss';
 
 export default class PageError extends Block {
-	render() {
-		console.log('pageError render');
-		return this.compile(tpl);
-	}
+    render() {
+        console.log('pageError render');
+        return this.compile(tpl);
+    }
 }
 
 // Handlebars.registerPartial('pageError', tpl);

@@ -1,19 +1,27 @@
 .chat_content_wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
+
 .chat_content_head, .chat_content_body, .chat_content_nav {
-    padding: 0;
-    margin: 0;
-    display: flex;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
+
 .chat_content_head {
-    max-height: 200px;
+  max-height: 200px;
+  align-self: flex-start;
 }
+
 .chat_content_body {
-    flex: 1;
+  flex: 1;
+  //overflow-y : scroll;
+  //scroll-behavior: smooth;
 }
+
 .chat_content_nav {
-    max-height: 200px;
+  max-height: 200px;
+  align-self: flex-end;
 }
