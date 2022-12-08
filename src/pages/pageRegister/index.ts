@@ -7,11 +7,13 @@ import Button from "../../components/button";
 import Link from "../../components/link";
 import FormLogin from "../../components/formLogin";
 import LayoutLogin from "../../layout/login";
-import {validationSubmitHandler} from "../../utils/processFormData";
 import LayoutEmpty from "../../layout/empty";
+import BaseController from "../../controllers/baseController";
+import Router from "../../services/router";
+import AuthController from "../../controllers/authController";
 
 
-const _inputEmail = getNewInput(validator.email);
+const _inputEmail = getNewInput(validator.propNames.email);
 const _inputBoxEmail = new InputBox(
     "div",
     {
@@ -25,7 +27,7 @@ const _inputBoxEmail = new InputBox(
         }
     }
 );
-const _inputLogin = getNewInput(validator.login);
+const _inputLogin = getNewInput(validator.propNames.login);
 const _inputBoxLogin = new InputBox(
     "div",
     {
@@ -38,7 +40,7 @@ const _inputBoxLogin = new InputBox(
         }
     }
 );
-const _inputFirstName = getNewInput(validator.first_name);
+const _inputFirstName = getNewInput(validator.propNames.first_name);
 const _inputBoxFirstName = new InputBox(
     "div",
     {
@@ -51,7 +53,7 @@ const _inputBoxFirstName = new InputBox(
         }
     }
 );
-const _inputSecondName = getNewInput(validator.second_name);
+const _inputSecondName = getNewInput(validator.propNames.second_name);
 const _inputBoxSecondName = new InputBox(
     "div",
     {
@@ -64,7 +66,7 @@ const _inputBoxSecondName = new InputBox(
         }
     }
 );
-const _inputPhone = getNewInput(validator.phone);
+const _inputPhone = getNewInput(validator.propNames.phone);
 const _inputBoxPhone = new InputBox(
     "div",
     {
@@ -78,7 +80,7 @@ const _inputBoxPhone = new InputBox(
         }
     }
 );
-const _inputPwd = getNewInput(validator.password, "password");
+const _inputPwd = getNewInput(validator.propNames.password, "password");
 const _inputBoxPassword = new InputBox(
     "div",
     {
@@ -92,7 +94,7 @@ const _inputBoxPassword = new InputBox(
         }
     }
 );
-const _inputPwdRepeat = getNewInput(validator.password_repeat, "password");
+const _inputPwdRepeat = getNewInput(validator.propNames.password_repeat, "password");
 const _inputBoxPasswordRepeat = new InputBox(
     "div",
     {
@@ -148,6 +150,10 @@ const _formLogin = new FormLogin(
             _linkEnter
         ],
 
+        events: {
+            submit: AuthController.processUserSignupSubmit,
+        },
+
         attr: {
             class: "layout-login-form",
             id: "form",
@@ -162,10 +168,6 @@ const _content = new LayoutLogin(
     {
         loginHeader: "Регистрация",
         formLogin: _formLogin,
-
-        events: {
-            submit: validationSubmitHandler,
-        },
 
         attr: {
             class: "layout-login-box"
@@ -191,6 +193,20 @@ export default class PageRegister extends Block {
                 class: "mainContent",
             }
         });
+    }
+
+    componentDidMount() {
+        console.log('PageRegister componentDidMount');
+
+        BaseController.testAuth()
+            .then(
+                (isAuth) => {
+                    if (isAuth) {
+                        const router = new Router("#root");
+                        router.go("/messenger");
+                    }
+                }// do not go to main - client want to register
+            );
     }
 
     render() {

@@ -7,15 +7,17 @@ import BoxProfilePersonEditBtn from "../../modules/boxProfilePersonEditBtn";
 import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from "../../components/button";
 import BoxProfileImage from "../../modules/boxProfileImage";
 import FormProfile from "../../components/formProfile";
-import {validationSubmitHandler} from "../../utils/processFormData";
 import LayoutProfileParamsBox from "../../layout/profileParamsBox";
 import BackArrowBtn from "../../components/backArrowBtn";
 import LayoutSideBar from "../../layout/sideBar";
-
+import UserController from "../../controllers/userController";
+import BaseController from "../../controllers/baseController";
+import Router from "../../services/router";
+import FormUploadImage from "../../components/formUploadImage";
 
 
 const _inputProfileOldPassword = getNewProfileParamInput({
-    validatorPropName: validator.oldPassword,
+    validatorPropName: validator.propNames.oldPassword,
     type: "password",
 });
 const _profileParamBoxOldPassword = new ProfileParamBox(
@@ -31,7 +33,7 @@ const _profileParamBoxOldPassword = new ProfileParamBox(
     }
 );
 const _inputProfileNewPassword = getNewProfileParamInput({
-    validatorPropName: validator.newPassword,
+    validatorPropName: validator.propNames.newPassword,
     type: "password",
 });
 const _profileParamBoxNewPassword = new ProfileParamBox(
@@ -47,13 +49,13 @@ const _profileParamBoxNewPassword = new ProfileParamBox(
     }
 );
 const _inputProfileNewPasswordRepeat = getNewProfileParamInput({
-    validatorPropName: validator.password_repeat,
+    validatorPropName: validator.propNames.password_repeat,
     type: "password",
 });
 const _profileParamBoxNewPasswordRepeat = new ProfileParamBox(
     "div",
     {
-        name: validator.password_repeat, //"newPasswordRepeat",
+        name: validator.propNames.password_repeat, //"newPasswordRepeat",
         labelText: "Повторите новый пароль",
         input: _inputProfileNewPasswordRepeat,
 
@@ -74,9 +76,30 @@ const _profileParams_buttons_box = new BoxProfilePersonEditBtn(
     }
 );
 
+const _uploadImageForm = new FormUploadImage(
+    "form",
+    {
+
+        attr: {
+            class: "uploadImageFrm",
+            id: "uploadImageForm",
+            action: "#",
+            method: "POST",
+            enctype: "multipart/form-data"
+        },
+
+        events: {
+            submit: (e: Event) => {
+                e.preventDefault();
+            },
+        },
+    }
+);
+
 const _profileParams_image_box = new BoxProfileImage(
     "div",
     {
+        uploadImageForm: _uploadImageForm,
         username: "",
 
         attr: {
@@ -103,7 +126,7 @@ const _formProfile = new FormProfile(
         },
 
         events: {
-            submit: validationSubmitHandler,
+            submit: UserController.processChangePasswordSubmit,
         },
     }
 );
@@ -153,6 +176,33 @@ export default class PageProfileChangePwd extends Block {
                 class: "mainContent",
             }
         });
+    }
+
+    componentDidMount() {
+        console.log('PageProfileChangePwd componentDidMount');
+
+        BaseController.testAuth()
+            .then(
+                (isAuth) => {
+                    if (isAuth) {
+                        UserController
+                            .getUser()
+                            .then(
+                                () => this._updateUserData()
+                            )
+                            .catch(BaseController.showMessage);
+                    }
+                    else {
+                        const router = new Router("#root");
+                        router.go("/");
+                    }
+                }
+            );
+
+    }
+
+    private _updateUserData() {
+        UserController.updateUserImage(this);
     }
 
     render() {

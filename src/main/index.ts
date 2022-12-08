@@ -8,7 +8,6 @@ import PageRegister from "../pages/pageRegister";
 import PageProfile from "../pages/pageProfile";
 import PageProfileEditPerson from "../pages/pageProfileEditPerson";
 import PageProfileChangePwd from "../pages/pageProfileChangePwd";
-import PageChatSelection from "../pages/pageChatSelection";
 import PageChatDetails from "../pages/pageChatDetails";
 
 
@@ -36,11 +35,81 @@ router
     .use("/profileEditPerson.html", PageProfileEditPerson)
     .use("/profileChangePwd", PageProfileChangePwd)
     .use("/profileChangePwd.html", PageProfileChangePwd)
-    .use("/messenger", PageChatSelection)
-    .use("/messenger.html", PageChatSelection)
+    .use("/messenger", PageChatDetails)
+    .use("/messenger.html", PageChatDetails)
+    // .use("/messenger", PageChatSelection)
+    // .use("/messenger.html", PageChatSelection)
     .use("/chatDetails", PageChatDetails)
     .use("/chatDetails.html", PageChatDetails)
     .start();
 
 
+
 // renderDOM("#root", _pageLinks);
+
+
+// import fetchWithRetry from "../utils/fetchWithRetry";
+
+// fetchWithRetry(`/auth/user`, { // Получаем подробную информацию о пользователе и проверяем, что куки проставились
+//     method: 'GET',
+//     // mode: 'cors',
+//     // credentials: 'include',
+// })
+// .then(data => {
+//     console.log('user');
+//     console.log(data);
+// });
+
+// import AuthController from '../controllers/authController'
+// import {IUserInfo} from "../services/interfaces";
+//
+// let user: IUserInfo | null = null;
+
+// const testAuth = async () => {
+//     try {
+//         user = await AuthController.getUser();
+//         console.log('get user succeeded');
+//         return true;
+//     } catch (e) {
+//         //redirect to main
+//         console.log('get user failed:');
+//         console.log(e);
+//         return false;
+//     }
+// }
+
+// async function checkUser() {
+//     router.go("/");
+//
+//     // await testAuth().then(
+//     //     (isAuth) => {
+//     //         console.log('Auth result:');
+//     //         console.log(isAuth);
+//     //         console.log('user:')
+//     //         console.log(user);
+//     //
+//     //         if (isAuth) {
+//     //             // console.log('go to messenger');
+//     //             // router.go("/messenger");
+//     //             router.go("/settings");
+//     //         } else {
+//     //             console.log('go to / - auth')
+//     //             router.go("/");
+//     //         }
+//     //
+//     //     }
+//     // );
+//
+//     // await instAuthController.getUser()
+//     //     .then(response => {
+//     //         console.log('response' , response);
+//     //     })
+//     //     .catch(reason => {
+//     //         console.log('reason', reason);
+//     //     })
+//
+// }
+
+// checkUser();
+
+

@@ -32,7 +32,7 @@ export function getNewProfileParamInput(props: { validatorPropName: string, type
         id: props.validatorPropName,
         name: props.validatorPropName,
         class: props.className ?? defaultProps.className,
-        placeholder: "data here",
+        placeholder: "no data here",
     };
     if (props.readonly) {
         attr["readonly"] = "readonly";

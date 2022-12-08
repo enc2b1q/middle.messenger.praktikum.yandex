@@ -10,6 +10,15 @@ import BoxProfileBtnsEdit from "../../modules/boxProfileBtnsEdit";
 import FormProfile from "../../components/formProfile";
 import LayoutProfileParamsBox from "../../layout/profileParamsBox";
 import LayoutSideBar from "../../layout/sideBar";
+import UserController from "../../controllers/userController";
+import store, {StoreEvents, StoreKeys} from "../../services/store";
+import connect from "../../utils/connect";
+import AuthController from "../../controllers/authController";
+import BaseController from "../../controllers/baseController";
+import Router from "../../services/router";
+import FormUploadImage from "../../components/formUploadImage";
+import GenericTag from "../../components/genericTag";
+// import {Indexed} from "../../services/types";
 
 
 const _sideBar = new BackArrowBtn(
@@ -23,9 +32,60 @@ const _sideBar = new BackArrowBtn(
     }
 );
 
+const _avatarInput = new GenericTag(
+    "input",
+    {
+        attr: {
+            type: "file",
+            id: "avatar",
+            name: "avatar",
+            accept: "image/png, image/jpeg",
+            style: "display:none",
+        },
+        events: {
+            change: UserController.processUploadAvatarChange
+            //     (e: Event) => {
+            //     e.preventDefault();
+            //     console.log('_avatarInput change');
+            //     console.log(e);
+            //
+            //     const target = e.target as HTMLInputElement;
+            //     const files = target.files;
+            //
+            //     // const form = t.form as HTMLFormElement;
+            //     // console.log(form);
+            // },
+        },
+    }
+);
+
+const _uploadImageForm = new FormUploadImage(
+    "form",
+    {
+
+        avatarInput: _avatarInput,
+
+        attr: {
+            class: "uploadImageFrm",
+            id: "uploadImageForm",
+            action: "#",
+            method: "POST",
+            enctype: "multipart/form-data"
+        },
+
+        events: {
+            submit: (e: Event) => {
+                e.preventDefault();
+                console.log('submit _uploadImageForm');
+            },
+        },
+    }
+);
+
 const _profileParams_image_box = new BoxProfileImage(
     "div",
     {
+        uploadImageForm: _uploadImageForm,
         username: "name",
 
         attr: {
@@ -35,7 +95,7 @@ const _profileParams_image_box = new BoxProfileImage(
 );
 
 const _inputProfileEmail = getNewProfileParamInput({
-    validatorPropName: validator.email,
+    validatorPropName: validator.propNames.email,
     readonly: "readonly"
 });
 const _profileParamBoxEmail = new ProfileParamBox(
@@ -52,7 +112,7 @@ const _profileParamBoxEmail = new ProfileParamBox(
 );
 
 const _inputProfileLogin = getNewProfileParamInput({
-    validatorPropName: validator.login,
+    validatorPropName: validator.propNames.login,
     readonly: "readonly"
 });
 const _profileParamBoxLogin = new ProfileParamBox(
@@ -69,7 +129,7 @@ const _profileParamBoxLogin = new ProfileParamBox(
 );
 
 const _inputProfileFirstName = getNewProfileParamInput({
-    validatorPropName: validator.first_name,
+    validatorPropName: validator.propNames.first_name,
     readonly: "readonly"
 });
 const _profileParamBoxFirstName = new ProfileParamBox(
@@ -86,7 +146,7 @@ const _profileParamBoxFirstName = new ProfileParamBox(
 );
 
 const _inputProfileSecondName = getNewProfileParamInput({
-    validatorPropName: validator.second_name,
+    validatorPropName: validator.propNames.second_name,
     readonly: "readonly"
 });
 const _profileParamBoxSecondName = new ProfileParamBox(
@@ -103,7 +163,7 @@ const _profileParamBoxSecondName = new ProfileParamBox(
 );
 
 const _inputProfileDisplayName = getNewProfileParamInput({
-    validatorPropName: validator.display_name,
+    validatorPropName: validator.propNames.display_name,
     readonly: "readonly"
 });
 const _profileParamBoxDisplayName = new ProfileParamBox(
@@ -120,7 +180,7 @@ const _profileParamBoxDisplayName = new ProfileParamBox(
 );
 
 const _inputProfilePhone = getNewProfileParamInput({
-    validatorPropName: validator.phone,
+    validatorPropName: validator.propNames.phone,
     readonly: "readonly"
 });
 const _profileParamBoxPhone = new ProfileParamBox(
@@ -167,7 +227,9 @@ const _profileLinkEditLogin = new ProfileLinkEdit(
         url: "/login.html",
         profileLinkEdit_color_class: "profileLinkEdit_a_red",
         linkText: "Выйти",
-
+        events: {
+            click: AuthController.processUserLogout,
+        },
         attr: {
             class: "profileLinkEdit profileLinkEdit_text_align_start",
         }
@@ -242,14 +304,72 @@ const _layoutSideBar = new LayoutSideBar(
     }
 );
 
-export default class PageProfile extends Block {
+class PageProfile extends Block {
+    // constructor(...args: any) {
     constructor() {
         super("div", {
             content: _layoutSideBar,
             attr: {
                 class: "mainContent",
-            }
+            },
+            // ...args,
         });
+
+
+        // UserController.getUser();
+
+        store.subscribe(StoreEvents.UPDATED, () => {
+            console.log('StoreEvents.UPDATED received at PageProfile');
+            console.log('store: ', store);
+            this.setProps(store.getState());
+            // this._updateUserData();
+        });
+
+    }
+
+    componentDidMount() {
+        console.log('PageProfile componentDidMount');
+
+        BaseController.testAuth()
+            .then(
+                (isAuth) => {
+                    if (isAuth) {
+                        UserController
+                            .getUser()
+                            .then(
+                                () => this._updateUserData()
+                            )
+                            .catch(BaseController.showMessage);
+                    } else {
+                        const router = new Router("#root");
+                        router.go("/");
+                    }
+                }
+            );
+
+    }
+
+    private _updateUserData() {
+        UserController.updateUserImage(this);
+        UserController.updateUserData(this);
+        UserController.updateUserName(this);
+
+        // console.log('store: ', store);
+        // // const t_login = this.getContent().querySelector(`input[name="${validator.login}"]`) as HTMLInputElement;
+        // // console.log('input[login] = ', t_login);
+        // // const {user} = store.getState();
+        // // console.log('user from state: ', user);
+        // // const usr2: IUserInfo = user as IUserInfo;
+        // // console.log('user IUserInfo from state: ', usr2);
+        // // t_login.value = usr2?.login;
+        //
+        // const {user} = store.getState();
+        // (this.getContent().querySelector(`input[name="${validator.propNames.email}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.email, validator.propNames.email);
+        // (this.getContent().querySelector(`input[name="${validator.propNames.login}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.login, validator.propNames.login);
+        // (this.getContent().querySelector(`input[name="${validator.propNames.first_name}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.first_name, validator.propNames.first_name);
+        // (this.getContent().querySelector(`input[name="${validator.propNames.second_name}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.second_name, validator.propNames.second_name);
+        // (this.getContent().querySelector(`input[name="${validator.propNames.display_name}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.display_name, validator.propNames.display_name);
+        // (this.getContent().querySelector(`input[name="${validator.propNames.phone}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.phone, validator.propNames.phone);
     }
 
     render() {
@@ -257,3 +377,17 @@ export default class PageProfile extends Block {
         return this.compile(tpl);
     }
 }
+
+// function mapUserToProps(state: Indexed) {
+//     return {
+//         name: state.user.name,
+//         avatar: state.user.avatar,
+//     };
+// }
+
+
+export default connect(
+    (state) => ({
+        user: state[StoreKeys.user] || ''
+    })
+)(PageProfile);

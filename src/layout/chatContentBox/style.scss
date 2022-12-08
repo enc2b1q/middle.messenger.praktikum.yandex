@@ -12,12 +12,16 @@
 
 .chat_content_head {
   max-height: 200px;
+  align-self: flex-start;
 }
 
 .chat_content_body {
   flex: 1;
+  //overflow-y : scroll;
+  //scroll-behavior: smooth;
 }
 
 .chat_content_nav {
   max-height: 200px;
+  align-self: flex-end;
 }

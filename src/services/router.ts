@@ -65,6 +65,7 @@ class Router {
     }
 
     go(pathname: string) {
+        console.log('going to path: ', pathname);
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);
     }

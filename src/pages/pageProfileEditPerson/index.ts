@@ -10,6 +10,11 @@ import {boxProfilePersonEditBtnSaveBts as _boxProfilePersonEditBtnSaveBts} from 
 import FormProfile from "../../components/formProfile";
 import LayoutProfileParamsBox from "../../layout/profileParamsBox";
 import LayoutSideBar from "../../layout/sideBar";
+import store, {StoreEvents} from "../../services/store";
+import BaseController from "../../controllers/baseController";
+import UserController from "../../controllers/userController";
+import Router from "../../services/router";
+import FormUploadImage from "../../components/formUploadImage";
 
 
 const _sideBar = new BackArrowBtn(
@@ -23,9 +28,31 @@ const _sideBar = new BackArrowBtn(
     }
 );
 
+const _uploadImageForm = new FormUploadImage(
+    "form",
+    {
+
+        attr: {
+            class: "uploadImageFrm",
+            id: "uploadImageForm",
+            action: "#",
+            method: "POST",
+            enctype: "multipart/form-data"
+        },
+
+        events: {
+            submit: (e: Event) => {
+                e.preventDefault();
+            },
+        },
+    }
+);
+
+
 const _profileParams_image_box = new BoxProfileImage(
     "div",
     {
+        uploadImageForm: _uploadImageForm,
         username: "",
 
         attr: {
@@ -35,7 +62,7 @@ const _profileParams_image_box = new BoxProfileImage(
 );
 
 const _inputProfileEmail = getNewProfileParamInput({
-    validatorPropName: validator.email
+    validatorPropName: validator.propNames.email
 });
 const _profileParamBoxEmail = new ProfileParamBox(
     "div",
@@ -50,7 +77,7 @@ const _profileParamBoxEmail = new ProfileParamBox(
     }
 );
 const _inputProfileLogin = getNewProfileParamInput({
-    validatorPropName: validator.login,
+    validatorPropName: validator.propNames.login,
 });
 const _profileParamBoxLogin = new ProfileParamBox(
     "div",
@@ -65,7 +92,7 @@ const _profileParamBoxLogin = new ProfileParamBox(
     }
 );
 const _inputProfileFirstName = getNewProfileParamInput({
-    validatorPropName: validator.first_name,
+    validatorPropName: validator.propNames.first_name,
 });
 const _profileParamBoxFirstName = new ProfileParamBox(
     "div",
@@ -81,7 +108,7 @@ const _profileParamBoxFirstName = new ProfileParamBox(
 );
 
 const _inputProfileSecondName = getNewProfileParamInput({
-    validatorPropName: validator.second_name,
+    validatorPropName: validator.propNames.second_name,
 });
 const _profileParamBoxSecondName = new ProfileParamBox(
     "div",
@@ -97,7 +124,7 @@ const _profileParamBoxSecondName = new ProfileParamBox(
 );
 
 const _inputProfileDisplayName = getNewProfileParamInput({
-    validatorPropName: validator.display_name,
+    validatorPropName: validator.propNames.display_name,
 });
 const _profileParamBoxDisplayName = new ProfileParamBox(
     "div",
@@ -113,7 +140,7 @@ const _profileParamBoxDisplayName = new ProfileParamBox(
 );
 
 const _inputProfilePhone = getNewProfileParamInput({
-    validatorPropName: validator.phone,
+    validatorPropName: validator.propNames.phone,
 });
 const _profileParamBoxPhone = new ProfileParamBox(
     "div",
@@ -151,6 +178,10 @@ const _formProfile = new FormProfile(
             _profileParamBoxPhone
         ],
         profileParams_buttons_box: _profileParams_buttons_box,
+
+        events: {
+            submit: UserController.processEditProfileSubmit,
+        },
 
         attr: {
             class: "layout_profileParams_form",
@@ -194,6 +225,41 @@ export default class PageProfileEditPerson extends Block {
                 class: "mainContent",
             }
         });
+
+        store.subscribe(StoreEvents.UPDATED, () => {
+            console.log('StoreEvents.UPDATED received at PageProfileEditPerson');
+            console.log('store: ', store);
+            this.setProps(store.getState());
+            this._updateUserData();
+        });
+
+    }
+
+    componentDidMount() {
+        console.log('PageProfileEditPerson componentDidMount');
+
+        BaseController.testAuth()
+            .then(
+                (isAuth) => {
+                    if (isAuth) {
+                        UserController
+                            .getUser()
+                            .then(
+                                () => this._updateUserData()
+                            )
+                            .catch(BaseController.showMessage);
+                    } else {
+                        const router = new Router("#root");
+                        router.go("/");
+                    }
+                }
+            );
+
+    }
+
+    private _updateUserData() {
+        UserController.updateUserImage(this);
+        UserController.updateUserData(this);
     }
 
     render() {

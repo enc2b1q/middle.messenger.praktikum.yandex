@@ -10,6 +10,10 @@
   border-left: none;
   align-self: flex-start;
   min-height: 30px;
+
+  &.active {
+    background-color: #E4EDFD;
+  }
 }
 
 .chatListItem_image_wrapper, .chatListItem_text_wrapper, .chatListItem_numbers_wrapper {

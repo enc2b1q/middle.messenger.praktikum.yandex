@@ -1,140 +1,104 @@
 import queryStringify from "../utils/queryStringify";
+import {Indexed, RejectModel} from "./types";
 
-export const METHODS = {
+export const host = 'https://ya-praktikum.tech/api/v2';
+
+export const HTTP_METHODS = {
     GET: 'GET',
     POST: 'POST',
     PUT: 'PUT',
     DELETE: 'DELETE'
 };
 
-export default class HTTP {
-    _baseUri: string;
+export type RequestOptionsType = {
+    headers?: Record<string, string>;
+    method: string;
+    timeout?: number;
+    data?: any;
+    retries?: number;
+}
 
-    constructor(baseUri: string) {
-        this._baseUri = baseUri;
+export default class HTTP {
+    private readonly _baseUri: string;
+
+    constructor(suffix?: string) {
+        this._baseUri = `${host}${suffix ?? ""}`;
     }
 
-    // get defaultTimeoutMs() {
-    //     return 5000;
-    // }
+    get defaultTimeoutMs() {
+        return 50000;
+    }
 
-    // get allowedOptionNames() {
-    //     return ['timeout', 'headers', 'data'];
-    // }
-
-    // checkWrongOptions(options) {
-    //     const keys = Object.keys(options);
-    //     const wrongOptions = keys.filter(x => (x in this.allowedOptionNames === false) && options.hasOwnProperty(x));
-    //     if (wrongOptions.length > 0) {
-    //         const errProps = wrongOptions.join(", ");
-    //         throw new Error(`Запрещенные свойства объекта options: ${errProps}`);
-    //     }
-    // }
-
-    get = (url: string, options: Record<string, any> = {}) => {
-        // this.checkWrongOptions(options);
-        //
-        // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
-        return this.request(url, {...options, method: METHODS.GET}, options.timeout);
+    async get<TResp>(url: string, data?: {}): Promise<TResp> {
+        return this.request(url, {method: HTTP_METHODS.GET, data});
     };
 
-    put = (url: string, options: Record<string, any> = {}) => {
-        // this.checkWrongOptions(options);
-        //
-        // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
+    async put<TResp>(url: string, data?: {}): Promise<TResp> {
+        return this.request(url, {method: HTTP_METHODS.PUT, data});
     };
 
-    post = (url: string, options: Record<string, any> = {}) => {
-        // this.checkWrongOptions(options);
-        //
-        // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
+    async post<TResp>(url: string, data?: {}): Promise<TResp> {
+        return this.request(url, {method: HTTP_METHODS.POST, data});
     };
 
-    delete = (url: string, options: Record<string, any> = {}) => {
-        // this.checkWrongOptions(options);
-        //
-        // if (!options.timeout) options.timeout = this.defaultTimeoutMs;
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
+    async delete<TResp>(url: string, data?: {}): Promise<TResp> {
+        return this.request(url, {method: HTTP_METHODS.DELETE, data});
     };
 
-
-// PUT, POST, DELETE
-
-    // options:
-    // headers — obj
-    // data — obj
-
-
-    // request = (url, options, timeout = this.defaultTimeoutMs) => {
-    request = (url: string, options: Record<string, any> = {}, timeout = 5000) => {
-        // const handleError = err => {
-        //     console.error(err);
-        // };
-        //
-        // const handleErrorWithThrow = err => {
-        //     console.error(err);
-        //     throw new Error('Таймаут');
-        // };
-
-        url += this._baseUri;
-
-        const {method, headers = {}} = options;
-        let {data} = options;
-
+    async request<TResp>(url: string,
+                         options: RequestOptionsType = {method: HTTP_METHODS.GET}
+    ): Promise<TResp> {
         return new Promise((resolve, reject) => {
+            const {method, data, headers = {}} = options;
+
+            url = this._baseUri + url;
+
             if (!method) {
                 reject("Ошибка. Не определен для вызова переданный метод ");
                 return;
             }
 
             const req = new XMLHttpRequest();
-            // req.open(method, url);
-            //
-            // Object.entries(headers).forEach(([k, v]) => {
-            //     req.setRequestHeader(k, v);
-            // })
-            //
-            // req.onload = function () {
-            //     resolve(req);
-            // };
+            req.withCredentials = true;
 
             req.onabort = reject;
             req.onerror = reject;
-            req.timeout = timeout;
+            req.timeout = options.timeout ?? this.defaultTimeoutMs;
             req.ontimeout = reject;
             req.onload = function () {
-                resolve(req);
+                let respAnswer;
+                const respType = req.getResponseHeader('Content-Type');
+                if (!!respType && respType.includes('application/json')) {
+                    respAnswer = JSON.parse(req.response);
+                } else {
+                    respAnswer = req.response;
+                }
+                if (req.status === 200) {
+                    resolve(respAnswer);
+                } else {
+                    const model = new RejectModel();
+                    model.status = req.status;
+                    model.reason = respAnswer.reason;
+                    model.sourceBody = respAnswer;
+                    reject(model);
+                }
             };
 
-            switch (method) {
-                case METHODS.GET:
-                    if (data) url += queryStringify(data);
-                    req.onload = function () {
-                        resolve(req);
-                    };
-                    req.open(method, url);
-                    req.setRequestHeader('Content-Type', 'text/plain');
-                    this.setHeaders(headers, req);
-                    req.send(null);
-                    break;
-                case METHODS.POST:
-                case METHODS.PUT:
-                    req.open(method, url);
-                    req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-                    this.setHeaders(headers, req);
-                    req.send(JSON.stringify(data));
-                    break;
-                case METHODS.DELETE:
-                    req.open(method, url);
-                    req.setRequestHeader('Content-Type', 'text/plain');
-                    this.setHeaders(headers, req);
-                    req.send(null);
-                    break;
-                default:
-                    throw new Error("HTTP метод не реализован");
-                    // break;
+            const isGet: boolean = method === HTTP_METHODS.GET;
+            if (isGet && !!data) {
+                url += `?${queryStringify(data)}`;
+            }
+            req.open(method, url);
+
+            this.setHeaders(headers, req);
+
+            if (isGet || !data) {
+                req.send();
+            } else if (data instanceof FormData) {
+                req.send(data);
+            } else {
+                req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+                req.send(JSON.stringify(data));
             }
 
             // if (method === METHODS.GET || !data) {
@@ -147,7 +111,7 @@ export default class HTTP {
 
     };
 
-    setHeaders(headers: Record<string, any>, req: XMLHttpRequest) {
+    setHeaders(headers: Indexed<string>, req: XMLHttpRequest) {
         Object.entries(headers).forEach(([k, v]) => {
             req.setRequestHeader(k, v);
         });

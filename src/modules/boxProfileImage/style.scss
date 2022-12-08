@@ -17,11 +17,12 @@
   flex-direction: column;
 }
 
-.image-box {
+.image-box, .uploadImageFrm {
   flex: 6 1 auto;
   align-self: start;
   margin-bottom: 20px;
   display: flex;
+  position: relative;
 }
 
 .image-username {
@@ -32,14 +33,54 @@
   font-weight: bold;
 }
 
-.image-self {
+//.image-self {
+//  width: 150px;
+//  height: 150px;
+//  align-self: stretch;
+//  border-radius: 50%;
+//  background-image: url('../../../static/personimage.svg');
+//  background-size: 30%;
+//  background-color: #EFEFEF;
+//  background-repeat: no-repeat;
+//  background-position: center;
+//}
+
+.image-self, .image-self-over {
   width: 150px;
   height: 150px;
   align-self: stretch;
   border-radius: 50%;
-  background-image: url('../../../static/personimage.svg');
-  background-size: 30%;
   background-color: #EFEFEF;
+}
+
+.image-self {
+  background-image: url('../../../static/personimage.svg');
+  background-size: 100%;
+  //background-color: #EFEFEF;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.image-self-over {
+  cursor: pointer;
+  position: absolute;
+  background-color: darkgrey;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5em;
+
+  &:hover {
+    transition: .3s ease;
+    opacity: 1;
+  }
+  &-label{
+    cursor: pointer;
+  }
 }

@@ -1,13 +1,33 @@
-import HTTP from "../services/http";
 import {BaseApi} from "./baseApi";
+import {IChatInfo, ITokenResponse} from "../services/interfaces";
+import {AddDeleteUsersToChatFormModel, CreateChatFormModel} from "../services/types";
 
-const chatApiInstance = new HTTP('api/v1/chats');
 
-export default class ChatApi extends BaseApi {
-    create() {
-        return chatApiInstance.post('/', {title: 'string'});
+class ChatApi extends BaseApi {
+    constructor() {
+        super("/chats");
     }
-    request() {
-        return chatApiInstance.get('/full');
+
+    async getChats(): Promise<IChatInfo[]> {
+        return this.http.get("");
     }
+
+    async createChat(data: CreateChatFormModel) {
+        return this.http.post("", data);
+    }
+
+    addUsersToChat(data: AddDeleteUsersToChatFormModel) {
+        return this.http.put("/users", data);
+    }
+
+    deleteUsersFromChat(data: AddDeleteUsersToChatFormModel) {
+        return this.http.delete("/users", data);
+    }
+
+    takeChatToken(chatId: number) : Promise<ITokenResponse> {
+        return this.http.post(`/token/${chatId}`);
+    }
+
 }
+
+export default new ChatApi();
