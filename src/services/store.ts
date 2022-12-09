@@ -17,6 +17,7 @@ export enum StoreKeys {
     chats = 'chats',
     activeChatId = 'activeChatId',
     messages = 'messages',
+    chatsTimerId = 'chatsTimerId',
 }
 
 export enum StoreEvents {

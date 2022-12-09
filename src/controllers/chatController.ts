@@ -217,11 +217,13 @@ class ChatController {
     }
 
     updateChats(block: Block) {
+        console.log('updateChats');
         console.log('store: ', store);
-        const {chats, user} = store.getState();
+        const {chats, user, activeChatId} = store.getState();
         console.log('chats at store:', chats);
         const chatList = chats as IChatInfo[];
         const currentUser = user as IUserInfo;
+        const activeChatIdNum = activeChatId as number;
 
         // const lastMsg1: ILastMessage = new LastMessage();
         // lastMsg1.content = "This is test message";
@@ -236,14 +238,16 @@ class ChatController {
         // chatId1.unread_count = 7;
         //
         // chatList.push(chatId1);
-
+        const htmlList = block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement;
+        htmlList!.textContent = "";
         if (!chatList || !!chatList && chatList.length === 0) {
             console.log('chatList is empty:', chatList);
-            (block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement)!.textContent = "Чаты отсутствуют";
+            htmlList!.textContent = "Чаты отсутствуют";
+            store.set(StoreKeys.activeChatId, undefined);
         } else {
             console.log('chatList:', chatList);
             chatList.forEach(chatInfoItem => {
-                const _chatListItem1 = new ChatListItem(
+                const _chatListItem = new ChatListItem(
                     "div",
                     {
                         title: chatInfoItem.title,
@@ -269,18 +273,26 @@ class ChatController {
                         }
                     }
                 );
-                _chatListItem1.render();
-                const elem = _chatListItem1.getContent();
+                _chatListItem.render();
+                const elem = _chatListItem.getContent();
                 console.log('elem: ', elem);
                 if (elem) {
-                    const htmlList = (block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement);
-                    if (chatList.length === 1) {
-                        htmlList!.textContent = "";
-                    }
+                    // const htmlList = (block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement);
+                    // if (chatList.length === 1) {
+                    //     htmlList!.textContent = "";
+                    // }
                     htmlList!.appendChild(elem);
                     console.log('htmlList: ', htmlList);
                 }
             }); //foreach
+
+            if (!!activeChatIdNum) {
+                const activeChats = chatList.filter(x => x.id == activeChatIdNum);
+                if (!activeChats || !!activeChats && activeChats.length === 0) {
+                    store.set(StoreKeys.activeChatId, undefined);
+                }
+            }
+
         }
     }
 
@@ -469,7 +481,7 @@ class ChatController {
                     () => {
                         console.log('success deleteChat');
                         BaseController.showMessage('Чат успешно удален');
-                        //update chats
+
                     }
                 )
                 .catch(BaseController.showMessage);
@@ -501,7 +513,7 @@ class ChatController {
         }
         console.log('clear boxChatMessage_input');
         const frm = e.target as HTMLFormElement;
-        if (frm){
+        if (frm) {
             const inputMsg = frm.querySelector('.boxChatMessage_input') as HTMLInputElement;
             if (inputMsg) {
                 inputMsg.value = "";

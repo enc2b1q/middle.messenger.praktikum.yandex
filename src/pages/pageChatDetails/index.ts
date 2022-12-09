@@ -17,6 +17,7 @@ import ChatController from "../../controllers/chatController";
 import Button from "../../components/button";
 import GenericTag from "../../components/genericTag";
 import WS from "../../services/ws";
+import store, {StoreKeys} from "../../services/store";
 
 
 export const ws = new WS();
@@ -261,6 +262,8 @@ const _layoutSideBar = new LayoutSideBar(
 );
 
 export default class PageChatDetails extends Block {
+    private chatsTimerId?: number;
+
     constructor() {
         super("div", {
             content: _layoutSideBar,
@@ -268,6 +271,16 @@ export default class PageChatDetails extends Block {
                 class: "mainContent",
             }
         });
+    }
+
+    leave() {
+        if (this.chatsTimerId) {
+            console.log('leave clearInterval');
+            clearInterval(this.chatsTimerId);
+            this.chatsTimerId = undefined;
+            store.set(StoreKeys.chatsTimerId, this.chatsTimerId);
+        }
+        super.leave();
     }
 
     componentDidMount() {
@@ -282,17 +295,49 @@ export default class PageChatDetails extends Block {
                     } else {
                         ChatController.getChats()
                             .then(
-
                                 () => this._updateData()
                             )
                             .catch(BaseController.showMessage);
+
+                        const {chatsTimerId} = store.getState();
+                        const chatsTimerIdNum = chatsTimerId as number;
+                        console.log(`timers (componentDidMount): this.chatsTimerId=${this.chatsTimerId}, store: chatsTimerId=${chatsTimerId}, chatsTimerIdNum=${chatsTimerIdNum}`);
+
+                        if (chatsTimerIdNum != null) {
+                            clearInterval(chatsTimerIdNum);
+                        }
+                        if (this.chatsTimerId != null) {
+                            clearInterval(this.chatsTimerId);
+                        }
+                        this.chatsTimerId = setInterval(() => {
+                            console.log('setInterval getChats');
+                            ChatController.getChats()
+                                .then(
+                                    () => {
+                                        this.updateChats();
+                                        this.updateActiveChats();
+                                        this.updateChatBody();
+                                    }
+                                )
+                                .catch(BaseController.showMessage);
+                        }, 5000);
+                        store.set(StoreKeys.chatsTimerId, this.chatsTimerId);
+
                     }
                 }
             );
     }
 
-    updateChatBody(){
+    updateChatBody() {
         ChatController.updateChatBody(this);
+    }
+
+    updateChats() {
+        ChatController.updateChats(this);
+    }
+
+    updateActiveChats() {
+        ChatController.updateActiveChats(this);
     }
 
     _updateData() {
