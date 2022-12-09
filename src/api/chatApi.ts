@@ -1,6 +1,6 @@
 import {BaseApi} from "./baseApi";
 import {IChatInfo, ITokenResponse} from "../services/interfaces";
-import {AddDeleteUsersToChatFormModel, CreateChatFormModel} from "../services/types";
+import {AddDeleteUsersToChatFormModel, CreateChatFormModel, DeleteChatFormModel} from "../services/types";
 
 
 class ChatApi extends BaseApi {
@@ -14,6 +14,10 @@ class ChatApi extends BaseApi {
 
     async createChat(data: CreateChatFormModel) {
         return this.http.post("", data);
+    }
+
+    async deleteChat(data: DeleteChatFormModel) {
+        return this.http.delete("", data);
     }
 
     addUsersToChat(data: AddDeleteUsersToChatFormModel) {

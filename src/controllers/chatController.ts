@@ -5,7 +5,7 @@ import store, {StoreKeys} from "../services/store";
 import Block from "../services/block";
 import {
     AddDeleteUsersToChatFormModel,
-    CreateChatFormModel, FullMessage,
+    CreateChatFormModel, DeleteChatFormModel, FullMessage,
     MessageFormModel,
     SearchUserFormModel
 } from "../services/types";
@@ -39,6 +39,11 @@ class ChatController {
     async createChat(model: CreateChatFormModel) {
         console.log('ChatController.createChat()');
         return ChatApi.createChat(model);
+    }
+
+    async deleteChat(model: DeleteChatFormModel) {
+        console.log('ChatController.deleteChat()');
+        return ChatApi.deleteChat(model);
     }
 
     async addUsersToChat(model: AddDeleteUsersToChatFormModel) {
@@ -436,6 +441,44 @@ class ChatController {
         }
     }
 
+    async processChatDeleteClick(e: Event) {
+        e.preventDefault();
+        console.log('processChatDeleteClick');
+
+        const askResult = confirm('Удалить чат (может только создатель чата)?');
+        console.log('askResult: ', askResult);
+        if (!askResult) {
+            console.log('No chat deletion');
+            return;
+        }
+
+        const {activeChatId} = store.getState();
+        const activeChatIdNum = activeChatId as number;
+        if (!!activeChatIdNum) {
+            const model = new DeleteChatFormModel;
+            model.chatId = activeChatIdNum;
+            console.log(`delete active chat with id = ${model.chatId}. DeleteChatFormModel: `, model);
+
+            const ctrl = new ChatController();
+            ctrl.deleteChat(model)
+                .then(
+                    () => {
+                        console.log('success deleteChat');
+                        BaseController.showMessage('Чат успешно удален');
+                        //update chats
+                    }
+                )
+                .catch(BaseController.showMessage);
+        } else {
+            console.log('no activeChatIdNum to delete chat');
+        }
+
+        const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
+        if (elemMenu) {
+            elemMenu.style.display = 'none';
+        }
+    }
+
     async processSendMessage(e: SubmitEvent) {
         e.preventDefault();
         console.log('submit: ChatController processSendMessage');
@@ -451,6 +494,16 @@ class ChatController {
         } else {
             console.log('can not send Data');
         }
+        console.log('clear boxChatMessage_input');
+        const frm = e.target as HTMLFormElement;
+        if (frm){
+            const inputMsg = frm.querySelector('.boxChatMessage_input') as HTMLInputElement;
+            if (inputMsg) {
+                inputMsg.value = "";
+            }
+        }
+
+
     }
 
 

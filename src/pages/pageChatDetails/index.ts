@@ -4,7 +4,6 @@ import './style.scss';
 import BoxChatHeader from "../../modules/boxChatHeader";
 import FormChatMessage from "../../components/formChatMessage";
 import BoxChatMessage from "../../modules/boxChatMessage";
-import BoxChatMessagesBodyItemText from "../../components/boxChatMessagesBodyItemText";
 import BoxChatMessagesBody from "../../modules/boxChatMessagesBody";
 import LayoutChatContentBox from "../../layout/chatContentBox";
 // import ChatListItem from "../../components/chatListItem";
@@ -52,6 +51,21 @@ const _btnDelete = new Button(
     }
 );
 
+const _btnDeleteChat = new Button(
+    "button",
+    {
+        text: "Удалить чат",
+        attr: {
+            id: "btnChatDeleteId",
+            type: "submit",
+            class: "button",
+        },
+        events: {
+            click: ChatController.processChatDeleteClick,
+        }
+    }
+);
+
 const _menuBtn = new GenericTag(
     "input",
     {
@@ -83,6 +97,7 @@ const _chat_content_header = new BoxChatHeader(
         menuBtn: _menuBtn,
         btnAdd: _btnAdd,
         btnDelete: _btnDelete,
+        btnDeleteChat: _btnDeleteChat,
         attr: {
             class: "boxChatHeader_wrapper",
         }
@@ -130,33 +145,33 @@ const _chat_content_footer = new BoxChatMessage(
     }
 );
 
-const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
-    "div",
-    {
-        msgText: "Новый чат!",
-        // alignClass: "boxChatMessagesBodyItemText_alignLeft",
-        attr: {
-            class: "boxChatMessagesBodyItemText_wrapper",
-        }
-    }
-);
-const _boxChatMessagesBodyItem2 = new BoxChatMessagesBodyItemText(
-    "div",
-    {
-        msgText: "привет!",
-        // alignClass: "boxChatMessagesBodyItemText_alignRight",
-        attr: {
-            class: "boxChatMessagesBodyItemText_wrapper",
-        }
-    }
-);
+// const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
+//     "div",
+//     {
+//         msgText: "Новый чат!",
+//         // alignClass: "boxChatMessagesBodyItemText_alignLeft",
+//         attr: {
+//             class: "boxChatMessagesBodyItemText_wrapper",
+//         }
+//     }
+// );
+// const _boxChatMessagesBodyItem2 = new BoxChatMessagesBodyItemText(
+//     "div",
+//     {
+//         msgText: "привет!",
+//         // alignClass: "boxChatMessagesBodyItemText_alignRight",
+//         attr: {
+//             class: "boxChatMessagesBodyItemText_wrapper",
+//         }
+//     }
+// );
 
 const _chat_content_block = new BoxChatMessagesBody(
     "div",
     {
         boxChatMessagesBodyItems: [
-            _boxChatMessagesBodyItem1,
-            _boxChatMessagesBodyItem2
+            // _boxChatMessagesBodyItem1,
+            // _boxChatMessagesBodyItem2
         ],
 
         attr: {

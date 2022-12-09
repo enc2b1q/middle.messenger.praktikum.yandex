@@ -112,6 +112,8 @@ export default class WS {
             } else if (parsedData.type === 'pong'){
                 //do nothing
                 // console.log('pong: ', parsedData);
+            }  else if (parsedData.type === 'error') {
+                BaseController.showMessage(parsedData.content);
             }
             else {
                 console.log('unsupported onMessage data: ', parsedData);

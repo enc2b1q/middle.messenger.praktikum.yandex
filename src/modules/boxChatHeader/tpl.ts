@@ -10,6 +10,7 @@ const tpl: string = `
     <div class="boxChatHeader_menu">
         {{{ btnAdd }}}
         {{{ btnDelete }}}
+        {{{ btnDeleteChat }}}
     </div>    
 </div>
 `;

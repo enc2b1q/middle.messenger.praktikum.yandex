@@ -133,6 +133,10 @@ export class CreateChatFormModel {
     title: string = "";
 }
 
+export class DeleteChatFormModel {
+    chatId: number;
+}
+
 export class AddDeleteUsersToChatFormModel {
     users: Array<number> = new Array<number>();
     chatId: number;
