@@ -20,6 +20,13 @@ import UserController from "./userController";
 import AuthController from "./authController";
 import {ws} from '../pages/pageChatDetails';
 
+function hideMenu() {
+    const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
+    if (elemMenu) {
+        elemMenu.style.display = 'none';
+    }
+}
+
 class ChatController {
 
 
@@ -365,11 +372,7 @@ class ChatController {
                 }
             )
             .catch(BaseController.showMessage);
-
-        const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
-        if (elemMenu) {
-            elemMenu.style.display = 'none';
-        }
+        hideMenu();
     };
 
     async processChatDeleteUserClick(e: Event) {
@@ -435,10 +438,11 @@ class ChatController {
             )
             .catch(BaseController.showMessage);
 
-        const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
-        if (elemMenu) {
-            elemMenu.style.display = 'none';
-        }
+        // const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
+        // if (elemMenu) {
+        //     elemMenu.style.display = 'none';
+        // }
+        hideMenu();
     }
 
     async processChatDeleteClick(e: Event) {
@@ -473,10 +477,11 @@ class ChatController {
             console.log('no activeChatIdNum to delete chat');
         }
 
-        const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
-        if (elemMenu) {
-            elemMenu.style.display = 'none';
-        }
+        // const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
+        // if (elemMenu) {
+        //     elemMenu.style.display = 'none';
+        // }
+        hideMenu();
     }
 
     async processSendMessage(e: SubmitEvent) {

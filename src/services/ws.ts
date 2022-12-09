@@ -93,7 +93,7 @@ export default class WS {
                 }).reverse();
                 store.set(StoreKeys.messages, prevMsgs);
                 console.log('store (messages): ', store);
-
+                this.block.updateChatBody();
             } else if (parsedData.type === 'message') {
                 console.log('parsedData: ', parsedData);
                 const {messages} = store.getState();
@@ -107,7 +107,6 @@ export default class WS {
                 msgToSave.push(msg);
                 store.set(StoreKeys.messages, msgToSave);
                 console.log('store (messages): ', store);
-
                 this.block.updateChatBody();
             } else if (parsedData.type === 'pong'){
                 //do nothing
