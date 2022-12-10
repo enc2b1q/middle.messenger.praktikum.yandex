@@ -3,7 +3,3 @@ const tpl: string = `
 `;
 
 export default tpl;
-
-/*
-<div>Список чатов</div>
-*/

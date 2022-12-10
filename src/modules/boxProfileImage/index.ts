@@ -4,13 +4,6 @@ import './style.scss';
 
 export default class BoxProfileImage extends Block {
     render() {
-        console.log('boxProfileImage render');
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('boxProfileImage', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

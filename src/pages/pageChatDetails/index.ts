@@ -4,10 +4,8 @@ import './style.scss';
 import BoxChatHeader from "../../modules/boxChatHeader";
 import FormChatMessage from "../../components/formChatMessage";
 import BoxChatMessage from "../../modules/boxChatMessage";
-import BoxChatMessagesBodyItemText from "../../components/boxChatMessagesBodyItemText";
 import BoxChatMessagesBody from "../../modules/boxChatMessagesBody";
 import LayoutChatContentBox from "../../layout/chatContentBox";
-// import ChatListItem from "../../components/chatListItem";
 import ProfileLinkEdit from "../../components/profileLinkEdit";
 import LayoutChatSideBox from "../../layout/chatSideBox";
 import {formChatSideBoxInst as _formChatSideBox} from "../../components/formChatSideBox";
@@ -18,6 +16,7 @@ import ChatController from "../../controllers/chatController";
 import Button from "../../components/button";
 import GenericTag from "../../components/genericTag";
 import WS from "../../services/ws";
+import store, {StoreKeys} from "../../services/store";
 
 
 export const ws = new WS();
@@ -48,6 +47,21 @@ const _btnDelete = new Button(
         },
         events: {
             click: ChatController.processChatDeleteUserClick,
+        }
+    }
+);
+
+const _btnDeleteChat = new Button(
+    "button",
+    {
+        text: "Удалить чат",
+        attr: {
+            id: "btnChatDeleteId",
+            type: "submit",
+            class: "button",
+        },
+        events: {
+            click: ChatController.processChatDeleteClick,
         }
     }
 );
@@ -83,6 +97,7 @@ const _chat_content_header = new BoxChatHeader(
         menuBtn: _menuBtn,
         btnAdd: _btnAdd,
         btnDelete: _btnDelete,
+        btnDeleteChat: _btnDeleteChat,
         attr: {
             class: "boxChatHeader_wrapper",
         }
@@ -104,21 +119,6 @@ const _formChatMessage = new FormChatMessage(
     }
 );
 
-// const _btnSendMsg = new Button(
-//     "button",
-//     {
-//         text: "->",
-//         attr: {
-//             id: "boxChatMessage_send_btn-id",
-//             type: "submit",
-//             class: "button",
-//         },
-//         events: {
-//             click: ChatController.processChatDeleteUserClick,
-//         }
-//     }
-// );
-
 const _chat_content_footer = new BoxChatMessage(
     "div",
     {
@@ -130,33 +130,10 @@ const _chat_content_footer = new BoxChatMessage(
     }
 );
 
-const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
-    "div",
-    {
-        msgText: "Новый чат!",
-        // alignClass: "boxChatMessagesBodyItemText_alignLeft",
-        attr: {
-            class: "boxChatMessagesBodyItemText_wrapper",
-        }
-    }
-);
-const _boxChatMessagesBodyItem2 = new BoxChatMessagesBodyItemText(
-    "div",
-    {
-        msgText: "привет!",
-        // alignClass: "boxChatMessagesBodyItemText_alignRight",
-        attr: {
-            class: "boxChatMessagesBodyItemText_wrapper",
-        }
-    }
-);
-
 const _chat_content_block = new BoxChatMessagesBody(
     "div",
     {
         boxChatMessagesBodyItems: [
-            _boxChatMessagesBodyItem1,
-            _boxChatMessagesBodyItem2
         ],
 
         attr: {
@@ -178,20 +155,10 @@ const _sideBarContent = new LayoutChatContentBox(
     }
 );
 
-// const _chatListItem1 = new ChatListItem(
-//     "div",
-//     {
-//
-//         attr: {
-//             class: "chatListItem_wrapper",
-//         }
-//     }
-// );
-
 const _profileLink = new ProfileLinkEdit(
     "nav",
     {
-        url: "/settings.html",
+        url: "/settings",
         profileLinkEdit_color_class: "profileLinkEdit_a_gray",
         linkText: "Профиль",
 
@@ -222,7 +189,6 @@ const _sideBar = new LayoutChatSideBox(
         chatAddBtn: _chatAddBtn,
         profileLink: _profileLink,
         boxChatList: [
-            // _chatListItem1,
         ],
         formChatSideBox: _formChatSideBox,
 
@@ -246,6 +212,8 @@ const _layoutSideBar = new LayoutSideBar(
 );
 
 export default class PageChatDetails extends Block {
+    private chatsTimerId?: number;
+
     constructor() {
         super("div", {
             content: _layoutSideBar,
@@ -255,8 +223,16 @@ export default class PageChatDetails extends Block {
         });
     }
 
+    leave() {
+        if (this.chatsTimerId) {
+            clearInterval(this.chatsTimerId);
+            this.chatsTimerId = undefined;
+            store.set(StoreKeys.chatsTimerId, this.chatsTimerId);
+        }
+        super.leave();
+    }
+
     componentDidMount() {
-        console.log('PageChatDetails componentDidMount');
         ws.attach(this);
         BaseController.testAuth()
             .then(
@@ -267,31 +243,55 @@ export default class PageChatDetails extends Block {
                     } else {
                         ChatController.getChats()
                             .then(
-
                                 () => this._updateData()
                             )
                             .catch(BaseController.showMessage);
+
+                        const {chatsTimerId} = store.getState();
+                        const chatsTimerIdNum = chatsTimerId as number;
+
+                        if (chatsTimerIdNum != null) {
+                            clearInterval(chatsTimerIdNum);
+                        }
+                        if (this.chatsTimerId != null) {
+                            clearInterval(this.chatsTimerId);
+                        }
+                        this.chatsTimerId = setInterval(() => {
+                            ChatController.getChats()
+                                .then(
+                                    () => {
+                                        this.updateChats();
+                                        this.updateActiveChats();
+                                        this.updateChatBody();
+                                    }
+                                )
+                                .catch(BaseController.showMessage);
+                        }, 5000);
+                        store.set(StoreKeys.chatsTimerId, this.chatsTimerId);
+
                     }
                 }
             );
     }
 
-    updateChatBody(){
+    updateChatBody() {
         ChatController.updateChatBody(this);
+    }
+
+    updateChats() {
+        ChatController.updateChats(this);
+    }
+
+    updateActiveChats() {
+        ChatController.updateActiveChats(this);
     }
 
     _updateData() {
         ChatController.updateChats(this);
         ChatController.updateChatBody(this);
-
-        // const {activeChatId} = store.getState();
-        // if (activeChatId) {
-        //
-        // }
     }
 
     render() {
-        console.log('PageChatDetails render');
         return this.compile(tpl);
     }
 }

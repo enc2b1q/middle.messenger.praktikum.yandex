@@ -5,11 +5,3 @@ const tpl: string = `
 `;
 
 export default tpl;
-
-/*
-<nav id="{{id}}" class="link">
-	<a href="{{url}}">
-		{{text}}
-	</a>
-</nav>
-*/

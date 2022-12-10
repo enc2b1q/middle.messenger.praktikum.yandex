@@ -19,14 +19,7 @@ export type TypeDefinedProps = {
 
 export type TypeMixedUnknownProps = TypeDefinedProps & TypeDictUnknown;
 
-export type Indexed<T = unknown> = Record<string, T>;  //Record<string, any>;
-
-// export interface IBlockProps extends Record<string, unknown> {
-//     "setting"?: TypeDict<boolean | string>;
-//     "attr"?: TypeDict<string>;
-//     "events"?: TypeDict<EventListenerOrEventListenerObject>,
-//     rootQuery?: string;
-// };
+export type Indexed<T = unknown> = Record<string, T>;
 
 export type PlainObject<T = any> = {
     [k in string]: T;
@@ -131,6 +124,10 @@ export class ChatInfo implements IChatInfo {
 
 export class CreateChatFormModel {
     title: string = "";
+}
+
+export class DeleteChatFormModel {
+    chatId: number;
 }
 
 export class AddDeleteUsersToChatFormModel {

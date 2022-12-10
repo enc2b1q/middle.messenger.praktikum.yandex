@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class FormProfile extends Block {
     render() {
-        console.log('formProfile render');
         return this.compile(tpl);
     }
 

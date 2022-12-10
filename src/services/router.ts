@@ -11,7 +11,7 @@ class Router {
     _rootQuery: string;
 
     get path404(): string {
-        return "/error404.html";
+        return "/error404";
     }
     get page404() {
         return PageError404;
@@ -65,7 +65,6 @@ class Router {
     }
 
     go(pathname: string) {
-        console.log('going to path: ', pathname);
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);
     }

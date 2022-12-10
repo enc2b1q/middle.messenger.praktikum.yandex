@@ -8,19 +8,3 @@ const tpl: string = `
 `;
 
 export default tpl;
-
-
-/*
-<div class="container">
-  <aside class="sideBar elemSideBar {{#if sizeClass}}{{sizeClass}}{{else}}sideBar-default{{/if}}">
-    {{#> sideBar}}
-        default sideBar
-    {{/sideBar}}
-  </aside>
-  <div class="sideBarContent elemSideBar">
-    {{#> sideBarContent}}
-        default sideBarContent
-    {{/sideBarContent}}
-  </div>
-</div>
-*/

@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class Button extends Block {
     render() {
-        console.log('button render');
         return this.compile(tpl);
     }
 
@@ -29,25 +28,6 @@ export const boxProfilePersonEditBtnSaveBts = new Button(
             type: "submit",
             class: "button",
         },
-        // events: {
-        // 	click: (e: Event) => {
-        // 		const target = e.target;
-        // 		if(!target) {
-        // 			return;
-        // 		}
-        // 		// window.location.assign(window.location.href + "#");
-        // 		e.preventDefault();
-        // 		e.stopPropagation();
-        // 		processFormData();
-        // 	},
-        // },
 
     }
 );
-
-
-// Handlebars.registerPartial('button', tpl);
-//
-// export default (id, url, text) => {
-// 	return tpl({ id, url, text});
-// }

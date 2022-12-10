@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class Link extends Block {
     render() {
-        console.log('link render');
         return this.compile(tpl);
     }
 
@@ -23,7 +22,7 @@ export default class Link extends Block {
 export const _linkBackToChatInst = new Link(
     "nav",
     {
-        url: '/messenger.html',
+        url: '/messenger',
         text: 'Назад к чатам',
         attr: {
             class: 'link',
@@ -31,9 +30,3 @@ export const _linkBackToChatInst = new Link(
         }
     }
 );
-
-// Handlebars.registerPartial('link', tpl);
-//
-// export default (id, url, text) => {
-// 	return tpl({ id, url, text});
-// }

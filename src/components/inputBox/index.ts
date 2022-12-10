@@ -7,7 +7,6 @@ import {validationInputHandler} from "../../utils/processFormData";
 
 export default class InputBox extends Block {
     render() {
-        console.log('inputBox render');
         return this.compile(tpl);
     }
 }
@@ -21,7 +20,6 @@ export function getNewInput(validatorPropName: string, type: string = "text", cl
                 id: validatorPropName,
                 name: validatorPropName,
                 class: className,
-                // pattern: validator.getValidationPatternString(validatorPropName),
                 title: validator.getValidationMsg(validatorPropName),
             },
             events: {
@@ -31,9 +29,3 @@ export function getNewInput(validatorPropName: string, type: string = "text", cl
         }
     );
 }
-
-// Handlebars.registerPartial('inputBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

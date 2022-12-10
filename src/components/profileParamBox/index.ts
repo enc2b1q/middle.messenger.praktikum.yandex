@@ -7,7 +7,6 @@ import {validationInputHandler} from "../../utils/processFormData";
 
 export default class ProfileParamBox extends Block {
     render() {
-        console.log('profileParamBox render');
         return this.compile(tpl);
     }
 }
@@ -52,10 +51,3 @@ export function getNewProfileParamInput(props: { validatorPropName: string, type
         }
     );
 }
-
-
-// Handlebars.registerPartial('profileParamBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

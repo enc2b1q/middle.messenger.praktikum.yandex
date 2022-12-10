@@ -55,7 +55,7 @@ const _inputProfileNewPasswordRepeat = getNewProfileParamInput({
 const _profileParamBoxNewPasswordRepeat = new ProfileParamBox(
     "div",
     {
-        name: validator.propNames.password_repeat, //"newPasswordRepeat",
+        name: validator.propNames.password_repeat,
         labelText: "Повторите новый пароль",
         input: _inputProfileNewPasswordRepeat,
 
@@ -147,7 +147,7 @@ const _sideBarContent = new LayoutProfileParamsBox(
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/settings.html",
+        url: "/settings",
 
         attr: {
             class: "backArrowBtn-parentBox",
@@ -179,7 +179,6 @@ export default class PageProfileChangePwd extends Block {
     }
 
     componentDidMount() {
-        console.log('PageProfileChangePwd componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -188,11 +187,14 @@ export default class PageProfileChangePwd extends Block {
                         UserController
                             .getUser()
                             .then(
-                                () => this._updateUserData()
+                                (user) => {
+                                    if (user) {
+                                        this._updateUserData();
+                                    }
+                                }
                             )
                             .catch(BaseController.showMessage);
-                    }
-                    else {
+                    } else {
                         const router = new Router("#root");
                         router.go("/");
                     }
@@ -206,7 +208,6 @@ export default class PageProfileChangePwd extends Block {
     }
 
     render() {
-        console.log('PageProfileChangePwd render');
         return this.compile(tpl);
     }
 }

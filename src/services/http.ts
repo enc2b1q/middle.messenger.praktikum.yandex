@@ -101,12 +101,6 @@ export default class HTTP {
                 req.send(JSON.stringify(data));
             }
 
-            // if (method === METHODS.GET || !data) {
-            //     req.send();
-            // } else {
-            //     req.send(data);
-            // }
-
         })
 
     };

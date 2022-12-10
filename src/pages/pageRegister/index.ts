@@ -19,7 +19,6 @@ const _inputBoxEmail = new InputBox(
     {
         name: "email",
         labelText: "Почта",
-        // type: "email",
         input: _inputEmail,
 
         attr: {
@@ -72,7 +71,6 @@ const _inputBoxPhone = new InputBox(
     {
         name: "phone",
         labelText: "Телефон",
-        // type: "tel",
         input: _inputPhone,
 
         attr: {
@@ -86,7 +84,6 @@ const _inputBoxPassword = new InputBox(
     {
         name: "password",
         labelText: "Пароль",
-        // type: "password",
         input: _inputPwd,
 
         attr: {
@@ -100,7 +97,6 @@ const _inputBoxPasswordRepeat = new InputBox(
     {
         name: "password_repeat",
         labelText: "Пароль (ещё раз)",
-        // type: "password",
         input: _inputPwdRepeat,
 
         attr: {
@@ -124,7 +120,7 @@ const _buttonRegister = new Button(
 const _linkEnter = new Link(
     "nav",
     {
-        url: "/login.html",
+        url: "/login",
         text: "Войти",
         attr: {
             class: "link",
@@ -196,7 +192,6 @@ export default class PageRegister extends Block {
     }
 
     componentDidMount() {
-        console.log('PageRegister componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -210,7 +205,6 @@ export default class PageRegister extends Block {
     }
 
     render() {
-        console.log('PageRegister render');
         return this.compile(tpl);
     }
 }

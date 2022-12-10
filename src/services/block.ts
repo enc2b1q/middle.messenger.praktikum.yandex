@@ -123,20 +123,15 @@ export default class Block {
     }
 
     componentDidUpdate(oldProps: TypeMixedUnknownProps & TypeDict<Block>, newProps: TypeMixedUnknownProps & TypeDict<Block>): boolean {
-        console.log('block componentDidUpdate: (newProps, oldProps):')
-        console.log(newProps, oldProps);
 
         return isEqual(newProps, oldProps);
-        // return true;
     }
 
     leave() {
         this.removeEvents();
-        // this._clearElement();
     }
 
     setProps(newProps: TypeMixedUnknownProps): void {
-        console.log('block setProps:')
         if (!newProps) {
             return;
         }
@@ -165,8 +160,6 @@ export default class Block {
     _render(): void {
         const block: Node | void = this.render();
         this._clearElement();
-        // this.removeEvents();
-        // this._element.innerHTML = '';
         if (block) {
             this._element.appendChild(block);
             this.addEvents();
@@ -206,12 +199,10 @@ export default class Block {
     }
 
     show(): void {
-        console.log('Block-show');
         this.getContent().style.display = 'block';
     }
 
     hide(): void {
-        console.log('Block-hide');
         this.getContent().style.display = 'none';
     }
 

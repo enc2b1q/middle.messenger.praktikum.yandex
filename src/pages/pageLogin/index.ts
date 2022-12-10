@@ -55,7 +55,7 @@ const _buttonEnter = new Button(
 const _linkRegister = new Link(
     "nav",
     {
-        url: "/sign-up.html",
+        url: "/sign-up",
         text: "Нет аккаунта?",
         attr: {
             class: "link",
@@ -76,25 +76,7 @@ const _formLogin = new FormLogin(
             _linkRegister
         ],
         events: {
-            submit: AuthController.processUserLoginSubmit
-            //     (e: SubmitEvent) => {
-            //     e.preventDefault();
-            //     const target = e.target as HTMLFormElement;
-            //     if (!target) {
-            //         return false;
-            //     }
-            //     const canSendDataToLogin = processFormData(target);
-            //     if (canSendDataToLogin) {
-            //         console.log('canSendDataToLogin');
-            //         //get form data as object
-            //         //send form data as object
-            //     }
-            //     else {
-            //         console.log('can not SendDataToLogin');
-            //     }
-            //     // validationSubmitHandler(e);
-            // }
-            ,
+            submit: AuthController.processUserLoginSubmit,
         },
         attr: {
             class: "layout-login-form",
@@ -139,7 +121,6 @@ export default class PageLogin extends Block {
     }
 
     componentDidMount() {
-        console.log('PageLogin componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -153,7 +134,6 @@ export default class PageLogin extends Block {
     }
 
     render() {
-        console.log('PageLogin render');
         return this.compile(tpl);
     }
 }

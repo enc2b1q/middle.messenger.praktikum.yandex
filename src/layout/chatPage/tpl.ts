@@ -7,11 +7,3 @@ const tpl: string = `
 `;
 
 export default tpl;
-
-/*
-{{#> layoutSideBar sizeClass="sideBar-big" }}
-    {{#*inline "sideBarContent"}}
-        {{> layoutChatContentBox}}
-    {{/inline}}
-{{/layoutSideBar}}
-*/

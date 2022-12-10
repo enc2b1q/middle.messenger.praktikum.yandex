@@ -3,9 +3,3 @@ const tpl: string = `
 `;
 
 export default tpl;
-
-/*
- <article class="page-box">
-	{{> errorBox id="errorBoxId" number=number text=text }}
-</article>
-*/

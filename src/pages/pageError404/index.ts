@@ -52,7 +52,6 @@ export default class PageError404 extends Block {
     }
 
     render() {
-        console.log('PageError404 render');
         return this.compile(tpl);
     }
 }

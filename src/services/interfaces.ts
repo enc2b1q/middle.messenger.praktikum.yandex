@@ -9,11 +9,6 @@ export interface IUserInfo {
     avatar: string;
 }
 
-// export interface ISignInData {
-//     "login": "string",
-//     "password": "string"
-// }
-
 export interface ISignupResponse {
     id: number;
 }

@@ -53,7 +53,6 @@ export default class PageError5xx extends Block {
     }
 
     render() {
-        console.log('PageError5xx render');
         return this.compile(tpl);
     }
 }

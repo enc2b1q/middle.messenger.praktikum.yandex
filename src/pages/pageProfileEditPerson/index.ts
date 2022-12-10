@@ -20,7 +20,7 @@ import FormUploadImage from "../../components/formUploadImage";
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/settings.html",
+        url: "/settings",
 
         attr: {
             class: "backArrowBtn-parentBox",
@@ -227,8 +227,6 @@ export default class PageProfileEditPerson extends Block {
         });
 
         store.subscribe(StoreEvents.UPDATED, () => {
-            console.log('StoreEvents.UPDATED received at PageProfileEditPerson');
-            console.log('store: ', store);
             this.setProps(store.getState());
             this._updateUserData();
         });
@@ -236,7 +234,6 @@ export default class PageProfileEditPerson extends Block {
     }
 
     componentDidMount() {
-        console.log('PageProfileEditPerson componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -245,7 +242,11 @@ export default class PageProfileEditPerson extends Block {
                         UserController
                             .getUser()
                             .then(
-                                () => this._updateUserData()
+                                (user) => {
+                                    if (user) {
+                                        this._updateUserData();
+                                    }
+                                }
                             )
                             .catch(BaseController.showMessage);
                     } else {
@@ -263,7 +264,6 @@ export default class PageProfileEditPerson extends Block {
     }
 
     render() {
-        console.log('PageProfileEditPerson render');
         return this.compile(tpl);
     }
 }

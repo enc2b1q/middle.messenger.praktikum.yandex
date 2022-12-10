@@ -4,8 +4,3 @@ const tpl: string = `
 
 export default tpl;
 
-/*
-<div class="content">
-  {{> content}}
-</div>
-*/

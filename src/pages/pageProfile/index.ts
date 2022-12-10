@@ -18,13 +18,12 @@ import BaseController from "../../controllers/baseController";
 import Router from "../../services/router";
 import FormUploadImage from "../../components/formUploadImage";
 import GenericTag from "../../components/genericTag";
-// import {Indexed} from "../../services/types";
 
 
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/messenger.html",
+        url: "/messenger",
 
         attr: {
             class: "backArrowBtn-parentBox",
@@ -44,17 +43,6 @@ const _avatarInput = new GenericTag(
         },
         events: {
             change: UserController.processUploadAvatarChange
-            //     (e: Event) => {
-            //     e.preventDefault();
-            //     console.log('_avatarInput change');
-            //     console.log(e);
-            //
-            //     const target = e.target as HTMLInputElement;
-            //     const files = target.files;
-            //
-            //     // const form = t.form as HTMLFormElement;
-            //     // console.log(form);
-            // },
         },
     }
 );
@@ -76,7 +64,6 @@ const _uploadImageForm = new FormUploadImage(
         events: {
             submit: (e: Event) => {
                 e.preventDefault();
-                console.log('submit _uploadImageForm');
             },
         },
     }
@@ -200,7 +187,7 @@ const _profileParamBoxPhone = new ProfileParamBox(
 const _profileLinkEditPersonEdit = new ProfileLinkEdit(
     "nav",
     {
-        url: "/profileEditPerson.html",
+        url: "/profileEditPerson",
         profileLinkEdit_color_class: "profileLinkEdit_a_blue",
         linkText: "Изменить данные",
 
@@ -212,7 +199,7 @@ const _profileLinkEditPersonEdit = new ProfileLinkEdit(
 const _profileLinkEditChangePwd = new ProfileLinkEdit(
     "nav",
     {
-        url: "/profileChangePwd.html",
+        url: "/profileChangePwd",
         profileLinkEdit_color_class: "profileLinkEdit_a_blue",
         linkText: "Изменить пароль",
 
@@ -224,7 +211,7 @@ const _profileLinkEditChangePwd = new ProfileLinkEdit(
 const _profileLinkEditLogin = new ProfileLinkEdit(
     "nav",
     {
-        url: "/login.html",
+        url: "/login",
         profileLinkEdit_color_class: "profileLinkEdit_a_red",
         linkText: "Выйти",
         events: {
@@ -305,30 +292,21 @@ const _layoutSideBar = new LayoutSideBar(
 );
 
 class PageProfile extends Block {
-    // constructor(...args: any) {
     constructor() {
         super("div", {
             content: _layoutSideBar,
             attr: {
                 class: "mainContent",
             },
-            // ...args,
         });
 
-
-        // UserController.getUser();
-
         store.subscribe(StoreEvents.UPDATED, () => {
-            console.log('StoreEvents.UPDATED received at PageProfile');
-            console.log('store: ', store);
             this.setProps(store.getState());
-            // this._updateUserData();
         });
 
     }
 
     componentDidMount() {
-        console.log('PageProfile componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -337,7 +315,11 @@ class PageProfile extends Block {
                         UserController
                             .getUser()
                             .then(
-                                () => this._updateUserData()
+                                (user) => {
+                                    if (user) {
+                                        this._updateUserData();
+                                    }
+                                }
                             )
                             .catch(BaseController.showMessage);
                     } else {
@@ -353,38 +335,12 @@ class PageProfile extends Block {
         UserController.updateUserImage(this);
         UserController.updateUserData(this);
         UserController.updateUserName(this);
-
-        // console.log('store: ', store);
-        // // const t_login = this.getContent().querySelector(`input[name="${validator.login}"]`) as HTMLInputElement;
-        // // console.log('input[login] = ', t_login);
-        // // const {user} = store.getState();
-        // // console.log('user from state: ', user);
-        // // const usr2: IUserInfo = user as IUserInfo;
-        // // console.log('user IUserInfo from state: ', usr2);
-        // // t_login.value = usr2?.login;
-        //
-        // const {user} = store.getState();
-        // (this.getContent().querySelector(`input[name="${validator.propNames.email}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.email, validator.propNames.email);
-        // (this.getContent().querySelector(`input[name="${validator.propNames.login}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.login, validator.propNames.login);
-        // (this.getContent().querySelector(`input[name="${validator.propNames.first_name}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.first_name, validator.propNames.first_name);
-        // (this.getContent().querySelector(`input[name="${validator.propNames.second_name}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.second_name, validator.propNames.second_name);
-        // (this.getContent().querySelector(`input[name="${validator.propNames.display_name}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.display_name, validator.propNames.display_name);
-        // (this.getContent().querySelector(`input[name="${validator.propNames.phone}"]`) as HTMLInputElement).value = sanitize((user as IUserInfo)?.phone, validator.propNames.phone);
     }
 
     render() {
-        console.log('PageProfile render');
         return this.compile(tpl);
     }
 }
-
-// function mapUserToProps(state: Indexed) {
-//     return {
-//         name: state.user.name,
-//         avatar: state.user.avatar,
-//     };
-// }
-
 
 export default connect(
     (state) => ({

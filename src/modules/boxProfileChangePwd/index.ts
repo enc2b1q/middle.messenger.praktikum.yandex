@@ -4,15 +4,6 @@ import './style.scss';
 
 export default class BoxProfileChangePwd extends Block {
     render() {
-        console.log('boxProfileChangePwd render');
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('boxProfileChangePwd', tpl);
-//
-// import profileParamBox from '../../components/profileParamBox'
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }
