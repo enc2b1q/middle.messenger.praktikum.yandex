@@ -1,4 +1,3 @@
-// import renderDOM from "../utils/renderDOM";
 import PageLinks from "../pages/pageLinks";
 import Router from "../services/router";
 import PageError404 from "../pages/pageError404";
@@ -12,8 +11,6 @@ import PageChatDetails from "../pages/pageChatDetails";
 
 
 const router = new Router("#root");
-
-// const _pageLinks = new PageLinks();
 
 router
     .use("/", PageLogin)
@@ -37,8 +34,6 @@ router
     .use("/profileChangePwd.html", PageProfileChangePwd)
     .use("/messenger", PageChatDetails)
     .use("/messenger.html", PageChatDetails)
-    // .use("/messenger", PageChatSelection)
-    // .use("/messenger.html", PageChatSelection)
     .use("/chatDetails", PageChatDetails)
     .use("/chatDetails.html", PageChatDetails)
     .start();

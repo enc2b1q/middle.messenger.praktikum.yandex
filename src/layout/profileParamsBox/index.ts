@@ -8,9 +8,3 @@ export default class LayoutProfileParamsBox extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('layoutProfileParamsBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

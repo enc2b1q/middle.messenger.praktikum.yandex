@@ -76,25 +76,7 @@ const _formLogin = new FormLogin(
             _linkRegister
         ],
         events: {
-            submit: AuthController.processUserLoginSubmit
-            //     (e: SubmitEvent) => {
-            //     e.preventDefault();
-            //     const target = e.target as HTMLFormElement;
-            //     if (!target) {
-            //         return false;
-            //     }
-            //     const canSendDataToLogin = processFormData(target);
-            //     if (canSendDataToLogin) {
-            //         console.log('canSendDataToLogin');
-            //         //get form data as object
-            //         //send form data as object
-            //     }
-            //     else {
-            //         console.log('can not SendDataToLogin');
-            //     }
-            //     // validationSubmitHandler(e);
-            // }
-            ,
+            submit: AuthController.processUserLoginSubmit,
         },
         attr: {
             class: "layout-login-form",

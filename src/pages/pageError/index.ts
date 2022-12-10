@@ -8,12 +8,3 @@ export default class PageError extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('pageError', tpl);
-//
-// import errorBox from '../../components/errorBox';
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }
-

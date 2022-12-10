@@ -98,7 +98,6 @@ class ChatController {
                         {
                             msgText: el.content,
                             attr: {
-                                // class: "boxChatMessagesBodyItemText_wrapper boxChatMessagesBodyItemText_alignRight",
                                 class: classStr,
                             }
                         }
@@ -106,43 +105,6 @@ class ChatController {
                     arr.push(_boxChatMessagesBodyItem);
                 })
             }
-
-            // const N = 2;
-            // for (let i = 0; i < N; i++) {
-            //     const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
-            //         "div",
-            //         {
-            //             msgText: "Новый чат!",
-            //             attr: {
-            //                 // class: "boxChatMessagesBodyItemText_wrapper boxChatMessagesBodyItemText_alignRight",
-            //                 class: "boxChatMessagesBodyItemText_wrapper boxChatMessagesBodyItemText_alignLeft",
-            //             }
-            //         }
-            //     );
-            //     arr.push(_boxChatMessagesBodyItem1);
-            // }
-
-            // const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
-            //     "div",
-            //     {
-            //         msgText: "Новый чат!",
-            //         attr: {
-            //             // class: "boxChatMessagesBodyItemText_wrapper boxChatMessagesBodyItemText_alignRight",
-            //             class: "boxChatMessagesBodyItemText_wrapper boxChatMessagesBodyItemText_alignLeft",
-            //         }
-            //     }
-            // );
-            // arr.push(_boxChatMessagesBodyItem1);
-            // const _boxChatMessagesBodyItem2 = new BoxChatMessagesBodyItemText(
-            //     "div",
-            //     {
-            //         msgText: "привет!",
-            //         attr: {
-            //             class: "boxChatMessagesBodyItemText_wrapper boxChatMessagesBodyItemText_alignRight",
-            //         }
-            //     }
-            // );
-            // arr.push(_boxChatMessagesBodyItem2);
 
             arr.forEach(item => {
                 item.render();
@@ -171,7 +133,6 @@ class ChatController {
             elemChatContentHead!.style.display = 'none';
             elemChatContentNav!.style.display = 'none';
             elemBoxChatMessagesBodyWrapper!.textContent = "Выберите чат, чтобы отправить сообщение";
-
 
         }
     }
@@ -210,19 +171,6 @@ class ChatController {
         const currentUser = user as IUserInfo;
         const activeChatIdNum = activeChatId as number;
 
-        // const lastMsg1: ILastMessage = new LastMessage();
-        // lastMsg1.content = "This is test message";
-        // lastMsg1.time = "2022-12-06T14:22:22.000Z";
-        // lastMsg1.user = user as IUserInfo;
-        //
-        // const chatId1 = new ChatInfo();
-        // chatId1.avatar = "";
-        // chatId1.id = 100500;
-        // chatId1.last_message = lastMsg1;
-        // chatId1.title = "testTitle";
-        // chatId1.unread_count = 7;
-        //
-        // chatList.push(chatId1);
         const htmlList = block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement;
         htmlList!.textContent = "";
         if (!chatList || !!chatList && chatList.length === 0) {
@@ -262,10 +210,6 @@ class ChatController {
                 const elem = _chatListItem.getContent();
                 console.log('elem: ', elem);
                 if (elem) {
-                    // const htmlList = (block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement);
-                    // if (chatList.length === 1) {
-                    //     htmlList!.textContent = "";
-                    // }
                     htmlList!.appendChild(elem);
                     console.log('htmlList: ', htmlList);
                 }
@@ -432,10 +376,6 @@ class ChatController {
             )
             .catch(BaseController.showMessage);
 
-        // const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
-        // if (elemMenu) {
-        //     elemMenu.style.display = 'none';
-        // }
         hideMenu();
     }
 
@@ -470,10 +410,6 @@ class ChatController {
             console.log('no activeChatIdNum to delete chat');
         }
 
-        // const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
-        // if (elemMenu) {
-        //     elemMenu.style.display = 'none';
-        // }
         hideMenu();
     }
 
@@ -487,7 +423,6 @@ class ChatController {
             console.log('canSendData');
             console.log(resObj.object);
 
-            //send form data as object
             ws.sendMessage(resObj.object.message);
         } else {
             console.log('can not send Data');

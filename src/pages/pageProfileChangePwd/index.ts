@@ -55,7 +55,7 @@ const _inputProfileNewPasswordRepeat = getNewProfileParamInput({
 const _profileParamBoxNewPasswordRepeat = new ProfileParamBox(
     "div",
     {
-        name: validator.propNames.password_repeat, //"newPasswordRepeat",
+        name: validator.propNames.password_repeat,
         labelText: "Повторите новый пароль",
         input: _inputProfileNewPasswordRepeat,
 

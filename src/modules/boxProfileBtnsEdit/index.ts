@@ -8,12 +8,3 @@ export default class BoxProfileBtnsEdit extends Block {
         return this.compile(tpl);
     }
 }
-
-// import profileLinkEdit from '../../components/profileLinkEdit'
-//
-// Handlebars.registerPartial('boxProfileBtnsEdit', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }
-

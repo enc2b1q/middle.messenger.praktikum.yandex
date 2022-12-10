@@ -8,9 +8,3 @@ export default class LayoutLogin extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('layoutLogin', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

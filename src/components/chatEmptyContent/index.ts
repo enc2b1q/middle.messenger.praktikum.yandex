@@ -8,9 +8,3 @@ export default class ChatEmptyContent extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('chatEmptyContent', tpl);
-//
-// export default (props={}) => {
-// 	return tpl(props);
-// }

@@ -8,9 +8,3 @@ export default class ProfileLinkEdit extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('profileLinkEdit', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

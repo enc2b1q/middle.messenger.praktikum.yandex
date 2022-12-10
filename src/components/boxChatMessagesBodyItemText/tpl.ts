@@ -5,11 +5,3 @@ const tpl: string = `
 `;
 
 export default tpl;
-
-/*
-<div class="boxChatMessagesBodyItemText_text">
-    <div class="{{alignClass}}">
-        {{ msgText }}
-    </div>
-</div>
-*/

@@ -9,8 +9,3 @@ export default class BoxChatMessagesBodyItemText extends Block {
     }
 }
 
-// Handlebars.registerPartial('inputBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

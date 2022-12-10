@@ -8,11 +8,3 @@ export default class LayoutProfile extends Block {
         return this.compile(tpl);
     }
 }
-
-// import layoutSideBar from '../sideBar';
-//
-// Handlebars.registerPartial('layoutProfile', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

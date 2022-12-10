@@ -31,9 +31,3 @@ export const _linkBackToChatInst = new Link(
         }
     }
 );
-
-// Handlebars.registerPartial('link', tpl);
-//
-// export default (id, url, text) => {
-// 	return tpl({ id, url, text});
-// }

@@ -6,7 +6,6 @@ import FormChatMessage from "../../components/formChatMessage";
 import BoxChatMessage from "../../modules/boxChatMessage";
 import BoxChatMessagesBody from "../../modules/boxChatMessagesBody";
 import LayoutChatContentBox from "../../layout/chatContentBox";
-// import ChatListItem from "../../components/chatListItem";
 import ProfileLinkEdit from "../../components/profileLinkEdit";
 import LayoutChatSideBox from "../../layout/chatSideBox";
 import {formChatSideBoxInst as _formChatSideBox} from "../../components/formChatSideBox";
@@ -120,21 +119,6 @@ const _formChatMessage = new FormChatMessage(
     }
 );
 
-// const _btnSendMsg = new Button(
-//     "button",
-//     {
-//         text: "->",
-//         attr: {
-//             id: "boxChatMessage_send_btn-id",
-//             type: "submit",
-//             class: "button",
-//         },
-//         events: {
-//             click: ChatController.processChatDeleteUserClick,
-//         }
-//     }
-// );
-
 const _chat_content_footer = new BoxChatMessage(
     "div",
     {
@@ -146,33 +130,10 @@ const _chat_content_footer = new BoxChatMessage(
     }
 );
 
-// const _boxChatMessagesBodyItem1 = new BoxChatMessagesBodyItemText(
-//     "div",
-//     {
-//         msgText: "Новый чат!",
-//         // alignClass: "boxChatMessagesBodyItemText_alignLeft",
-//         attr: {
-//             class: "boxChatMessagesBodyItemText_wrapper",
-//         }
-//     }
-// );
-// const _boxChatMessagesBodyItem2 = new BoxChatMessagesBodyItemText(
-//     "div",
-//     {
-//         msgText: "привет!",
-//         // alignClass: "boxChatMessagesBodyItemText_alignRight",
-//         attr: {
-//             class: "boxChatMessagesBodyItemText_wrapper",
-//         }
-//     }
-// );
-
 const _chat_content_block = new BoxChatMessagesBody(
     "div",
     {
         boxChatMessagesBodyItems: [
-            // _boxChatMessagesBodyItem1,
-            // _boxChatMessagesBodyItem2
         ],
 
         attr: {
@@ -193,16 +154,6 @@ const _sideBarContent = new LayoutChatContentBox(
         }
     }
 );
-
-// const _chatListItem1 = new ChatListItem(
-//     "div",
-//     {
-//
-//         attr: {
-//             class: "chatListItem_wrapper",
-//         }
-//     }
-// );
 
 const _profileLink = new ProfileLinkEdit(
     "nav",
@@ -238,7 +189,6 @@ const _sideBar = new LayoutChatSideBox(
         chatAddBtn: _chatAddBtn,
         profileLink: _profileLink,
         boxChatList: [
-            // _chatListItem1,
         ],
         formChatSideBox: _formChatSideBox,
 
@@ -343,11 +293,6 @@ export default class PageChatDetails extends Block {
     _updateData() {
         ChatController.updateChats(this);
         ChatController.updateChatBody(this);
-
-        // const {activeChatId} = store.getState();
-        // if (activeChatId) {
-        //
-        // }
     }
 
     render() {

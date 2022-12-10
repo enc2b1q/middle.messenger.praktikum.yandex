@@ -2,7 +2,6 @@ import Block from "../../services/block";
 import tpl from './tpl';
 import './style.scss';
 import ProfileLinkEdit from "../../components/profileLinkEdit";
-// import ChatListItem from "../../components/chatListItem";
 import LayoutChatSideBox from "../../layout/chatSideBox";
 import {formChatSideBoxInst as _formChatSideBox} from "../../components/formChatSideBox";
 import ChatEmptyContent from "../../components/chatEmptyContent";
@@ -26,16 +25,6 @@ const _profileLink = new ProfileLinkEdit(
         }
     }
 );
-
-// const _chatListItem1 = new ChatListItem(
-//     "div",
-//     {
-//
-//         attr: {
-//             class: "chatListItem_wrapper",
-//         }
-//     }
-// );
 
 const _chatAddBtn = new Button(
     "button",
@@ -77,15 +66,10 @@ const _chat_content_block = new ChatEmptyContent(
     }
 );
 
-// const _chat_content_header = "";
-// const _chat_content_footer = "";
-
 const _sideBarContent = new LayoutChatContentBox(
     "div",
     {
-        // chat_content_header: _chat_content_header,
         chat_content_block: _chat_content_block,
-        // chat_content_footer: _chat_content_footer,
 
         attr: {
             class: "chat_content_wrapper",

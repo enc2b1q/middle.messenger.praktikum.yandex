@@ -19,13 +19,10 @@ export default class WS {
         console.log('onOpen');
         this.isLiveConnection = true;
 
-        //get msgs
         this.getLast20UnreadMessages();
 
-        //run ping
         if (!this.timerId) {
             this.timerId = setInterval(() => {
-                // console.log('ws ping');
                 this.socket.send(
                     JSON.stringify({
                         type: 'ping',
@@ -73,12 +70,8 @@ export default class WS {
     }
 
     private onMessage(event: MessageEvent) {
-        // console.log('onMessage: ', event);
-
-        //use type check on [msg] instead of try catch
         try {
             const parsedData = JSON.parse(event.data);
-            // console.log('parsedData: ', parsedData);
 
             if (Array.isArray(parsedData)) {
                 console.log('parsedData: ', parsedData);

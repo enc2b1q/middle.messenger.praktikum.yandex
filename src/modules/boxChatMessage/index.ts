@@ -8,10 +8,3 @@ export default class BoxChatMessage extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('boxChatMessage', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }
-

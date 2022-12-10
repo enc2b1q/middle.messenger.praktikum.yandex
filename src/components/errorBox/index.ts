@@ -8,11 +8,3 @@ export default class ErrorBox extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('errorBox', tpl);
-//
-// import link from '../link';
-//
-// export default (id, number, text) => {
-// 	return tpl({ id, number, text});
-// }

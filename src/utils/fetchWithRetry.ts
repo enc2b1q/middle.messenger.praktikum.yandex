@@ -1,5 +1,4 @@
 import HTTP, {HTTP_METHODS, RequestOptionsType} from "../services/http";
-// import { Indexed } from "../services/types";
 
 export default function fetchWithRetry(url: string, options: RequestOptionsType): Promise<any> {
     const retriesField = 'retries';
@@ -7,10 +6,6 @@ export default function fetchWithRetry(url: string, options: RequestOptionsType)
     if (typeof options !== 'object') {
         throw new Error('Должен быть object');
     }
-
-    // if (!options.hasOwnProperty(retriesField)) {
-    //     throw new Error(`Нет свойства ${retriesField}`);
-    // }
 
     const {method} = options;
     if (!method) {
@@ -26,14 +21,13 @@ export default function fetchWithRetry(url: string, options: RequestOptionsType)
         throw new Error(`${retriesField} д.б. числом`);
     }
     retCnt = Number(retCnt);
-    if (retCnt < 1) {   //Note: was <= 1
+    if (retCnt < 1) {
         throw new Error(`${retriesField} д.б. больше 0`);
     }
 
     for (let i = 0; i < retCnt; i++) {
         try {
-            const res: Promise<unknown> = new HTTP().request(url, options);
-            return res;
+            return new HTTP().request(url, options);
         } catch (e) {
             console.log(e);
         }

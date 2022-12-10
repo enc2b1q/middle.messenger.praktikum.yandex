@@ -8,9 +8,3 @@ export default class ChatListItem extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('inputBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

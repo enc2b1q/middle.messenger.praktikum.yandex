@@ -127,12 +127,10 @@ export default class Block {
         console.log(newProps, oldProps);
 
         return isEqual(newProps, oldProps);
-        // return true;
     }
 
     leave() {
         this.removeEvents();
-        // this._clearElement();
     }
 
     setProps(newProps: TypeMixedUnknownProps): void {
@@ -165,8 +163,6 @@ export default class Block {
     _render(): void {
         const block: Node | void = this.render();
         this._clearElement();
-        // this.removeEvents();
-        // this._element.innerHTML = '';
         if (block) {
             this._element.appendChild(block);
             this.addEvents();

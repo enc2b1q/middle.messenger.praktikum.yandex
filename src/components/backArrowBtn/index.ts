@@ -9,8 +9,3 @@ export default class BackArrowBtn extends Block {
     }
 }
 
-// Handlebars.registerPartial('backArrowBtn', tpl);
-//
-// export default (props={}) => {
-// 	return tpl(props);
-// }

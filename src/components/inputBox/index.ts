@@ -21,7 +21,6 @@ export function getNewInput(validatorPropName: string, type: string = "text", cl
                 id: validatorPropName,
                 name: validatorPropName,
                 class: className,
-                // pattern: validator.getValidationPatternString(validatorPropName),
                 title: validator.getValidationMsg(validatorPropName),
             },
             events: {
@@ -31,9 +30,3 @@ export function getNewInput(validatorPropName: string, type: string = "text", cl
         }
     );
 }
-
-// Handlebars.registerPartial('inputBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

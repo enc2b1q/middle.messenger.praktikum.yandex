@@ -8,9 +8,3 @@ export default class LayoutSideBar extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('layoutSideBar', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

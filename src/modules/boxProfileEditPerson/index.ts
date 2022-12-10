@@ -8,11 +8,3 @@ export default class BoxProfileEditPerson extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('boxProfileEditPerson', tpl);
-//
-// import profileParamBox from '../../components/profileParamBox'
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

@@ -10,13 +10,6 @@ import BaseController from "./baseController";
 
 class AuthController {
 
-
-    // private authApi: AuthApi;
-    //
-    // constructor() {
-    //     this.authApi = new AuthApi();
-    // }
-
     async getUserInfo(): Promise<IUserInfo | undefined> {
         let user: IUserInfo | undefined;
         await AuthApi.getUserInfo()
@@ -68,28 +61,10 @@ class AuthController {
             //todo: auth controller => login api
             const ctrl = new AuthController();
             await ctrl.login(resObj.object);
-            //send form data as object
         } else {
             console.log('can not send Data to Login Api');
         }
 
-        // e.preventDefault();
-        // const target = e.target as HTMLFormElement;
-        // if (!target) {
-        //     return false;
-        // }
-        // //validationSubmitHandler
-        // let data = {} as LoginFormModel;
-        // console.log('let data = {} as LoginFormModel;', data);
-        // const canSendDataToLogin = processFormData<LoginFormModel>(target, data);
-        // if (canSendDataToLogin) {
-        //     //todo: auth controller => login api
-        //     console.log('canSendDataToLogin');
-        //     //get form data as object
-        //     //send form data as object
-        // } else {
-        //     console.log('can not send Data to Login Api');
-        // }
     }
 
     async processUserLogout(e: Event) {

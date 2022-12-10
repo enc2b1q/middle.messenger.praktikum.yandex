@@ -8,9 +8,3 @@ export default class LayoutEmpty extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('layoutEmpty', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

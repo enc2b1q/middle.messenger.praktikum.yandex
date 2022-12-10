@@ -52,10 +52,3 @@ export function getNewProfileParamInput(props: { validatorPropName: string, type
         }
     );
 }
-
-
-// Handlebars.registerPartial('profileParamBox', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl({props});
-// }

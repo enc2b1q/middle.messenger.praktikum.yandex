@@ -8,9 +8,3 @@ export default class BoxProfileImage extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('boxProfileImage', tpl);
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

@@ -8,11 +8,3 @@ export default class BoxProfileChangePwd extends Block {
         return this.compile(tpl);
     }
 }
-
-// Handlebars.registerPartial('boxProfileChangePwd', tpl);
-//
-// import profileParamBox from '../../components/profileParamBox'
-//
-// export default (props = {}) => {
-// 	return tpl(props);
-// }

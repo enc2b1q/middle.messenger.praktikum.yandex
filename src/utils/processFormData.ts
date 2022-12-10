@@ -1,15 +1,3 @@
-// export const first_name: string = 'first_name';
-// export const second_name: string = 'second_name';
-// export const display_name: string = 'display_name';
-// export const login: string = 'login';
-// export const email: string = 'email';
-// export const password: string = 'password';
-// export const oldPassword: string = 'oldPassword';
-// export const newPassword: string = 'newPassword';
-// export const password_repeat: string = 'password_repeat';
-// export const phone: string = 'phone';
-// export const message: string = 'message';
-
 import {ValidationResult} from "../services/types";
 import merge from "./merge";
 
@@ -69,19 +57,6 @@ validationPatternMessages.set(patternPhone, msgPatternPhone);
 validationPatternMessages.set(patternMessage, msgPatternMessage);
 validationPatternMessages.set(patternChatTitle, msgPatternChatTitle);
 
-// const validationMsgs: Map<string, string> = new Map<string, string>();
-// validationMsgs.set(propNames.first_name, msgPatternNames);
-// validationMsgs.set(propNames.second_name, msgPatternNames);
-// validationMsgs.set(propNames.display_name, msgPatternNames);
-// validationMsgs.set(propNames.login, msgPatternLogin);
-// validationMsgs.set(propNames.email, msgPatternEmail);
-// validationMsgs.set(propNames.password, msgPatternPassword);
-// validationMsgs.set(propNames.oldPassword, msgPatternPassword);
-// validationMsgs.set(propNames.newPassword, msgPatternPassword);
-// validationMsgs.set(propNames.password_repeat, msgPatternPassword);
-// validationMsgs.set(propNames.phone, msgPatternPhone);
-// validationMsgs.set(propNames.message, msgPatternMessage);
-
 export function getValidationMsg(name: string): string {
     if (isKeyInPropNames(name)) {
         const regexp = validationPatternRegExps.get(name);
@@ -93,7 +68,6 @@ export function getValidationMsg(name: string): string {
             throw new Error(`No regExp msg for ${name}`);
         }
         return regExpMsg;
-        // return validationMsgs.get(name) ?? "";
     } else {
         throw new Error(`No key: ${name} in propNames enum`);
     }
@@ -129,22 +103,12 @@ export function checkInputElement(target: HTMLInputElement): void {
     if (!target.readOnly) {
         //NOTE: текст подсказки из title input'а выводится при наведении курсора на поле без внедрения доп. функций.
 
-        // const el: HTMLElement = document.querySelector(`[for="${target.name}"].validation`) as HTMLElement;
-        // console.log(el);
         const validationResult: boolean = validateItem(target.name, target.value);
         console.log(`validation of ${target.name}: ${validationResult}`);
         if (validationResult) {
             target.style.backgroundColor = 'white';
-            // if (el) {
-            //     el.textContent = "";
-            //     el.classList.remove(`validation_active`);
-            // }
         } else {
             target.style.backgroundColor = 'pink';
-            // if (el) {
-            //     el.textContent = target.title;
-            //     el.classList.add(`validation_active`);
-            // }
         }
     }
 }
@@ -176,21 +140,6 @@ export function validateItem(key: string, value: string): boolean {
         throw new Error(`No key: ${key} in propNames enum`);
     }
 
-    // if (key === propNames.first_name || key === propNames.second_name || key === propNames.display_name) {
-    //     return patternNames.test(value);
-    // } else if (key === propNames.login) {
-    //     return patternLogin.test(value);
-    // } else if (key === propNames.email) {
-    //     return patternEmail.test(value);
-    // } else if (key === propNames.password || key === propNames.password_repeat || key === propNames.oldPassword || key === propNames.newPassword) {
-    //     return patternPassword.test(value);
-    // } else if (key === propNames.phone) {
-    //     return patternPhone.test(value);
-    // } else if (key === propNames.message) {
-    //     return patternMessage.test(value);
-    // } else {
-    //     return true;
-    // }
 }
 
 function isString(value: unknown): value is string {
@@ -201,10 +150,8 @@ function isString(value: unknown): value is string {
 export default function processFormData(form: HTMLFormElement): boolean {
     console.log('processFormData, form:', form);
 
-    // const formEl: HTMLFormElement = document.querySelector('#form') as HTMLFormElement;
     const formEl: HTMLFormElement = form;
     if (formEl) {
-        // const inputElementsNL: NodeListOf<Element> = document.querySelectorAll('#form input');
         const inputElementsNL: NodeListOf<Element> = form.querySelectorAll('input');
         console.log("processFormData inputElementsNL:", inputElementsNL);
         if (inputElementsNL) {
@@ -213,15 +160,9 @@ export default function processFormData(form: HTMLFormElement): boolean {
                 inputElements.forEach(el => checkInputElement(el));
             }
         }
-        //write to console
         const data = Object.fromEntries(new FormData(formEl).entries());
-        // console.log(data);
-        const isValidated = validateProps(data);
-        if (!isValidated) {
-            return false;
-        }
-        //sendData() //fetchWithRetry
-        return true;
+        return validateProps(data);
+
     }
     return false;
 
@@ -231,7 +172,7 @@ export default function processFormData(form: HTMLFormElement): boolean {
 
 function checkData<T extends Record<string, any>>(form: HTMLFormElement, type: (new () => T)): ValidationResult<T> {
     let model = new type();
-    // console.log(model);
+
     const target: Record<string, any> = {};
 
     const keys = Object.keys(model);
@@ -242,20 +183,19 @@ function checkData<T extends Record<string, any>>(form: HTMLFormElement, type: (
     let returnObject: ValidationResult<T> = new ValidationResult<T>(type);
 
     const inputElementsNodeList: NodeListOf<Element> = form.querySelectorAll('input');
-    // console.log('input Node List:', inputElementsNodeList);
+
     if (inputElementsNodeList) {
         let tValidation: boolean | null = null;
         (Array.from(inputElementsNodeList) as HTMLInputElement[]).forEach(inputElement => {
-                // console.log('inputElement:', inputElement);
+
                 if (!inputElement) {
                     return;
                 }
                 if (!inputElement.readOnly) {
-                    // console.log('inputElement.name = ', inputElement.name);
-                    // console.log('inputElement.value = ', inputElement.value);
+
                     if (Object.hasOwn(model, inputElement.name)) {
                         let validationItemResult: boolean;
-                        // console.log('model has element', inputElement.name);
+
                         if (isString(inputElement.value)) {
                             validationItemResult = validateItem(inputElement.name, inputElement.value);
                             console.log(`validation of item=${inputElement.name} with value=${inputElement.value}: ${validationItemResult}`);
@@ -280,8 +220,7 @@ function checkData<T extends Record<string, any>>(form: HTMLFormElement, type: (
                         console.log('model has not element:', inputElement.name);
                         throw new Error(`model of type ${type.name} has not element: ${inputElement.name}`);
                     }
-                    // console.log('model:', model);
-                    // console.log('target:', target);
+
                 }
             }
         );
@@ -306,8 +245,7 @@ export function validationTypedSubmitHandler<T extends Record<string, any>>(e: E
         console.log('no target');
         return new ValidationResult<T>(type);
     }
-    const res: ValidationResult<T> = checkData<T>(target, type);
-    return res;
+    return checkData<T>(target, type);
 }
 
 export function validationSubmitHandler(e: Event) {
@@ -318,7 +256,7 @@ export function validationSubmitHandler(e: Event) {
     e.preventDefault();
     console.log('submit');
     processFormData(target);
-    // checkData<LoginFormModel>(target, LoginFormModel);
+
 }
 
 export const validationInputHandler = (e: Event) => {
@@ -328,9 +266,8 @@ export const validationInputHandler = (e: Event) => {
     }
     e.preventDefault();
 
-    if (!target.readOnly) {     //if (!attr["readonly"])
+    if (!target.readOnly) {
         checkInputElement(target);
     }
 
-    // processFormData();
 }

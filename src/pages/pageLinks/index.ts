@@ -1,7 +1,6 @@
 import "./style.scss";
 
 import tpl from "./tpl";
-// import renderDOM from "../../utils/renderDOM";
 import BoxLinks from "../../modules/boxLinks";
 import Block from "../../services/block";
 
@@ -30,5 +29,3 @@ export default class PageLinks extends Block {
         return this.compile(tpl);
     }
 }
-
-// renderDOM("#root", _layoutEmpty);
