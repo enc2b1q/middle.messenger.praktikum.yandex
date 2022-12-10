@@ -102,8 +102,8 @@ class UserController {
             }
 
             const dynamicKey = "password_repeat";
-            let {[dynamicKey]: _, ...rest} = resObj.object;
-            let dataToSend = {...rest} as ChangePasswordFormModel;
+            const {[dynamicKey]: _, ...rest} = resObj.object;
+            const dataToSend = {...rest} as ChangePasswordFormModel;
             console.log('can send data to ChangePassword');
             console.log(dataToSend);
             const ctrl = new UserController();
@@ -121,7 +121,7 @@ class UserController {
         console.log(resObj);
         const canSendDataToLogin = resObj.isValidated;
         if (canSendDataToLogin) {
-            let dataToSend = resObj.object;
+            const dataToSend = resObj.object;
             console.log('can send data to EditProfile');
             console.log(dataToSend);
             const ctrl = new UserController();
