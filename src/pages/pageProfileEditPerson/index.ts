@@ -20,7 +20,7 @@ import FormUploadImage from "../../components/formUploadImage";
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/settings.html",
+        url: "/settings",
 
         attr: {
             class: "backArrowBtn-parentBox",

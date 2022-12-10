@@ -120,7 +120,7 @@ const _buttonRegister = new Button(
 const _linkEnter = new Link(
     "nav",
     {
-        url: "/login.html",
+        url: "/login",
         text: "Войти",
         attr: {
             class: "link",

@@ -2,31 +2,31 @@ const tpl: string = `
 <h2>Страницы</h2>
 <ul>
     <li>
-        <a href="./error404.html">Страница 404</a>
+        <a href="./error404">Страница 404</a>
     </li>
     <li>
-        <a href="./error5xx.html">Страница 500</a>
+        <a href="./error5xx">Страница 500</a>
     </li>
     <li>
-        <a href="./messenger.html">Выбрать чат</a>
+        <a href="./messenger">Выбрать чат</a>
     </li>
     <li>
-        <a href="./chatDetails.html">Чат</a>
+        <a href="./chatDetails">Чат</a>
     </li>
     <li>
-        <a href="./login.html">Вход</a>
+        <a href="./login">Вход</a>
     </li>
     <li>
-        <a href="./sign-up.html">Регистрация</a>
+        <a href="./sign-up">Регистрация</a>
     </li>
     <li>
-        <a href="./settings.html">Профиль</a>
+        <a href="./settings">Профиль</a>
     </li>
     <li>
-        <a href="./profileEditPerson.html">Изменить данные</a>
+        <a href="./profileEditPerson">Изменить данные</a>
     </li>
     <li>
-        <a href="./profileChangePwd.html">Изменить пароль</a>
+        <a href="./profileChangePwd">Изменить пароль</a>
     </li>
 </ul>
 `;

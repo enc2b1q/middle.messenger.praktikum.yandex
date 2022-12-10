@@ -158,7 +158,7 @@ const _sideBarContent = new LayoutChatContentBox(
 const _profileLink = new ProfileLinkEdit(
     "nav",
     {
-        url: "/settings.html",
+        url: "/settings",
         profileLinkEdit_color_class: "profileLinkEdit_a_gray",
         linkText: "Профиль",
 

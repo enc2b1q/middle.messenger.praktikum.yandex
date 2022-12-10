@@ -23,7 +23,7 @@ import GenericTag from "../../components/genericTag";
 const _sideBar = new BackArrowBtn(
     "div",
     {
-        url: "/messenger.html",
+        url: "/messenger",
 
         attr: {
             class: "backArrowBtn-parentBox",
@@ -187,7 +187,7 @@ const _profileParamBoxPhone = new ProfileParamBox(
 const _profileLinkEditPersonEdit = new ProfileLinkEdit(
     "nav",
     {
-        url: "/profileEditPerson.html",
+        url: "/profileEditPerson",
         profileLinkEdit_color_class: "profileLinkEdit_a_blue",
         linkText: "Изменить данные",
 
@@ -199,7 +199,7 @@ const _profileLinkEditPersonEdit = new ProfileLinkEdit(
 const _profileLinkEditChangePwd = new ProfileLinkEdit(
     "nav",
     {
-        url: "/profileChangePwd.html",
+        url: "/profileChangePwd",
         profileLinkEdit_color_class: "profileLinkEdit_a_blue",
         linkText: "Изменить пароль",
 
@@ -211,7 +211,7 @@ const _profileLinkEditChangePwd = new ProfileLinkEdit(
 const _profileLinkEditLogin = new ProfileLinkEdit(
     "nav",
     {
-        url: "/login.html",
+        url: "/login",
         profileLinkEdit_color_class: "profileLinkEdit_a_red",
         linkText: "Выйти",
         events: {
