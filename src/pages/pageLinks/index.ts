@@ -25,7 +25,6 @@ export default class PageLinks extends Block {
     }
 
     render() {
-        console.log('PageLinks render');
         return this.compile(tpl);
     }
 }

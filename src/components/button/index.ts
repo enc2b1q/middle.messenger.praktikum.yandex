@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class Button extends Block {
     render() {
-        console.log('button render');
         return this.compile(tpl);
     }
 

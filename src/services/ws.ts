@@ -16,7 +16,6 @@ export default class WS {
     private urlPrefix = 'wss://ya-praktikum.tech/ws/chats';
 
     private onOpen() {
-        console.log('onOpen');
         this.isLiveConnection = true;
 
         this.getLast20UnreadMessages();
@@ -33,7 +32,6 @@ export default class WS {
     }
 
     private getLast20UnreadMessages(startMsg: number = 0) {
-        console.log('getLast20UnreadMessages');
         this.socket.send(
             JSON.stringify({
                 content: `${startMsg}`,
@@ -43,9 +41,7 @@ export default class WS {
     }
 
     sendMessage(message: string) {
-        console.log('sendMessage: ', message);
         if (this.isLiveConnection) {
-            console.log('ws isLiveConnection');
             this.socket.send(
                 JSON.stringify({
                     content: message,
@@ -54,12 +50,10 @@ export default class WS {
             );
         }
         else {
-            console.log('ws not isLiveConnection');
         }
     }
 
     private onClose() {
-        console.log('onClose');
         this.isLiveConnection = false;
 
         //clear timer
@@ -74,7 +68,6 @@ export default class WS {
             const parsedData = JSON.parse(event.data);
 
             if (Array.isArray(parsedData)) {
-                console.log('parsedData: ', parsedData);
                 const prevMsgs = parsedData.map((el) => {
                     const msg = new FullMessage;
                     msg.chat_id = el.id;
@@ -85,10 +78,8 @@ export default class WS {
                     return msg;
                 }).reverse();
                 store.set(StoreKeys.messages, prevMsgs);
-                console.log('store (messages): ', store);
                 this.block.updateChatBody();
             } else if (parsedData.type === 'message') {
-                console.log('parsedData: ', parsedData);
                 const {messages} = store.getState();
                 const msgToSave: [FullMessage] = messages as [FullMessage] ?? [];
                 const msg = new FullMessage;
@@ -99,29 +90,23 @@ export default class WS {
                 msg.content = parsedData.content;
                 msgToSave.push(msg);
                 store.set(StoreKeys.messages, msgToSave);
-                console.log('store (messages): ', store);
                 this.block.updateChatBody();
             } else if (parsedData.type === 'pong'){
                 //do nothing
-                // console.log('pong: ', parsedData);
             }  else if (parsedData.type === 'error') {
                 BaseController.showMessage(parsedData.content);
             }
             else {
-                console.log('unsupported onMessage data: ', parsedData);
             }
 
         } catch (err: any) {
-            console.log('onMessage error: ', err);
         }
 
 
     }
 
     private onError(event: ErrorEvent) {
-        console.log('onError, event: ', event);
-        console.log('onError, error msg: ', event.message);
-        console.log('onError, error: ', event.error);
+        console.log(event.message);
     }
 
 
@@ -130,23 +115,18 @@ export default class WS {
     }
 
     connect() {
-        console.log('ws.connect');
-        console.log('store: ', store);
         const {activeChatId, user} = store.getState();
         const activeChatIdNum = activeChatId as number;
         const userTyped = user as IUserInfo;
 
         if (!activeChatIdNum) {
-            console.log('no activeChatId at store: ', activeChatId);
             return;
         }
         if (!userTyped) {
-            console.log('no user at store: ', user);
             return;
         }
 
         if (this.wsUserId === userTyped.id && this.wsChatId === activeChatIdNum) {
-            console.log('current ws chat and user. return;');
             return;
         }
 
@@ -158,19 +138,16 @@ export default class WS {
         ChatApi.takeChatToken(activeChatIdNum)
             .then(
                 (data) => {
-                    console.log('ChatToken is taken: ', data.token);
                     if (this.wsChatId !== undefined) {
                         this.socket.removeEventListener('open', onOpen);
                         this.socket.removeEventListener('close', onClose);
                         this.socket.removeEventListener('message', onMessage);
                         this.socket.removeEventListener('error', onError);
                         const strCloseSocket = `Connection to chat ${this.wsChatId} is closed by user. New chat selected`;
-                        console.log(strCloseSocket);
                         this.socket.close(1000, strCloseSocket);
                     }
 
                     const url = `${this.urlPrefix}/${userTyped.id}/${activeChatIdNum}/${data.token}`;
-                    console.log('add ws url: ', url);
                     this.socket = new WebSocket(url);
                     this.socket.addEventListener('open', onOpen);
                     this.socket.addEventListener('close', onClose);

@@ -24,21 +24,17 @@ class AuthController {
     }
 
     async login(model: LoginFormModel) {
-        console.log('AuthController.login()')
         await AuthApi.login(model)
             .then(
                 () => {
-                    console.log('success auth');
                     const router = new Router("#root");
                     router.go("/messenger");
-                    // router.go("/settings");
                 }
             )
             .catch(BaseController.showMessage);
     }
 
     async signup(model: SignupFormModel) {
-        console.log('AuthController.signup()')
         await AuthApi.signup(model)
             .then(
                 () => {
@@ -51,29 +47,20 @@ class AuthController {
 
     async processUserLoginSubmit(e: SubmitEvent) {
         e.preventDefault();
-        console.log('submit: AuthController processUserLoginSubmit');
         const resObj = validationTypedSubmitHandler<LoginFormModel>(e, LoginFormModel);
-        console.log(resObj);
         const canSendDataToLogin = resObj.isValidated;
         if (canSendDataToLogin) {
-            console.log('canSendDataToLogin');
-            console.log(resObj.object);
-            //todo: auth controller => login api
             const ctrl = new AuthController();
             await ctrl.login(resObj.object);
-        } else {
-            console.log('can not send Data to Login Api');
         }
 
     }
 
     async processUserLogout(e: Event) {
         e.preventDefault();
-        console.log('click AuthController.processUserLogout');
         await AuthApi.logout()
             .then(
                 () => {
-                    console.log('success logout');
                     const router = new Router("#root");
                     router.go("/")
                 })
@@ -82,9 +69,7 @@ class AuthController {
 
     async processUserSignupSubmit(e: SubmitEvent) {
         e.preventDefault();
-        console.log('submit: AuthController processUserSignupSubmit');
         const resObj = validationTypedSubmitHandler<SignupViewFormModel>(e, SignupViewFormModel);
-        console.log(resObj);
         const canSendDataToLogin = resObj.isValidated;
         if (canSendDataToLogin) {
             if (resObj.object.password != resObj.object.password_repeat) {
@@ -95,12 +80,8 @@ class AuthController {
             const dynamicKey = "password_repeat";
             let {[dynamicKey]: _, ...rest} = resObj.object;
             let dataToSend = {...rest} as SignupFormModel;
-            console.log('can Send Data To Signup');
-            console.log(dataToSend);
             const ctrl = new AuthController();
             await ctrl.signup(dataToSend);
-        } else {
-            console.log('can not send Data to Signup Api');
         }
     }
 

@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class Link extends Block {
     render() {
-        console.log('link render');
         return this.compile(tpl);
     }
 

@@ -7,7 +7,6 @@ import {validationInputHandler} from "../../utils/processFormData";
 
 export default class ProfileParamBox extends Block {
     render() {
-        console.log('profileParamBox render');
         return this.compile(tpl);
     }
 }

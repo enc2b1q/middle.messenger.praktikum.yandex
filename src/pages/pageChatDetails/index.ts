@@ -225,7 +225,6 @@ export default class PageChatDetails extends Block {
 
     leave() {
         if (this.chatsTimerId) {
-            console.log('leave clearInterval');
             clearInterval(this.chatsTimerId);
             this.chatsTimerId = undefined;
             store.set(StoreKeys.chatsTimerId, this.chatsTimerId);
@@ -234,7 +233,6 @@ export default class PageChatDetails extends Block {
     }
 
     componentDidMount() {
-        console.log('PageChatDetails componentDidMount');
         ws.attach(this);
         BaseController.testAuth()
             .then(
@@ -251,7 +249,6 @@ export default class PageChatDetails extends Block {
 
                         const {chatsTimerId} = store.getState();
                         const chatsTimerIdNum = chatsTimerId as number;
-                        console.log(`timers (componentDidMount): this.chatsTimerId=${this.chatsTimerId}, store: chatsTimerId=${chatsTimerId}, chatsTimerIdNum=${chatsTimerIdNum}`);
 
                         if (chatsTimerIdNum != null) {
                             clearInterval(chatsTimerIdNum);
@@ -260,7 +257,6 @@ export default class PageChatDetails extends Block {
                             clearInterval(this.chatsTimerId);
                         }
                         this.chatsTimerId = setInterval(() => {
-                            console.log('setInterval getChats');
                             ChatController.getChats()
                                 .then(
                                     () => {
@@ -296,7 +292,6 @@ export default class PageChatDetails extends Block {
     }
 
     render() {
-        console.log('PageChatDetails render');
         return this.compile(tpl);
     }
 }

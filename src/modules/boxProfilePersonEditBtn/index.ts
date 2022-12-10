@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class BoxProfilePersonEditBtn extends Block {
     render() {
-        console.log('boxProfilePersonEditBtn render');
         return this.compile(tpl);
     }
 }

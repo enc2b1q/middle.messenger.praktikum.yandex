@@ -179,7 +179,6 @@ export default class PageProfileChangePwd extends Block {
     }
 
     componentDidMount() {
-        console.log('PageProfileChangePwd componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -209,7 +208,6 @@ export default class PageProfileChangePwd extends Block {
     }
 
     render() {
-        console.log('PageProfileChangePwd render');
         return this.compile(tpl);
     }
 }

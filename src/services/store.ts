@@ -22,13 +22,9 @@ class Store extends EventBus {
     };
 
     public set(path: string, value: unknown) {
-        console.log('new saving to store:');
-        console.log('path: ', path);
-        console.log('value: ', value);
 
         set(this.state, path, value);
 
-        console.log('state:', this.state);
 
         this.emit(StoreEvents.UPDATED);
     };

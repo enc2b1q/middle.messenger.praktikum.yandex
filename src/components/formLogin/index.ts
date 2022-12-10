@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class FormLogin extends Block {
     render() {
-        console.log('formLogin render');
         return this.compile(tpl);
     }
 

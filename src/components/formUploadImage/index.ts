@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class FormUploadImage extends Block {
     render() {
-        console.log('formUploadImage render');
         return this.compile(tpl);
     }
 

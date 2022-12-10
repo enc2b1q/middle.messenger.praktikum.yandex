@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class BoxProfile extends Block {
     render() {
-        console.log('boxProfile render');
         return this.compile(tpl);
     }
 }

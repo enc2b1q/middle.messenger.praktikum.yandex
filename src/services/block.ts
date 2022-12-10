@@ -123,8 +123,6 @@ export default class Block {
     }
 
     componentDidUpdate(oldProps: TypeMixedUnknownProps & TypeDict<Block>, newProps: TypeMixedUnknownProps & TypeDict<Block>): boolean {
-        console.log('block componentDidUpdate: (newProps, oldProps):')
-        console.log(newProps, oldProps);
 
         return isEqual(newProps, oldProps);
     }
@@ -134,7 +132,6 @@ export default class Block {
     }
 
     setProps(newProps: TypeMixedUnknownProps): void {
-        console.log('block setProps:')
         if (!newProps) {
             return;
         }
@@ -202,12 +199,10 @@ export default class Block {
     }
 
     show(): void {
-        console.log('Block-show');
         this.getContent().style.display = 'block';
     }
 
     hide(): void {
-        console.log('Block-hide');
         this.getContent().style.display = 'none';
     }
 

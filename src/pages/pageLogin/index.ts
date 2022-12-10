@@ -121,7 +121,6 @@ export default class PageLogin extends Block {
     }
 
     componentDidMount() {
-        console.log('PageLogin componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -135,7 +134,6 @@ export default class PageLogin extends Block {
     }
 
     render() {
-        console.log('PageLogin render');
         return this.compile(tpl);
     }
 }

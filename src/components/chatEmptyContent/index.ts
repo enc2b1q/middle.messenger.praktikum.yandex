@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class ChatEmptyContent extends Block {
     render() {
-        console.log('chatEmptyContent render');
         return this.compile(tpl);
     }
 }

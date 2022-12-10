@@ -30,12 +30,9 @@ function hideMenu() {
 class ChatController {
 
     async getChats() {
-        console.log('ChatController.getChats()');
         await ChatApi.getChats()
             .then(
                 (data: IChatInfo[]) => {
-                    console.log('success getChats');
-                    console.log('IChatInfo[]: ', data);
                     store.set(StoreKeys.chats, data);
                 }
             )
@@ -43,21 +40,12 @@ class ChatController {
     }
 
     updateChatBody(block: Block) {
-        console.log('updateChatBody store: ', store);
         const {activeChatId, chats, messages, user} = store.getState();
 
-        const elemContent = (block.getContent().querySelector(`.sideBarContent.elemSideBar`) as HTMLElement);
-        console.log(elemContent);
         const elemChatContentHead = (block.getContent().querySelector(`.chat_content_head`) as HTMLElement);
-        console.log(elemChatContentHead);
-
-        const elemChatContentBody = (block.getContent().querySelector(`.chat_content_body`) as HTMLElement);
-        console.log(elemChatContentBody);   //center block
 
         const elemChatContentNav = (block.getContent().querySelector(`.chat_content_nav`) as HTMLElement);
-        console.log(elemChatContentNav);
         const elemBoxChatMessagesBodyWrapper = (block.getContent().querySelector(`.boxChatMessagesBody_wrapper`) as HTMLElement);
-        console.log(elemBoxChatMessagesBodyWrapper);
 
         let typedUser = user as IUserInfo;
         if (!typedUser) {
@@ -75,7 +63,6 @@ class ChatController {
 
 
         if (activeChatId) {
-            console.log('update chat msgs');
             elemChatContentHead!.style.display = 'flex';
             elemChatContentNav!.style.display = 'flex';
             elemBoxChatMessagesBodyWrapper!.textContent = "";
@@ -87,11 +74,8 @@ class ChatController {
             const arr: BoxChatMessagesBodyItemText[] = [];
             if (messagesTyped) {
                 messagesTyped.forEach(el => {
-                    console.log('messagesTyped.forEach el: ', el);
                     const alignStr = `${((el.user_id == typedUser.id.toString()) ? " boxChatMessagesBodyItemText_alignRight" : "")}`;
-                    console.log('alignStr:', alignStr);
                     const classStr = 'boxChatMessagesBodyItemText_wrapper' + alignStr;
-                    console.log('classStr:', classStr);
 
                     const _boxChatMessagesBodyItem = new BoxChatMessagesBodyItemText(
                         "div",
@@ -112,16 +96,11 @@ class ChatController {
             })
 
             const chatList = chats as IChatInfo[];
-            console.log('chatList', chatList);
             if (chatList) {
-                console.log('activeChatId: ', activeChatId);
                 const activeChatIdNum = activeChatId as Number;
-                console.log('activeChatIdNum: ', activeChatIdNum);
                 const activeChat = chatList.filter(x => x.id == activeChatIdNum); //no strict
-                console.log('filtered activeChat: ', activeChat);
                 if (!!activeChat && activeChat.length === 1) {
                     const elChatName = block.getContent().querySelector(`.boxChatHeader_username`) as HTMLElement;
-                    console.log(elChatName)
                     if (elChatName) {
                         elChatName!.textContent = (activeChat[0] as IChatInfo).title
                     }
@@ -129,7 +108,6 @@ class ChatController {
             }
 
         } else {
-            console.log('no activeChatId to update');
             elemChatContentHead!.style.display = 'none';
             elemChatContentNav!.style.display = 'none';
             elemBoxChatMessagesBodyWrapper!.textContent = "Выберите чат, чтобы отправить сообщение";
@@ -138,24 +116,18 @@ class ChatController {
     }
 
     updateActiveChats(block: Block) {
-        console.log('updateActiveChats store: ', store);
         const {activeChatId} = store.getState();
         const activeChatsNS = block.getContent().querySelectorAll(`.chatListItem_wrapper.active`);
         if (activeChatsNS) {
             const activeChatsArr = Array.from(activeChatsNS);
             activeChatsArr.forEach(el => {
-                console.log('active el: ', el);
-                console.log('active el classList: ', el.classList);
                 el.classList.remove("active");
             })
         }
         const activeChatIdStr = activeChatId as string;
         if (!!activeChatIdStr) {
-            console.log('activeChatIdStr: ', activeChatIdStr);
             const toActiveCh = block.getContent().querySelector('#chatId' + `${activeChatId}` + '.chatListItem_wrapper');
-            console.log('toActiveCh: ', toActiveCh);
             if (toActiveCh) {
-                console.log('toActiveCh classList: ', toActiveCh.classList);
                 toActiveCh.classList.add("active");
             }
         }
@@ -163,10 +135,7 @@ class ChatController {
     }
 
     updateChats(block: Block) {
-        console.log('updateChats');
-        console.log('store: ', store);
         const {chats, user, activeChatId} = store.getState();
-        console.log('chats at store:', chats);
         const chatList = chats as IChatInfo[];
         const currentUser = user as IUserInfo;
         const activeChatIdNum = activeChatId as number;
@@ -174,11 +143,9 @@ class ChatController {
         const htmlList = block.getContent().querySelector(`.layout_chatSideBox_chatList`) as HTMLElement;
         htmlList!.textContent = "";
         if (!chatList || !!chatList && chatList.length === 0) {
-            console.log('chatList is empty:', chatList);
             htmlList!.textContent = "Чаты отсутствуют";
             store.set(StoreKeys.activeChatId, undefined);
         } else {
-            console.log('chatList:', chatList);
             chatList.forEach(chatInfoItem => {
                 const _chatListItem = new ChatListItem(
                     "div",
@@ -190,11 +157,8 @@ class ChatController {
                         messageText: chatInfoItem.last_message ? getFirstMsgText(chatInfoItem.last_message.content) : "",
                         events: {
                             click: () => {
-                                console.log('ChatListItem clicked');
                                 const activeChatIdValue = chatInfoItem.id.toString();
-                                console.log('activeChatIdValue: ', activeChatIdValue);
                                 store.set(StoreKeys.activeChatId, activeChatIdValue);
-                                console.log(store);
                                 const ctrl = new ChatController();
                                 ctrl.updateActiveChats(block);
                                 ctrl.updateChatBody(block);
@@ -208,10 +172,8 @@ class ChatController {
                 );
                 _chatListItem.render();
                 const elem = _chatListItem.getContent();
-                console.log('elem: ', elem);
                 if (elem) {
                     htmlList!.appendChild(elem);
-                    console.log('htmlList: ', htmlList);
                 }
             }); //foreach
 
@@ -242,7 +204,6 @@ class ChatController {
         model.title = title;
         ChatApi.createChat(model)
             .then(() => {
-                    console.log('success createChat');
                     const router = new Router("#root");
                     router.go("/messenger");
                 }
@@ -252,17 +213,14 @@ class ChatController {
 
     async processChatAddUserClick(e: Event) {
         e.preventDefault();
-        console.log('processChatAddUSerClick');
 
         const titleUserLoginStr = prompt('Введите логин пользователя для нахождения и добавления в чат');
-        console.log('titleUserLoginStr: ', titleUserLoginStr);
         if (!titleUserLoginStr) {
             BaseController.showMessage("Введите логин пользователя");
             return;
         }
 
         const isValidated = validator.validateItem(propNames.login, titleUserLoginStr);
-        console.log('isValidated: ', isValidated);
         if (!isValidated) {
             BaseController.showMessage(validator.getValidationMsg(propNames.login));
             return;
@@ -270,7 +228,6 @@ class ChatController {
 
         const model = new SearchUserFormModel;
         model.login = titleUserLoginStr;
-        console.log('SearchUserFormModel', model);
 
         UserApi.searchUser(model)
             .then(
@@ -285,27 +242,22 @@ class ChatController {
                     } else {
                         firstUser = data[0];
                     }
-                    console.log('firstUser: ', firstUser);
 
-                    console.log('add to chat');
                     const {activeChatId} = store.getState();
                     const activeChatIdNum = activeChatId as number;
                     if (!!activeChatIdNum) {
                         const model = new AddDeleteUsersToChatFormModel();
                         model.chatId = activeChatIdNum;
                         model.users.push(firstUser.id);
-                        console.log('AddUsersToChatFormModel: ', model);
 
                         ChatApi.addUsersToChat(model)
                             .then(
                                 () => {
-                                    console.log('success addUsersToChat');
                                     BaseController.showMessage('Пользователь успешно добавлен в чат');
                                 }
                             )
                             .catch(BaseController.showMessage);
                     } else {
-                        console.log('no activeChatIdNum to add user');
                     }
 
                 }
@@ -316,17 +268,14 @@ class ChatController {
 
     async processChatDeleteUserClick(e: Event) {
         e.preventDefault();
-        console.log('processChatDeleteUserClick');
 
         const userLoginStr = prompt('Введите логин пользователя для нахождения и удаления из чата');
-        console.log('userLoginStr: ', userLoginStr);
         if (!userLoginStr) {
             BaseController.showMessage("Введите логин пользователя");
             return;
         }
 
         const isValidated = validator.validateItem(propNames.login, userLoginStr);
-        console.log('isValidated: ', isValidated);
         if (!isValidated) {
             BaseController.showMessage(validator.getValidationMsg(propNames.login));
             return;
@@ -334,7 +283,6 @@ class ChatController {
 
         const model = new SearchUserFormModel;
         model.login = userLoginStr;
-        console.log('SearchUserFormModel', model);
 
         UserApi.searchUser(model)
             .then(
@@ -349,27 +297,22 @@ class ChatController {
                     } else {
                         selectedUser = data[0];
                     }
-                    console.log('selectedUser: ', selectedUser);
 
-                    console.log('delete from chat');
                     const {activeChatId} = store.getState();
                     const activeChatIdNum = activeChatId as number;
                     if (!!activeChatIdNum) {
                         const model = new AddDeleteUsersToChatFormModel();
                         model.chatId = activeChatIdNum;
                         model.users.push(selectedUser.id);
-                        console.log('Delete users from chat FormModel: ', model);
 
                         ChatApi.deleteUsersFromChat(model)
                             .then(
                                 () => {
-                                    console.log('success deleteUsersFromChat');
                                     BaseController.showMessage('Пользователь успешно удален из чата');
                                 }
                             )
                             .catch(BaseController.showMessage);
                     } else {
-                        console.log('no activeChatIdNum to delete user from chat');
                     }
 
                 }
@@ -381,12 +324,9 @@ class ChatController {
 
     async processChatDeleteClick(e: Event) {
         e.preventDefault();
-        console.log('processChatDeleteClick');
 
         const askResult = confirm('Удалить чат (может только создатель чата)?');
-        console.log('askResult: ', askResult);
         if (!askResult) {
-            console.log('No chat deletion');
             return;
         }
 
@@ -395,19 +335,16 @@ class ChatController {
         if (!!activeChatIdNum) {
             const model = new DeleteChatFormModel;
             model.chatId = activeChatIdNum;
-            console.log(`delete active chat with id = ${model.chatId}. DeleteChatFormModel: `, model);
 
             ChatApi.deleteChat(model)
                 .then(
                     () => {
-                        console.log('success deleteChat');
                         BaseController.showMessage('Чат успешно удален');
 
                     }
                 )
                 .catch(BaseController.showMessage);
         } else {
-            console.log('no activeChatIdNum to delete chat');
         }
 
         hideMenu();
@@ -415,19 +352,13 @@ class ChatController {
 
     async processSendMessage(e: SubmitEvent) {
         e.preventDefault();
-        console.log('submit: ChatController processSendMessage');
         const resObj = validationTypedSubmitHandler<MessageFormModel>(e, MessageFormModel);
-        console.log(resObj);
         const canSendData = resObj.isValidated;
         if (canSendData) {
-            console.log('canSendData');
-            console.log(resObj.object);
 
             ws.sendMessage(resObj.object.message);
         } else {
-            console.log('can not send Data');
         }
-        console.log('clear boxChatMessage_input');
         const frm = e.target as HTMLFormElement;
         if (frm) {
             const inputMsg = frm.querySelector('.boxChatMessage_input') as HTMLInputElement;

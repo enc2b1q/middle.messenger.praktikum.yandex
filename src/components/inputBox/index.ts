@@ -7,7 +7,6 @@ import {validationInputHandler} from "../../utils/processFormData";
 
 export default class InputBox extends Block {
     render() {
-        console.log('inputBox render');
         return this.compile(tpl);
     }
 }

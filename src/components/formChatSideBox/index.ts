@@ -5,7 +5,6 @@ import {validationSubmitHandler} from "../../utils/processFormData";
 
 export default class FormChatSideBox extends Block {
     render() {
-        console.log('formChatSideBox render');
         return this.compile(tpl);
     }
 

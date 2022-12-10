@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class BackArrowBtn extends Block {
     render() {
-        console.log('backArrowBtn render');
         return this.compile(tpl);
     }
 }

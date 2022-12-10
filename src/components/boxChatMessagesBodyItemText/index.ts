@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class BoxChatMessagesBodyItemText extends Block {
     render() {
-        console.log('boxChatMessagesBodyItemText render');
         return this.compile(tpl);
     }
 }

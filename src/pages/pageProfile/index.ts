@@ -64,7 +64,6 @@ const _uploadImageForm = new FormUploadImage(
         events: {
             submit: (e: Event) => {
                 e.preventDefault();
-                console.log('submit _uploadImageForm');
             },
         },
     }
@@ -302,15 +301,12 @@ class PageProfile extends Block {
         });
 
         store.subscribe(StoreEvents.UPDATED, () => {
-            console.log('StoreEvents.UPDATED received at PageProfile');
-            console.log('store: ', store);
             this.setProps(store.getState());
         });
 
     }
 
     componentDidMount() {
-        console.log('PageProfile componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -342,7 +338,6 @@ class PageProfile extends Block {
     }
 
     render() {
-        console.log('PageProfile render');
         return this.compile(tpl);
     }
 }

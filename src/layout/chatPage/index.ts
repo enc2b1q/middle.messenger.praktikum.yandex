@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class LayoutChatPage extends Block {
     render() {
-        console.log('layoutChatPage render');
         return this.compile(tpl);
     }
 }

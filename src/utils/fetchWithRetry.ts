@@ -29,7 +29,6 @@ export default function fetchWithRetry(url: string, options: RequestOptionsType)
         try {
             return new HTTP().request(url, options);
         } catch (e) {
-            console.log(e);
         }
     }
     throw new Error(`Не удалось получить результат за количество попыток: ${retCnt}`);

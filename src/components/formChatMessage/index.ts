@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class FormChatMessage extends Block {
     render() {
-        console.log('formChatMessage render');
         return this.compile(tpl);
     }
 

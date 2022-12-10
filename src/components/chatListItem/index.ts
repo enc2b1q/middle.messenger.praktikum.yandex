@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class ChatListItem extends Block {
     render() {
-        console.log('chatListItem render');
         return this.compile(tpl);
     }
 }

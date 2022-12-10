@@ -4,7 +4,6 @@ import './style.scss';
 
 export default class ProfileLinkEdit extends Block {
     render() {
-        console.log('profileLinkEdit render');
         return this.compile(tpl);
     }
 }

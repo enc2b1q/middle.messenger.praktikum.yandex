@@ -192,7 +192,6 @@ export default class PageRegister extends Block {
     }
 
     componentDidMount() {
-        console.log('PageRegister componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -206,7 +205,6 @@ export default class PageRegister extends Block {
     }
 
     render() {
-        console.log('PageRegister render');
         return this.compile(tpl);
     }
 }

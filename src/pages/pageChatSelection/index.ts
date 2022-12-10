@@ -102,7 +102,6 @@ export default class PageChatSelection extends Block {
     }
 
     componentDidMount() {
-        console.log('PageChatSelection componentDidMount');
 
         BaseController.testAuth()
             .then(
@@ -128,7 +127,6 @@ export default class PageChatSelection extends Block {
     }
 
     render() {
-        console.log('PageChatSelection render');
         return this.compile(tpl);
     }
 }
