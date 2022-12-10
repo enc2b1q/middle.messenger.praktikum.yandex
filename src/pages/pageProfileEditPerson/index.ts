@@ -245,7 +245,11 @@ export default class PageProfileEditPerson extends Block {
                         UserController
                             .getUser()
                             .then(
-                                () => this._updateUserData()
+                                (user) => {
+                                    if (user) {
+                                        this._updateUserData();
+                                    }
+                                }
                             )
                             .catch(BaseController.showMessage);
                     } else {

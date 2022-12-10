@@ -16,9 +16,9 @@ import * as validator from '../utils/processFormData'
 import {propNames, validationTypedSubmitHandler} from "../utils/processFormData";
 import Router from "../services/router";
 import BoxChatMessagesBodyItemText from "../components/boxChatMessagesBodyItemText";
-import UserController from "./userController";
 import AuthController from "./authController";
 import {ws} from '../pages/pageChatDetails';
+import UserApi from "../api/userApi";
 
 function hideMenu() {
     const elemMenu = (document.querySelector(`.boxChatHeader_menu`) as HTMLElement);
@@ -28,7 +28,6 @@ function hideMenu() {
 }
 
 class ChatController {
-
 
     async getChats() {
         console.log('ChatController.getChats()');
@@ -41,26 +40,6 @@ class ChatController {
                 }
             )
             .catch(BaseController.showMessage);
-    }
-
-    async createChat(model: CreateChatFormModel) {
-        console.log('ChatController.createChat()');
-        return ChatApi.createChat(model);
-    }
-
-    async deleteChat(model: DeleteChatFormModel) {
-        console.log('ChatController.deleteChat()');
-        return ChatApi.deleteChat(model);
-    }
-
-    async addUsersToChat(model: AddDeleteUsersToChatFormModel) {
-        console.log('ChatController.addUsersToChat()');
-        return ChatApi.addUsersToChat(model);
-    }
-
-    async deleteUsersFromChat(model: AddDeleteUsersToChatFormModel) {
-        console.log('ChatController.deleteUsersFromChat()');
-        return ChatApi.deleteUsersFromChat(model);
     }
 
     updateChatBody(block: Block) {
@@ -84,10 +63,16 @@ class ChatController {
         if (!typedUser) {
             AuthController.getUserInfo()
                 .then(
-                    (us) =>
-                        typedUser = us
+                    (data) => {
+                        if (data) {
+                            typedUser = data;
+                        } else {
+                            return;
+                        }
+                    }
                 );
         }
+
 
         if (activeChatId) {
             console.log('update chat msgs');
@@ -309,10 +294,9 @@ class ChatController {
             return;
         }
         const title = titleInputStr;
-        const ctrl = new ChatController;
         const model = new CreateChatFormModel;
         model.title = title;
-        ctrl.createChat(model)
+        ChatApi.createChat(model)
             .then(() => {
                     console.log('success createChat');
                     const router = new Router("#root");
@@ -344,7 +328,7 @@ class ChatController {
         model.login = titleUserLoginStr;
         console.log('SearchUserFormModel', model);
 
-        UserController.searchUser(model)
+        UserApi.searchUser(model)
             .then(
                 (data) => {
                     let firstUser: IUserInfo;
@@ -368,8 +352,7 @@ class ChatController {
                         model.users.push(firstUser.id);
                         console.log('AddUsersToChatFormModel: ', model);
 
-                        const ctrl = new ChatController();
-                        ctrl.addUsersToChat(model)
+                        ChatApi.addUsersToChat(model)
                             .then(
                                 () => {
                                     console.log('success addUsersToChat');
@@ -409,7 +392,7 @@ class ChatController {
         model.login = userLoginStr;
         console.log('SearchUserFormModel', model);
 
-        UserController.searchUser(model)
+        UserApi.searchUser(model)
             .then(
                 (data) => {
                     let selectedUser: IUserInfo;
@@ -433,8 +416,7 @@ class ChatController {
                         model.users.push(selectedUser.id);
                         console.log('Delete users from chat FormModel: ', model);
 
-                        const ctrl = new ChatController();
-                        ctrl.deleteUsersFromChat(model)
+                        ChatApi.deleteUsersFromChat(model)
                             .then(
                                 () => {
                                     console.log('success deleteUsersFromChat');
@@ -475,8 +457,7 @@ class ChatController {
             model.chatId = activeChatIdNum;
             console.log(`delete active chat with id = ${model.chatId}. DeleteChatFormModel: `, model);
 
-            const ctrl = new ChatController();
-            ctrl.deleteChat(model)
+            ChatApi.deleteChat(model)
                 .then(
                     () => {
                         console.log('success deleteChat');

@@ -1,13 +1,12 @@
 import UserApi from "../api/userApi";
+import AuthApi from "../api/authApi";
 import {IUserInfo} from "../services/interfaces";
 import store, {StoreKeys} from "../services/store";
-import AuthApi from "../api/authApi";
 import {sanitize, validationTypedSubmitHandler} from "../utils/processFormData";
 import {
     ChangePasswordFormModel,
     ChangePasswordViewFormModel,
-    EditProfileFormModel,
-    SearchUserFormModel
+    EditProfileFormModel
 } from "../services/types";
 import BaseController from "./baseController";
 import Router from "../services/router";
@@ -22,18 +21,29 @@ class UserController {
     //     this.userApi = new UserApi();
     // }
 
-    async getUser(): Promise<IUserInfo> {
+    async getUser(): Promise<IUserInfo | undefined> {
         // UserApi.getUser();
         // // .then(data => store.set('user', data);
 
-        const userAuth: IUserInfo = await AuthApi.getUserInfo();
-        const user = await UserApi.getUser(userAuth.id);
+        let user: IUserInfo | undefined;
+        await AuthApi.getUserInfo()
+            .then(
+                (data) => UserApi.getUser(data.id)
+            )
+            .then(
+                (data) => {
+                    user = data;
+                }
+            )
+            .catch(BaseController.showMessage);
         store.set(StoreKeys.user, user);
         return user;
-    }
 
-    async searchUser(model: SearchUserFormModel): Promise<IUserInfo[]> {
-        return UserApi.searchUser(model);
+
+        // const userAuth: IUserInfo = await AuthApi.getUserInfo();
+        // const user = await UserApi.getUser(userAuth.id);
+        // store.set(StoreKeys.user, user);
+        // return user;
     }
 
     async changePassword(model: ChangePasswordFormModel) {
@@ -55,9 +65,7 @@ class UserController {
         console.log('UserController.editProfile()')
         await UserApi.editProfile(model)
             .then(
-                (data: IUserInfo) => {
-                    console.log('success editProfile');
-                    console.log('IUserInfo:', data);
+                () => {
                     BaseController.showMessage('Данные изменены');
                     // const router = new Router("#root");
                     // router.go("/settings");
@@ -71,9 +79,7 @@ class UserController {
         console.log('UserController.uploadAvatar()')
         await UserApi.uploadAvatar(model)
             .then(
-                (data: IUserInfo) => {
-                    console.log('success uploadAvatar');
-                    console.log('IUserInfo:', data);
+                () => {
                     BaseController.showMessage('Аватар изменен');
                     const router = new Router("#root");
                     router.go("/settings");

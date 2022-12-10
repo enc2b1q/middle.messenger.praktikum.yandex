@@ -1,5 +1,5 @@
 import AuthApi from "../api/authApi";
-import {ISignupResponse, IUserInfo} from "../services/interfaces";
+import {IUserInfo} from "../services/interfaces";
 import store, {StoreKeys} from "../services/store";
 import {
     validationTypedSubmitHandler
@@ -17,8 +17,15 @@ class AuthController {
     //     this.authApi = new AuthApi();
     // }
 
-    async getUserInfo(): Promise<IUserInfo> {
-        const user = await AuthApi.getUserInfo();
+    async getUserInfo(): Promise<IUserInfo | undefined> {
+        let user: IUserInfo | undefined;
+        await AuthApi.getUserInfo()
+            .then(
+                (data) => {
+                    user = data;
+                }
+            )
+            .catch(BaseController.showMessage);
         store.set(StoreKeys.user, user);
         return user;
     }
@@ -41,9 +48,7 @@ class AuthController {
         console.log('AuthController.signup()')
         await AuthApi.signup(model)
             .then(
-                (data: ISignupResponse) => {
-                    console.log('success signup');
-                    console.log('ISignupResponse:', data);
+                () => {
                     const router = new Router("#root");
                     router.go("/");
                 }
@@ -123,7 +128,6 @@ class AuthController {
             console.log('can not send Data to Signup Api');
         }
     }
-
 
 
 }

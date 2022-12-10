@@ -188,11 +188,14 @@ export default class PageProfileChangePwd extends Block {
                         UserController
                             .getUser()
                             .then(
-                                () => this._updateUserData()
+                                (user) => {
+                                    if (user) {
+                                        this._updateUserData();
+                                    }
+                                }
                             )
                             .catch(BaseController.showMessage);
-                    }
-                    else {
+                    } else {
                         const router = new Router("#root");
                         router.go("/");
                     }
