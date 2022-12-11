@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode=development && node ./server.js",
     "build": "webpack --mode=production --node-env=production",
-    "start": "webpack --mode=production --node-env=production && node ./server.js",
+    "start": "npm run build && node ./server.js",
     "oldtest": "echo \"Error: no test specified\" && exit 1",
     "test": "ts-mocha src/**/*.spec.ts --require test/test.js",
     "build:dev": "webpack --mode=development",
@@ -16,7 +16,7 @@
   },
   "targets": {
     "default": {
-      "distDir": "./build",
+      "distDir": "./dist",
       "engines": {
         "browsers": ">= 50%"
       }

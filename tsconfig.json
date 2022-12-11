@@ -10,5 +10,5 @@
     "strictNullChecks": true,
     "experimentalDecorators": true
   },
-  "files": ["src/index.ts"]
+  "files": ["src/main/index.ts"]
 }
