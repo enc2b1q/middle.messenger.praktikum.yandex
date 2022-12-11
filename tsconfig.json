@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "build",
-    "target": "esnext",
-    "declaration": false,
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "esModuleInterop": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "experimentalDecorators": true,
-  }
+    "experimentalDecorators": true
+  },
+  "files": ["src/index.ts"]
 }
