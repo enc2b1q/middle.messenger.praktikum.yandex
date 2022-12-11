@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "target": "es2019",
+    "target": "esnext",
     "declaration": false,
     "module": "commonjs",
     "esModuleInterop": true,
@@ -9,6 +9,7 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
   }
 }

@@ -1,60 +1,64 @@
 .chatListItem_wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    text-align: center;
-    margin: (16 0);
-    border-top: 2px solid darkgray;
-    border-right: none;
-    border-bottom: 2px solid darkgray;
-    border-left: none;
-    align-self: flex-start;
-    min-height: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  margin: (16 0);
+  border-top: 2px solid darkgray;
+  border-right: none;
+  border-bottom: 2px solid darkgray;
+  border-left: none;
+  align-self: flex-start;
+  min-height: 30px;
+
+  &.active {
+    background-color: #E4EDFD;
+  }
 }
 
 .chatListItem_image_wrapper, .chatListItem_text_wrapper, .chatListItem_numbers_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .chatListItem_text_wrapper {
-    align-self: stretch;
+  align-self: stretch;
 }
 
 .chatListItem_text_chatName, .chatListItem_text_lastMsgPreview_user {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.chatListItem_text_lastMsgPreview{
-    align-self: stretch;
-    display: flex;
-    flex-direction: row;
+.chatListItem_text_lastMsgPreview {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
 }
 
 .chatListItem_image {
-    height: 30px;
-    max-width: 30px;
-    border: none;
-    border-radius: 50%;
-    background-color: lightgrey;
+  height: 30px;
+  max-width: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: lightgrey;
 }
 
 .chatListItem_numbers_date {
-    color: lightgrey;
+  color: lightgrey;
 }
 
 .chatListItem_numbers_num_wrapper {
-    height: 30px;
-    max-width: 30px;
-    border: none;
-    border-radius: 50%;
-    background-color: #3369f3;
-    display: flex;
+  height: 30px;
+  max-width: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: #3369f3;
+  display: flex;
 }
 
 .chatListItem_numbers_num {
-    align-self: center;
+  align-self: center;
 }

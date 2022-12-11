@@ -1,5 +1,10 @@
-.container {
-	display:flex;
-	justify-content: flex-start;
-	align-content: flex-start;
+.mainContent, #root, .pageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-start;
+  align-content: flex-start;
 }

@@ -4,6 +4,7 @@ import EventBus from './eventBus';
 import {TypeDict, TypeMixedUnknownProps} from './types'
 import isBlock from '../utils/isBlock';
 import isBlockArray from "../utils/isBlockArray";
+import isEqual from "../utils/isEqual";
 
 export default class Block {
 
@@ -45,11 +46,9 @@ export default class Block {
             const value = propsAndChildren[key];
             if (isBlock(value)) {
                 children[key] = value;
-            }
-            else if (isBlockArray(value)) {
+            } else if (isBlockArray(value)) {
                 childrenArray[key] = value;
-            }
-            else {
+            } else {
                 props[key] = value;
             }
 
@@ -100,7 +99,7 @@ export default class Block {
             child.dispatchComponentDidMount();
         });
         Object.values(this._childrenArray).forEach(childrenArrayRecord =>
-            childrenArrayRecord.forEach( child => {
+            childrenArrayRecord.forEach(child => {
                 child.dispatchComponentDidMount();
             })
         );
@@ -124,9 +123,12 @@ export default class Block {
     }
 
     componentDidUpdate(oldProps: TypeMixedUnknownProps & TypeDict<Block>, newProps: TypeMixedUnknownProps & TypeDict<Block>): boolean {
-        console.log(newProps, oldProps);
 
-        return true;
+        return isEqual(newProps, oldProps);
+    }
+
+    leave() {
+        this.removeEvents();
     }
 
     setProps(newProps: TypeMixedUnknownProps): void {
@@ -150,10 +152,14 @@ export default class Block {
 
     }
 
-    _render(): void {
-        const block: Node | void = this.render();
+    _clearElement() {
         this.removeEvents();
         this._element.innerHTML = '';
+    }
+
+    _render(): void {
+        const block: Node | void = this.render();
+        this._clearElement();
         if (block) {
             this._element.appendChild(block);
             this.addEvents();
@@ -193,12 +199,10 @@ export default class Block {
     }
 
     show(): void {
-        console.log('Block-show');
         this.getContent().style.display = 'block';
     }
 
     hide(): void {
-        console.log('Block-hide');
         this.getContent().style.display = 'none';
     }
 

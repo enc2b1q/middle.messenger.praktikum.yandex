@@ -6,18 +6,25 @@ const tpl: string = `
 </div>
 <div class="chatListItem_text_wrapper">
     <div class="chatListItem_text_chatName">
-        Имя чата
+        {{ title }}
     </div>
     <div class="chatListItem_text_lastMsgPreview">
-        <span class="chatListItem_text_lastMsgPreview_user">Вы:</span><span class="chatListItem_text_lastMsgPreview_text">привет!</span>
+        <span class="chatListItem_text_lastMsgPreview_user">
+        {{ lastUser }}
+        </span>
+        <span class="chatListItem_text_lastMsgPreview_text">
+        {{ messageText }}
+        </span>
     </div>
 </div>
 <div class="chatListItem_numbers_wrapper">
     <div class="chatListItem_numbers_date">
-        18:24
+        {{ dateTime }}
     </div>
     <div class="chatListItem_numbers_num_wrapper">
-        <span class="chatListItem_numbers_num">2</span>
+        <span class="chatListItem_numbers_num">
+        {{ unread_count }}
+        </span>
     </div>
 </div>
 

@@ -1,36 +1,38 @@
 .profileLinkEdit {
-    align-self: stretch;
+  align-self: stretch;
 
-    display: flex;
-    flex-direction: row;
-    
-    border-bottom: 2px solid #EAEAEA;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    padding: 16 0 16 0;
-    margin: 0 0 16 0;
+  display: flex;
+  flex-direction: row;
 
-    
+  border-bottom: 2px solid #EAEAEA;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding: 16px 0 16px 0;
+  margin: 0 0 16px 0;
 
-    & a {
-        text-decoration: none; 
-    }
+
+  & a {
+    text-decoration: none;
+  }
 }
 
 .profileLinkEdit_text_align_start {
-    text-align: start;
+  text-align: start;
 }
+
 .profileLinkEdit_text_align_end {
-    text-align: end;
+  text-align: end;
 }
 
 .profileLinkEdit_a_blue {
-    color: #3369F3;
+  color: #3369F3;
 }
+
 .profileLinkEdit_a_red {
-    color: red;
+  color: red;
 }
+
 .profileLinkEdit_a_gray {
-    color: #999999;
+  color: #999999;
 }

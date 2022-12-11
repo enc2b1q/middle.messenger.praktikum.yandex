@@ -1,27 +1,32 @@
-/*
-if (module.hot) {
-    module.hot.accept();
-}
+import PageLinks from "../pages/pageLinks";
+import Router from "../services/router";
+import PageError404 from "../pages/pageError404";
+import PageError5xx from "../pages/pageError5xx";
+import PageLogin from "../pages/pageLogin";
+import PageRegister from "../pages/pageRegister";
+import PageProfile from "../pages/pageProfile";
+import PageProfileEditPerson from "../pages/pageProfileEditPerson";
+import PageProfileChangePwd from "../pages/pageProfileChangePwd";
+import PageChatDetails from "../pages/pageChatDetails";
 
-// import './styles-native.scss';
 
-import styles from './styles-native.scss';
+const router = new Router("#root");
 
-import * as classes from './modules/style.module.scss';
+router
+    .use("/", PageLogin)
+    .use("/index", PageLogin)
+    .use("/links", PageLinks)
+    .use("/error404", PageError404)
+    .use("/error5xx", PageError5xx)
+    .use("/login", PageLogin)
+    .use("/sign-up", PageRegister)
+    .use("/settings", PageProfile)
+    .use("/profileEditPerson", PageProfileEditPerson)
+    .use("/profileChangePwd", PageProfileChangePwd)
+    .use("/messenger", PageChatDetails)
+    .use("/chatDetails", PageChatDetails)
+    .start();
 
-// document.body.className = classes.body;
 
-console.log('test');
 
-// const Handlebars = require("handlebars");
-import Handlebars from "handlebars";
 
-const template = Handlebars.compile("user: {{name}}");
-console.log(template({ name: "testuser" }));
-*/
-
-//import Handlebars from "handlebars";
-// import tpl from './index.hbs';
-import './index.scss';
-
-// document.getElementById('root').innerHTML = tpl({});

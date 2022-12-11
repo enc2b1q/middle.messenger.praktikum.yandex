@@ -1,51 +1,57 @@
 .layout_chatSideBox_wrapper_box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-    align-items: center;    
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 .layout_chatSideBox_header {
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-    align-items: center;
-    max-height: 100px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 100px;
 }
+
 .layout_chatSideBox_chatList {
-    margin-top: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-	justify-content: flex-start;
-    align-items: center;  
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
-//.layout_chatSideBox_elem {
-//    padding: 5px;
-//}
-.layout_chatSideBox_header_profileLinkBox{
-    justify-content: end;
-    align-self: stretch;
-    display: flex;
-    & .profileLinkEdit:last-child {
-        border-bottom: none;
-    }
+
+.layout_chatSideBox_header_profileLinkBox {
+  justify-content: end;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+
+  & .profileLinkEdit:last-child {
+    border-bottom: none;
+  }
 }
+
 .layout_chatSideBox_header_searchBox {
-    align-self: stretch;
-    display: flex;
+  align-self: stretch;
+  display: flex;
 }
+
 .layout_chatSideBox_searchBox_form {
-    align-self: stretch;
-    display: flex;
+  align-self: stretch;
+  display: flex;
 }
+
 .layout_chatSideBox_searchBox_input {
-    width: 80%;
-    min-height: 30px;
-    border-radius: 10px;
-    background-color: #EFEFEF;
-    &::placeholder{
-        text-align: center;
-    }
+  width: 80%;
+  min-height: 30px;
+  border-radius: 10px;
+  background-color: #EFEFEF;
+
+  &::placeholder {
+    text-align: center;
+  }
 }
