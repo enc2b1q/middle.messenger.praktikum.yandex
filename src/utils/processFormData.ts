@@ -78,10 +78,10 @@ function isKeyInPropNames(name: string): name is propNames {
 }
 
 export function sanitize(value: string | number | null | undefined, name: string): string {
-    let result: string = "";
+    let result = "";
 
     if (value !== null && value !== undefined) {
-        let valStr = value.toString();
+        const valStr = value.toString();
         const regExp = validationPatternRegExps.get(name);
         if (regExp) {
             const found = valStr.match(regExp);
@@ -164,13 +164,13 @@ export default function processFormData(form: HTMLFormElement): boolean {
 
 
 function checkData<T extends Record<string, any>>(form: HTMLFormElement, type: (new () => T)): ValidationResult<T> {
-    let model = new type();
+    const model = new type();
 
     const target: Record<string, any> = {};
 
     let typed: T = new type();
     let isValidated = false;
-    let returnObject: ValidationResult<T> = new ValidationResult<T>(type);
+    const returnObject: ValidationResult<T> = new ValidationResult<T>(type);
 
     const inputElementsNodeList: NodeListOf<Element> = form.querySelectorAll('input');
 

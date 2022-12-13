@@ -23,7 +23,7 @@ export default class Block {
     _meta: { tag: string; props?: TypeMixedUnknownProps; };
     _eventBus: EventBus;
 
-    constructor(tag: string = "div", propsAndChildren: TypeMixedUnknownProps = {}) {
+    constructor(tag = "div", propsAndChildren: TypeMixedUnknownProps = {}) {
         const {children, childrenArray, props} = this.getChildren(propsAndChildren);
 
         this._eventBus = new EventBus();

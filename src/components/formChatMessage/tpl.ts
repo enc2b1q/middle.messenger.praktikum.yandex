@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="boxChatMessage_input_box">
     <input type="text" id="message" name="message" class="boxChatMessage_input">
 </div>

@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="chat_content_head">
     {{{ chat_content_header }}}
 </div>

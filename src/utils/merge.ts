@@ -1,11 +1,11 @@
 import {Indexed} from "../services/types";
 
 function isIndexedObject(item: unknown): item is Indexed {
-    let res: boolean = false;
+    let res = false;
     if (isObject(item)) {
-        let i: number = 0;
+        let i = 0;
         // @ts-ignore
-        for (let k in item) {
+        for (const k in item) {
             i++;
         }
         if (i > 0) {
@@ -20,7 +20,7 @@ function isObject(item: unknown): item is Object {
 }
 
 function isObjContainsKey(arr: Array<string>, testKey: string) {
-    for (let k of arr) {
+    for (const k of arr) {
         if (k === testKey) {
             return true;
         }
@@ -29,11 +29,11 @@ function isObjContainsKey(arr: Array<string>, testKey: string) {
 }
 
 export default function merge(left: Indexed, right: Indexed): Indexed {
-    let leftKeys = Object.keys(left);
-    for (let rightKey in right) {
-        let rightValue = right[rightKey];
+    const leftKeys = Object.keys(left);
+    for (const rightKey in right) {
+        const rightValue = right[rightKey];
         if (isObjContainsKey(leftKeys, rightKey)) {
-            let leftValue = left[rightKey];
+            const leftValue = left[rightKey];
             if (!isObject(leftValue) && !isObject(rightValue)) {
                 left[rightKey] = rightValue;
             } else if (!isObject(leftValue) && isObject(rightValue) || isObject(leftValue) && !isObject(rightValue)) {

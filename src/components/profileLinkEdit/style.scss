@@ -1,16 +1,13 @@
 .profileLinkEdit {
   align-self: stretch;
-
   display: flex;
   flex-direction: row;
-
-  border-bottom: 2px solid #EAEAEA;
+  border-bottom: 2px solid #eaeaea;
   border-left: none;
   border-right: none;
   border-top: none;
-  padding: 16px 0 16px 0;
-  margin: 0 0 16px 0;
-
+  padding: 16px 0;
+  margin: 0 0 16px;
 
   & a {
     text-decoration: none;
@@ -26,7 +23,7 @@
 }
 
 .profileLinkEdit_a_blue {
-  color: #3369F3;
+  color: #3369f3;
 }
 
 .profileLinkEdit_a_red {
@@ -34,5 +31,5 @@
 }
 
 .profileLinkEdit_a_gray {
-  color: #999999;
+  color: #999;
 }

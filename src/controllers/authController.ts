@@ -78,8 +78,8 @@ class AuthController {
             }
 
             const dynamicKey = "password_repeat";
-            let {[dynamicKey]: _, ...rest} = resObj.object;
-            let dataToSend = {...rest} as SignupFormModel;
+            const {[dynamicKey]: _, ...rest} = resObj.object;
+            const dataToSend = {...rest} as SignupFormModel;
             const ctrl = new AuthController();
             await ctrl.signup(dataToSend);
         }

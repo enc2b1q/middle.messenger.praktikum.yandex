@@ -31,19 +31,19 @@ export default class HTTP {
 
     async get<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.GET, data});
-    };
+    }
 
     async put<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.PUT, data});
-    };
+    }
 
     async post<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.POST, data});
-    };
+    }
 
     async delete<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.DELETE, data});
-    };
+    }
 
     async request<TResp>(url: string,
                          options: RequestOptionsType = {method: HTTP_METHODS.GET}
@@ -103,7 +103,7 @@ export default class HTTP {
 
         })
 
-    };
+    }
 
     setHeaders(headers: Indexed<string>, req: XMLHttpRequest) {
         Object.entries(headers).forEach(([k, v]) => {

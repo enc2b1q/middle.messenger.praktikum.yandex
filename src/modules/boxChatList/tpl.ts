@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div>Список чатов</div>
 `;
 

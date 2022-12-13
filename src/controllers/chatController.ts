@@ -97,7 +97,7 @@ class ChatController {
 
             const chatList = chats as IChatInfo[];
             if (chatList) {
-                const activeChatIdNum = activeChatId as Number;
+                const activeChatIdNum = activeChatId as number;
                 const activeChat = chatList.filter(x => x.id == activeChatIdNum); //no strict
                 if (!!activeChat && activeChat.length === 1) {
                     const elChatName = block.getContent().querySelector(`.boxChatHeader_username`) as HTMLElement;
@@ -264,7 +264,7 @@ class ChatController {
             )
             .catch(BaseController.showMessage);
         hideMenu();
-    };
+    }
 
     async processChatDeleteUserClick(e: Event) {
         e.preventDefault();

@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="boxChatMessage_inner">
     <div class="boxChatMessage_attach_box">
     </div>
