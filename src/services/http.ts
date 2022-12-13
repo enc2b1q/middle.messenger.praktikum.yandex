@@ -1,8 +1,6 @@
 import queryStringify from "../utils/queryStringify";
 import {Indexed, RejectModel} from "./types";
 
-export const host = 'https://ya-praktikum.tech/api/v2';
-
 export const HTTP_METHODS = {
     GET: 'GET',
     POST: 'POST',
@@ -21,8 +19,8 @@ export type RequestOptionsType = {
 export default class HTTP {
     private readonly _baseUri: string;
 
-    constructor(suffix?: string) {
-        this._baseUri = `${host}${suffix ?? ""}`;
+    constructor(suffix?: string, host?: string) {
+        this._baseUri = `${host ?? ""}${suffix ?? ""}`;
     }
 
     get defaultTimeoutMs() {
@@ -75,7 +73,10 @@ export default class HTTP {
                 }
                 if (req.status === 200) {
                     resolve(respAnswer);
-                } else {
+                } else if (req.status > 200 && req.status < 300) {
+                    resolve(respAnswer);
+                }
+                else {
                     const model = new RejectModel();
                     model.status = req.status;
                     model.reason = respAnswer.reason;
