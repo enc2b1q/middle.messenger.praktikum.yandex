@@ -1,16 +1,13 @@
 .profileParamBox {
   align-self: stretch;
-
   display: flex;
   flex-direction: row;
-
-
-  border-bottom: 2px solid #EAEAEA;
+  border-bottom: 2px solid #eaeaea;
   border-left: none;
   border-right: none;
   border-top: none;
-  padding: 16px 0 16px 0;
-  margin: 0 0 16px 0;
+  padding: 16px 0;
+  margin: 0 0 16px;
 }
 
 .profileParam-label {
@@ -19,7 +16,7 @@
 }
 
 .profileParam-input {
-  color: #999999;
+  color: #999;
   align-self: flex-end;
   border: none;
   text-align: right;

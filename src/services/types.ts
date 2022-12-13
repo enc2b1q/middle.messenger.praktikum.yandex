@@ -26,12 +26,12 @@ export type PlainObject<T = any> = {
 };
 
 export class LoginFormModel {
-    login: string = "";
-    password: string = "";
+    login = "";
+    password = "";
 }
 
 export class MessageFormModel {
-    message: string = "";
+    message = "";
 }
 
 export class ValidationResult<T extends Record<string, any>> {
@@ -51,16 +51,16 @@ export class RejectModel {
 }
 
 export class SignupFormModel {
-    first_name: string = "";
-    second_name: string = "";
-    login: string = "";
-    email: string = "";
-    password: string = "";
-    phone: string = "";
+    first_name = "";
+    second_name = "";
+    login = "";
+    email = "";
+    password = "";
+    phone = "";
 }
 
 export class SignupViewFormModel extends SignupFormModel {
-    password_repeat: string = "";
+    password_repeat = "";
 
     constructor() {
         super();
@@ -68,25 +68,25 @@ export class SignupViewFormModel extends SignupFormModel {
 }
 
 export class ChangePasswordFormModel {
-    oldPassword: string = "";
-    newPassword: string = "";
+    oldPassword = "";
+    newPassword = "";
 }
 
 export class SearchUserFormModel {
-    login: string = "";
+    login = "";
 }
 
 export class ChangePasswordViewFormModel extends ChangePasswordFormModel {
-    password_repeat: string = "";
+    password_repeat = "";
 }
 
 export class EditProfileFormModel {
-    first_name: string = "";
-    second_name: string = "";
-    display_name: string = "";
-    login: string = "";
-    email: string = "";
-    phone: string = "";
+    first_name = "";
+    second_name = "";
+    display_name = "";
+    login = "";
+    email = "";
+    phone = "";
 }
 
 export class UserInfo implements IUserInfo {
@@ -123,7 +123,7 @@ export class ChatInfo implements IChatInfo {
 }
 
 export class CreateChatFormModel {
-    title: string = "";
+    title = "";
 }
 
 export class DeleteChatFormModel {

@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="layout_chatSideBox_header layout_chatSideBox_elem">
     <div class="layout_chatSideBox_header_profileLinkBox">
         {{{ chatAddBtn }}}

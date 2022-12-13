@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="chatEmptyContent_inner">
     <span class="chatEmptyContent_span">Выберите чат, чтобы отправить сообщение</span>
 </div>

@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="image-box-inner">
         <div class="image-box">
             {{{uploadImageForm}}}

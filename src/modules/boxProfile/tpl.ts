@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 {{> profileParamBox name="email" labelText='Почта' type='email' readonly="readonly" }}
 {{> profileParamBox name="login" labelText='Логин' type='text' readonly="readonly" }}
 {{> profileParamBox name="first_name" labelText='Имя' type='text' readonly="readonly" }}

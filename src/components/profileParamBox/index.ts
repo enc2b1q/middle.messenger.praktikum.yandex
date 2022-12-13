@@ -17,7 +17,7 @@ export function getNewProfileParamInput(props: { validatorPropName: string, type
         props = defaultProps;
     }
 
-    let attr: {
+    const attr: {
         type: string,
         id: string,
         name: string,

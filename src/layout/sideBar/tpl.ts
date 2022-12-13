@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <aside class="sideBar elemSideBar {{sizeClass}}">
 {{{ sideBar }}}
 </aside>

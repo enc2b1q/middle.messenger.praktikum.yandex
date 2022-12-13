@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <h2>Страницы</h2>
 <ul>
     <li>

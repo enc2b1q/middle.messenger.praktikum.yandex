@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="chatListItem_image_wrapper">
     <div class="chatListItem_image">
     

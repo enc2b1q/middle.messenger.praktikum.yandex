@@ -31,7 +31,7 @@ export default class WS {
         }
     }
 
-    private getLast20UnreadMessages(startMsg: number = 0) {
+    private getLast20UnreadMessages(startMsg = 0) {
         this.socket.send(
             JSON.stringify({
                 content: `${startMsg}`,

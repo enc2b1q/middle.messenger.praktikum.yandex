@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
-    "allowJs": true,
+    "target": "es6",
+    "module": "commonjs",
     "esModuleInterop": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
   },
-  "files": ["src/main/index.ts"]
 }
+
