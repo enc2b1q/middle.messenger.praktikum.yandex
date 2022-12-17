@@ -1,8 +1,10 @@
-@use '../../modules/scss/body';
+body {
+  margin: 0;
+}
 
-$sidebar-percent-value: 20 !default;
-$sidebar-percent-def-value: 50 !default;
-$sidebar-small-percent-value: 3 !default;
+$sidebar-percent-value: 20;
+$sidebar-percent-def-value: 50;
+$sidebar-small-percent-value: 3;
 
 .container {
   display: flex;
@@ -25,7 +27,7 @@ $sidebar-small-percent-value: 3 !default;
 }
 
 .sideBar {
-  background-color: rgb(248, 246, 246);
+  background-color: rgb(248 246 246);
 }
 
 .sideBar-default {

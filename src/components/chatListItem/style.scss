@@ -12,11 +12,13 @@
   min-height: 30px;
 
   &.active {
-    background-color: #E4EDFD;
+    background-color: #e4edfd;
   }
 }
 
-.chatListItem_image_wrapper, .chatListItem_text_wrapper, .chatListItem_numbers_wrapper {
+.chatListItem_image_wrapper,
+.chatListItem_text_wrapper,
+.chatListItem_numbers_wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +30,8 @@
   align-self: stretch;
 }
 
-.chatListItem_text_chatName, .chatListItem_text_lastMsgPreview_user {
+.chatListItem_text_chatName,
+.chatListItem_text_lastMsgPreview_user {
   font-weight: bold;
 }
 

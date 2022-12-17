@@ -1,8 +1,6 @@
 import queryStringify from "../utils/queryStringify";
 import {Indexed, RejectModel} from "./types";
 
-export const host = 'https://ya-praktikum.tech/api/v2';
-
 export const HTTP_METHODS = {
     GET: 'GET',
     POST: 'POST',
@@ -21,8 +19,8 @@ export type RequestOptionsType = {
 export default class HTTP {
     private readonly _baseUri: string;
 
-    constructor(suffix?: string) {
-        this._baseUri = `${host}${suffix ?? ""}`;
+    constructor(suffix?: string, host?: string) {
+        this._baseUri = `${host ?? ""}${suffix ?? ""}`;
     }
 
     get defaultTimeoutMs() {
@@ -31,19 +29,19 @@ export default class HTTP {
 
     async get<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.GET, data});
-    };
+    }
 
     async put<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.PUT, data});
-    };
+    }
 
     async post<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.POST, data});
-    };
+    }
 
     async delete<TResp>(url: string, data?: {}): Promise<TResp> {
         return this.request(url, {method: HTTP_METHODS.DELETE, data});
-    };
+    }
 
     async request<TResp>(url: string,
                          options: RequestOptionsType = {method: HTTP_METHODS.GET}
@@ -75,7 +73,10 @@ export default class HTTP {
                 }
                 if (req.status === 200) {
                     resolve(respAnswer);
-                } else {
+                } else if (req.status > 200 && req.status < 300) {
+                    resolve(respAnswer);
+                }
+                else {
                     const model = new RejectModel();
                     model.status = req.status;
                     model.reason = respAnswer.reason;
@@ -103,7 +104,7 @@ export default class HTTP {
 
         })
 
-    };
+    }
 
     setHeaders(headers: Indexed<string>, req: XMLHttpRequest) {
         Object.entries(headers).forEach(([k, v]) => {

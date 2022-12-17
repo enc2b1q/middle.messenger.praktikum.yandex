@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "build",
-    "target": "esnext",
-    "declaration": false,
+    "target": "es6",
     "module": "commonjs",
     "esModuleInterop": true,
     "sourceMap": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "experimentalDecorators": true,
-  }
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
+  },
 }
+

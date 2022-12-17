@@ -19,7 +19,7 @@ class Store extends EventBus {
 
     public getState() {
         return this.state;
-    };
+    }
 
     public set(path: string, value: unknown) {
 
@@ -27,6 +27,6 @@ class Store extends EventBus {
 
 
         this.emit(StoreEvents.UPDATED);
-    };
+    }
 }
 export default new Store();

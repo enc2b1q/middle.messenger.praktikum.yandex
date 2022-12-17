@@ -24,7 +24,7 @@ export default function getDateTimeSideBar(str: string): string {
 }
 
 function getWeekDay(date: Date) {
-    let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+    const days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 
     return days[date.getDay()];
 }

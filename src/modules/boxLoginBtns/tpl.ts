@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 {{#each items}}
     {{{this}}}   
 {{/each}}

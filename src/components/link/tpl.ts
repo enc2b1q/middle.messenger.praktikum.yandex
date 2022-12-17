@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <a href="{{url}}">
     {{text}}
 </a>

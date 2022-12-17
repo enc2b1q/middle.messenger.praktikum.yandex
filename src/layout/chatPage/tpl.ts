@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 {{#> layoutSideBar sizeClass="sideBar-big" }}
     {{#*inline "sideBarContent"}}
         {{> layoutChatContentBox}}

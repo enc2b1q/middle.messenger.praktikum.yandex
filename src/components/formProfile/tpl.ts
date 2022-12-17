@@ -1,4 +1,4 @@
-const tpl: string = `
+const tpl = `
 <div class="layout_profileParams-params_box">
     {{{ profileParams_params_box }}}
 </div>

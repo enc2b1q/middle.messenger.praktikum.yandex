@@ -11,7 +11,7 @@ export default class InputBox extends Block {
     }
 }
 
-export function getNewInput(validatorPropName: string, type: string = "text", className: string = "input-with-bottom-line"): GenericTag {
+export function getNewInput(validatorPropName: string, type = "text", className = "input-with-bottom-line"): GenericTag {
     return new GenericTag(
         "input",
         {
